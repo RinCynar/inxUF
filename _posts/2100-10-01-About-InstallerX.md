@@ -27,7 +27,7 @@ Android 5.0 ~ ?
 
 ## 下载
 
-### <a href="https://t.me/InstallerXFake">-官方Telegram群组</a>
+### <a href="https://t.me/InstallerX">-官方Telegram群组</a>
 
 ### <a href="https://installerx.app.tc">-inx.UF</a>
 
@@ -35,7 +35,7 @@ Android 5.0 ~ ?
 
 ## 开源协议
 
-</h3><br>
+<br>
 InstallerX目前基于 [**GNU General Public License v3 (GPL-3)**](http://www.gnu.org/copyleft/gpl.html)
 开源，但不保证未来依然继续遵循此协议或开源，有权更改开源协议或开源状态。
 <br>

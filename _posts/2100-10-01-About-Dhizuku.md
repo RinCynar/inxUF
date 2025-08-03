@@ -10,9 +10,6 @@ tags:
 
 # Dhizuku
 
-[Downloads](https://github.com/iamr0s/Dhizuku/releases)
-[Lastest](https://github.com/iamr0s/Dhizuku/releases/latest)
-
 ## 介绍
 
 参考Shizuku的设计思想，分享 DeviceOwner (设备所有者) 权限给其余应用
@@ -20,6 +17,18 @@ tags:
 ## 支持版本
 
 Android 5.0 ~ 14
+
+## 下载
+
+### <a href="https://play.google.com/store/apps/details?id=com.rosan.dhizuku">-Google Play Store</a>
+
+### <a href="https://github.com/iamr0s/Dhizuku/releases">-Github</a>
+
+### <a href="https://t.me/InstallerX">-官方Telegram群组</a>
+
+### <a href="https://installerx.app.tc">-inx.UF</a>
+
+### <a href="https://qm.qq.com/q/b7OncY19IW">-lпsтaIIeгX 宫仿裙（原官方群成员自发组建）</a>
 
 ## 激活教程
 
