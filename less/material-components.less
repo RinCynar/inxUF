@@ -1,0 +1,420 @@
+// Material You Components
+
+@import "variables.less";
+@import "material-you.less";
+@import "mixins.less";
+
+// ==================
+// BUTTONS
+// ==================
+
+.btn {
+    .sans-serif;
+    border-radius: @radius-md;
+    padding: 10px 24px;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.1px;
+    text-transform: none;
+    border: none;
+    cursor: pointer;
+    .transition-medium();
+
+    &:hover {
+        .elevation-1;
+    }
+
+    &:active {
+        .elevation-0;
+    }
+
+    &:focus {
+        outline: 2px solid @primary;
+        outline-offset: 2px;
+    }
+}
+
+// Filled Button (Primary)
+.btn-filled {
+    background-color: @primary;
+    color: @on-primary;
+
+    &:hover {
+        background-color: lighten(@primary, 8%);
+    }
+
+    &:active {
+        background-color: darken(@primary, 8%);
+    }
+
+    &:disabled {
+        background-color: fade(@on-surface, 12%);
+        color: fade(@on-surface, 38%);
+        cursor: not-allowed;
+    }
+}
+
+// Filled Tonal Button (Secondary)
+.btn-tonal {
+    background-color: @primary-container;
+    color: @on-primary-container;
+
+    &:hover {
+        background-color: lighten(@primary-container, 8%);
+    }
+
+    &:active {
+        background-color: darken(@primary-container, 8%);
+    }
+
+    &:disabled {
+        background-color: fade(@on-surface, 12%);
+        color: fade(@on-surface, 38%);
+        cursor: not-allowed;
+    }
+}
+
+// Outlined Button
+.btn-outlined {
+    background-color: transparent;
+    color: @primary;
+    border: 1px solid @outline;
+
+    &:hover {
+        background-color: fade(@primary, 8%);
+    }
+
+    &:active {
+        background-color: fade(@primary, 12%);
+    }
+
+    &:disabled {
+        color: fade(@on-surface, 38%);
+        border-color: fade(@on-surface, 12%);
+        cursor: not-allowed;
+    }
+}
+
+// Text Button
+.btn-text {
+    background-color: transparent;
+    color: @primary;
+
+    &:hover {
+        background-color: fade(@primary, 8%);
+    }
+
+    &:active {
+        background-color: fade(@primary, 12%);
+    }
+
+    &:disabled {
+        color: fade(@on-surface, 38%);
+        cursor: not-allowed;
+    }
+}
+
+// Elevated Button
+.btn-elevated {
+    background-color: @surface-variant;
+    color: @primary;
+    .elevation-1;
+
+    &:hover {
+        background-color: lighten(@surface-variant, 5%);
+        .elevation-2;
+    }
+
+    &:active {
+        .elevation-1;
+    }
+}
+
+// Size variants
+.btn-sm {
+    padding: 8px 16px;
+    font-size: 12px;
+}
+
+.btn-lg {
+    padding: 12px 32px;
+    font-size: 16px;
+}
+
+// ==================
+// CARDS
+// ==================
+
+.card {
+    background-color: @surface;
+    color: @on-surface;
+    border-radius: @radius-md;
+    border: 1px solid @outline-variant;
+    .elevation-0;
+    .transition-medium();
+    overflow: hidden;
+
+    &:hover {
+        .elevation-1;
+    }
+}
+
+.card-elevated {
+    .elevation-1;
+    border: none;
+
+    &:hover {
+        .elevation-2;
+    }
+}
+
+.card-filled {
+    background-color: @primary-container;
+    color: @on-primary-container;
+    border: none;
+
+    &:hover {
+        .elevation-1;
+    }
+}
+
+.card-outlined {
+    background-color: transparent;
+    border: 1px solid @outline;
+}
+
+// ==================
+// INPUT FIELDS
+// ==================
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="search"],
+textarea,
+select {
+    .sans-serif;
+    background-color: @surface-variant;
+    color: @on-surface;
+    border: 1px solid @outline;
+    border-radius: @radius-xs;
+    padding: 12px 16px;
+    font-size: 14px;
+    line-height: 20px;
+    .transition-short();
+
+    &:hover {
+        border-color: @on-surface;
+        background-color: lighten(@surface-variant, 2%);
+    }
+
+    &:focus {
+        background-color: @surface;
+        border: 2px solid @primary;
+        padding: 11px 15px;
+        outline: none;
+        box-shadow: 0 0 0 3px fade(@primary, 12%);
+    }
+
+    &:disabled {
+        background-color: fade(@on-surface, 4%);
+        color: fade(@on-surface, 38%);
+        cursor: not-allowed;
+        border-color: fade(@on-surface, 12%);
+    }
+
+    &::placeholder {
+        color: fade(@on-surface, 50%);
+    }
+}
+
+textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+// ==================
+// CHIPS
+// ==================
+
+.chip {
+    display: inline-flex;
+    align-items: center;
+    background-color: @surface-variant;
+    color: @on-surface-variant;
+    border: 1px solid @outline;
+    border-radius: @radius-xl;
+    padding: 8px 16px;
+    font-size: 12px;
+    font-weight: 500;
+    gap: 8px;
+    .transition-short();
+
+    &:hover {
+        background-color: lighten(@surface-variant, 5%);
+    }
+
+    &.chip-filled {
+        background-color: @primary;
+        color: @on-primary;
+        border-color: @primary;
+    }
+
+    &.chip-outlined {
+        background-color: transparent;
+        border: 1px solid @outline;
+    }
+}
+
+// ==================
+// DIVIDER
+// ==================
+
+hr,
+.divider {
+    border: none;
+    border-top: 1px solid @outline-variant;
+    margin: @spacing-6 0;
+    opacity: 1;
+}
+
+// ==================
+// LISTS
+// ==================
+
+.list-item {
+    padding: @spacing-4 @spacing-6;
+    border-radius: @radius-sm;
+    .transition-short();
+    cursor: pointer;
+
+    &:hover {
+        background-color: fade(@primary, 8%);
+    }
+
+    &:active {
+        background-color: fade(@primary, 12%);
+    }
+}
+
+// ==================
+// BADGES
+// ==================
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: @error;
+    color: @on-error;
+    border-radius: @radius-full;
+    min-width: 24px;
+    height: 24px;
+    padding: 0 8px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+// ==================
+// SNACKBAR
+// ==================
+
+.snackbar {
+    background-color: #323232;
+    color: #ffffff;
+    padding: @spacing-6 @spacing-6;
+    border-radius: @radius-sm;
+    position: fixed;
+    bottom: @spacing-6;
+    left: @spacing-6;
+    z-index: 1000;
+    .elevation-3;
+
+    @media (min-width: 600px) {
+        max-width: 568px;
+    }
+}
+
+// ==================
+// DIALOG
+// ==================
+
+.dialog {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: @surface;
+    color: @on-surface;
+    border-radius: @radius-lg;
+    padding: @spacing-8;
+    z-index: 1100;
+    .elevation-5;
+    max-width: 560px;
+
+    &::backdrop {
+        background-color: fade(@scrim, 32%);
+    }
+
+    .dialog-title {
+        font-size: 24px;
+        font-weight: 500;
+        line-height: 32px;
+        margin-bottom: @spacing-4;
+    }
+
+    .dialog-content {
+        font-size: 14px;
+        line-height: 20px;
+        color: @on-surface;
+        margin-bottom: @spacing-6;
+    }
+
+    .dialog-actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: @spacing-3;
+
+        .btn {
+            min-width: 100px;
+        }
+    }
+}
+
+// ==================
+// PROGRESS
+// ==================
+
+.progress {
+    height: 4px;
+    background-color: @surface-variant;
+    border-radius: @radius-full;
+    overflow: hidden;
+
+    .progress-bar {
+        height: 100%;
+        background-color: @primary;
+        .transition-medium();
+    }
+}
+
+// ==================
+// LOADING
+// ==================
+
+.spinner {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    border: 4px solid @surface-variant;
+    border-top-color: @primary;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+
+    @keyframes spin {
+        to {
+            transform: rotate(360deg);
+        }
+    }
+}

@@ -15,44 +15,71 @@
   }
 }
 
-// Container of Sidebar, also Friends
+// Container of Sidebar, also Friends - Material You
 .sidebar-container {
-  color: @gray-light;
+  color: @on-surface-variant;
   font-size: 14px;
+  
   h5 {
-    color: @brand-gray;
-    padding-bottom: 1em;
+    color: @on-surface;
+    padding-bottom: 12px;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+    margin-bottom: 16px;
+    border-bottom: 1px solid @outline-variant;
+    
     a {
-      color: @brand-gray !important;
+      color: @on-surface !important;
       text-decoration: none;
-    }
-  }
-  a {
-    color: @gray-light !important;
-    &:hover,
-    &:active {
-      color: @brand-primary !important;
-    }
-  }
-  .tags {
-    a {
-      border-color: @gray-light;
-      &:hover,
-      &:active {
-        border-color: @brand-primary;
+      
+      &:hover {
+        color: @primary !important;
       }
     }
   }
+  
+  a {
+    color: @on-surface-variant !important;
+    text-decoration: none;
+    .transition-short();
+    
+    &:hover,
+    &:active {
+      color: @primary !important;
+    }
+  }
+  
+  .tags {
+    a {
+      border-color: @outline-variant;
+      color: @on-surface-variant;
+      background-color: @surface-variant;
+      border-radius: 12px;
+      
+      &:hover,
+      &:active {
+        border-color: @primary;
+        background-color: @primary;
+        color: @on-primary;
+      }
+    }
+  }
+  
   .short-about {
     img {
-      width: 80%;
+      width: 100%;
       display: block;
-      border-radius: 5px;
-      margin-bottom: 20px;
+      border-radius: @radius-md;
+      margin-bottom: 16px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
     }
     p {
       margin-top: 0px;
-      margin-bottom: 20px;
+      margin-bottom: 16px;
+      font-size: 14px;
+      line-height: 20px;
+      color: @on-surface;
     }
     .list-inline > li {
       padding-left: 0px;
