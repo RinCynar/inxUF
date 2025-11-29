@@ -1,0 +1,330 @@
+// Theme Switcher Component Styles - Material You
+
+.theme-switcher {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 8px;
+  
+  // Dark mode
+  @media (prefers-color-scheme: dark) {
+    background: rgba(255, 255, 255, 0.08);
+  }
+  
+  // Light mode
+  html[data-theme="light"] & {
+    background: rgba(0, 0, 0, 0.08);
+  }
+  
+  border-radius: @radius-full;
+  transition: background-color @transition-short;
+}
+
+.theme-option-button {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: @radius-full;
+  background: transparent;
+  cursor: pointer;
+  font-size: 20px;
+  padding: 0;
+  margin: 0;
+  transition: all @transition-short;
+  
+  // Default state
+  color: var(--on-surface-variant);
+  
+  &:hover {
+    background: rgba(var(--primary), 0.08);
+    color: var(--on-surface);
+  }
+  
+  &:active {
+    background: rgba(var(--primary), 0.12);
+  }
+  
+  // Active state
+  &.active {
+    background: var(--primary-container);
+    color: var(--on-primary-container);
+    
+    html[data-theme="light"] & {
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+    }
+  }
+  
+  @media screen and (max-width: 768px) {
+    width: 36px;
+    height: 36px;
+    font-size: 18px;
+  }
+}
+
+// Theme toggle button (quick switch)
+.theme-toggle-button {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: @radius-full;
+  background: transparent;
+  cursor: pointer;
+  font-size: 22px;
+  padding: 0;
+  margin: 0;
+  transition: all @transition-medium;
+  
+  color: var(--on-surface);
+  
+  &:hover {
+    background: rgba(var(--primary), 0.08);
+  }
+  
+  &:active {
+    background: rgba(var(--primary), 0.12);
+  }
+  
+  // Focus state for accessibility
+  &:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+  }
+  
+  @media screen and (max-width: 768px) {
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+  }
+}
+
+// Theme menu/dropdown
+.theme-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 8px;
+  background: var(--surface);
+  border: 1px solid var(--outline-variant);
+  border-radius: @radius-md;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+  min-width: 200px;
+  padding: 8px 0;
+  z-index: 1000;
+  display: none;
+  
+  &.open {
+    display: block;
+    animation: fadeInUp @transition-medium ease-out;
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(-8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+.theme-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: transparent;
+  border: none;
+  color: var(--on-surface);
+  cursor: pointer;
+  font-size: 14px;
+  width: 100%;
+  text-align: left;
+  transition: all @transition-short;
+  
+  &:hover {
+    background: rgba(var(--primary), 0.08);
+    color: var(--primary);
+  }
+  
+  &.active {
+    background: var(--primary-container);
+    color: var(--on-primary-container);
+    font-weight: 500;
+  }
+  
+  .theme-icon {
+    font-size: 18px;
+    min-width: 24px;
+  }
+  
+  .theme-label {
+    flex: 1;
+  }
+  
+  .theme-check {
+    margin-left: auto;
+    opacity: 0;
+    transition: opacity @transition-short;
+    
+    &.show {
+      opacity: 1;
+    }
+  }
+}
+
+// Navbar integration
+.navbar-custom {
+  .theme-switcher-nav {
+    display: flex;
+    align-items: center;
+    
+    @media only screen and (max-width: 767px) {
+      display: none;
+    }
+  }
+  
+  .theme-switcher {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 8px;
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: @radius-full;
+    margin: 0 8px;
+  }
+  
+  .theme-option-button {
+    width: 36px;
+    height: 36px;
+    color: white;
+    background: transparent;
+    
+    &:hover {
+      background: rgba(255, 255, 255, 0.16);
+      color: white;
+    }
+    
+    &:active {
+      background: rgba(255, 255, 255, 0.24);
+    }
+    
+    &.active {
+      background: rgba(255, 255, 255, 0.24);
+      color: white;
+    }
+  }
+}
+
+// Mobile menu theme selector
+.navbar-default .navbar-collapse {
+  .theme-switcher-nav {
+    list-style: none;
+    
+    @media only screen and (max-width: 767px) {
+      display: block;
+      padding: 12px 0;
+      border-top: 1px solid rgba(0, 0, 0, 0.1);
+    }
+  }
+  
+  .theme-switcher {
+    padding: 12px 20px;
+    background: transparent;
+    gap: 12px;
+    justify-content: flex-start;
+    
+    @media only screen and (max-width: 767px) {
+      padding: 12px 20px;
+      width: 100%;
+      background: transparent;
+    }
+  }
+  
+  .theme-option-button {
+    width: 40px;
+    height: 40px;
+    background: rgba(0, 0, 0, 0.05);
+    color: @on-surface;
+    
+    @media only screen and (max-width: 767px) {
+      background: rgba(0, 0, 0, 0.08);
+      color: @on-surface;
+      font-size: 20px;
+      
+      &:hover {
+        background: rgba(0, 0, 0, 0.12);
+      }
+      
+      &.active {
+        background: @primary-container;
+        color: @on-primary-container;
+      }
+    }
+  }
+}
+
+.navbar-custom.invert {
+  .theme-switcher {
+    background: transparent;
+  }
+  
+  .theme-option-button {
+    color: var(--on-surface);
+    
+    &:hover {
+      background: rgba(var(--primary), 0.12);
+      color: var(--primary);
+    }
+  }
+}
+
+// Tooltip for theme switcher
+.theme-tooltip {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.87);
+  color: white;
+  padding: 6px 12px;
+  border-radius: @radius-sm;
+  font-size: 12px;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity @transition-short;
+  z-index: 1001;
+  
+  &.show {
+    opacity: 1;
+  }
+  
+  html[data-theme="light"] & {
+    background: rgba(0, 0, 0, 0.87);
+    color: white;
+  }
+}
+
+// Accessibility improvements
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
