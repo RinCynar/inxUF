@@ -1,0 +1,114 @@
+// Material You Theme System
+// Primary colors inspired by Material You design language
+
+// Light Theme
+.theme-light {
+  --primary: #0085a1;
+  --primary-container: #b3e5fc;
+  --secondary: #7cb342;
+  --secondary-container: #dcedc8;
+  --tertiary: #ff6f00;
+  --tertiary-container: #ffe0b2;
+  --error: #d32f2f;
+  --error-container: #ffebee;
+  
+  --surface: #ffffff;
+  --surface-dim: #f5f5f5;
+  --surface-bright: #fafafa;
+  --surface-container-lowest: #ffffff;
+  --surface-container-low: #f9f9f9;
+  --surface-container: #f5f5f5;
+  --surface-container-high: #efefef;
+  --surface-container-highest: #e8e8e8;
+  
+  --on-primary: #ffffff;
+  --on-primary-container: #003d52;
+  --on-secondary: #ffffff;
+  --on-secondary-container: #1b5e20;
+  --on-tertiary: #ffffff;
+  --on-tertiary-container: #e65100;
+  --on-error: #ffffff;
+  --on-error-container: #8b0000;
+  
+  --on-surface: #1f1f1f;
+  --on-surface-variant: #5a5a5a;
+  --outline: #79747e;
+  --outline-variant: #d0d0d0;
+  
+  --background: #fffbfe;
+  --on-background: #1f1f1f;
+  --scrim: #000000;
+  
+  --border-color: #e0e0e0;
+  --shadow-color: rgba(0, 0, 0, 0.12);
+  --hover-overlay: rgba(0, 0, 0, 0.04);
+}
+
+// Dark Theme
+.theme-dark {
+  --primary: #80deea;
+  --primary-container: #004d5c;
+  --secondary: #c5e1a5;
+  --secondary-container: #33691e;
+  --tertiary: #ffb74d;
+  --tertiary-container: #e65100;
+  --error: #ff5252;
+  --error-container: #5d1f1f;
+  
+  --surface: #1a1a1a;
+  --surface-dim: #0e0e0e;
+  --surface-bright: #2c2c2c;
+  --surface-container-lowest: #0a0a0a;
+  --surface-container-low: #141414;
+  --surface-container: #1a1a1a;
+  --surface-container-high: #242424;
+  --surface-container-highest: #2e2e2e;
+  
+  --on-primary: #003d52;
+  --on-primary-container: #b3e5fc;
+  --on-secondary: #1b5e20;
+  --on-secondary-container: #c5e1a5;
+  --on-tertiary: #e65100;
+  --on-tertiary-container: #ffb74d;
+  --on-error: #5d1f1f;
+  --on-error-container: #ff5252;
+  
+  --on-surface: #e5e5e5;
+  --on-surface-variant: #b0b0b0;
+  --outline: #8a8a8a;
+  --outline-variant: #4a4a4a;
+  
+  --background: #0f0f12;
+  --on-background: #e5e5e5;
+  --scrim: #ffffff;
+  
+  --border-color: #333333;
+  --shadow-color: rgba(0, 0, 0, 0.5);
+  --hover-overlay: rgba(255, 255, 255, 0.08);
+}
+
+// Apply theme to body
+body {
+  background-color: var(--background);
+  color: var(--on-background);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+// Generic color mapping for existing styles
+@media (prefers-color-scheme: light) {
+  :root {
+    color-scheme: light;
+  }
+  html:not([data-theme="dark"]) {
+    @import (reference) "./theme.less";
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+  }
+  html:not([data-theme="light"]) {
+    @import (reference) "./theme.less";
+  }
+}

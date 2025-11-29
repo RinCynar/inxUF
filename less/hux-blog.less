@@ -1,4 +1,6 @@
 @import "variables.less";
+@import "theme.less";
+@import "material-design.less";
 @import "mixins.less";
 @import "sidebar.less";
 @import "side-catalog.less";
@@ -12,13 +14,17 @@ body {
   .sans-serif;
   font-size: 16px;
   // Hux mpdify to 16px (Mobile First), and increase to 20px while 768+ width
-  color: @gray-dark;
+  color: var(--on-background);
+  background-color: var(--background);
   //-webkit-user-select:text; //对于 Blog 还是先不开启这句。
   overflow-x: hidden;
 
   text-rendering: auto;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  
+  // Smooth theme transitions
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 // -- Typography
@@ -46,10 +52,14 @@ h4 {
   font-size: 21px;
 }
 a {
-  color: @gray-dark;
+  color: var(--primary);
+  text-decoration: none;
+  .transition-standard;
+  
   &:hover,
   &:focus {
-    color: @brand-primary;
+    color: var(--primary);
+    opacity: 0.8;
   }
 }
 
@@ -64,10 +74,12 @@ article {
   overflow: hidden;
 }
 blockquote {
-  color: gray;
+  color: var(--on-surface-variant);
+  border-left: 4px solid var(--primary);
   font-style: italic;
   font-size: 0.95em;
   margin: 20px 0 20px;
+  padding-left: 16px;
   p {
     margin: 0;
   }
@@ -153,11 +165,12 @@ samp {
   a {
     // display: inline-block;
     // safari has bugs on word-break on inline elements.
-    color: #337ab7;
+    color: var(--primary);
     // different to @brand-primary
     &:hover,
     &:focus {
-      color: @brand-primary;
+      color: var(--primary);
+      opacity: 0.8;
     }
   }
   h1,
@@ -182,7 +195,7 @@ samp {
   h4 {
     font-size: 22px;
     font-weight: 600;
-    color: gray;
+    color: var(--on-surface-variant);
     & + p {
       margin-top: 10px;
     }
@@ -191,7 +204,7 @@ samp {
   h6 {
     font-size: 20px;
     font-weight: 600;
-    color: gray;
+    color: var(--on-surface-variant);
     & + p {
       margin-top: 10px;
     }
@@ -743,33 +756,58 @@ footer {
     }
   }
 }
-// Button Styles
+// Button Styles - Material You
 
 .btn {
   .sans-serif;
   text-transform: uppercase;
   font-size: 14px;
-  font-weight: 800;
-  letter-spacing: 1px;
-  border-radius: 0;
-  padding: 15px 25px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  border-radius: 8px;
+  padding: 12px 24px;
+  border: none;
+  .transition-standard;
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--hover-overlay);
+    opacity: 0;
+    .transition-standard;
+  }
+  
+  &:hover::before,
+  &:focus::before {
+    opacity: 1;
+  }
 }
 
 .btn-lg {
   font-size: 16px;
-  padding: 25px 35px;
+  padding: 16px 28px;
 }
 
 .btn-default {
+  background-color: var(--surface-container);
+  color: var(--on-surface);
+  border: 1px solid var(--border-color);
+  
   &:hover,
   &:focus {
-    background-color: @brand-primary;
-    border: 1px solid @brand-primary;
-    color: white;
+    background-color: var(--primary);
+    border: 1px solid var(--primary);
+    color: var(--on-primary);
   }
 }
 
-// Pager Styling
+// Pager Styling - Material You
 
 .pager {
   margin: 20px 0 0 !important;
@@ -781,29 +819,32 @@ footer {
       .sans-serif;
       text-transform: uppercase;
       font-size: 13px;
-      font-weight: 800;
-      letter-spacing: 1px;
-      padding: 10px;
-      background-color: white;
-      border-radius: 0;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      padding: 12px 20px;
+      background-color: var(--surface-container);
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+      .transition-standard;
+      
       @media only screen and (min-width: 768px) {
         font-size: 14px;
-        padding: 15px 25px;
+        padding: 12px 24px;
       }
     }
 
     > a {
-      color: @gray-dark;
+      color: var(--on-surface);
     }
     > a:hover,
     > a:focus {
-      color: white;
-      background-color: @brand-primary;
-      border: 1px solid @brand-primary;
+      color: var(--on-primary);
+      background-color: var(--primary);
+      border: 1px solid var(--primary);
 
       // V1.6 display title
       > span {
-        color: white;
+        color: var(--on-primary);
       }
     }
   }
@@ -813,9 +854,10 @@ footer {
     > a:hover,
     > a:focus,
     > span {
-      color: @brand-gray;
-      background-color: @gray-dark;
+      color: var(--on-surface-variant);
+      background-color: var(--surface-dim);
       cursor: not-allowed;
+      opacity: 0.5;
     }
   }
 }
@@ -1101,4 +1143,19 @@ img::-moz-selection {
 
 .no-scroll {
   overflow-y: hidden;
+}
+
+// Theme Toggle Button Styles
+.theme-toggle-icon {
+  a {
+    transition: color 0.3s ease, transform 0.2s ease !important;
+    
+    i {
+      transition: transform 0.3s ease;
+    }
+    
+    &:hover i {
+      transform: rotate(20deg);
+    }
+  }
 }

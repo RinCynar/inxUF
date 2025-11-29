@@ -1,0 +1,77 @@
+// Material Design System - Shadows and Shapes
+
+// Elevation system (Material You)
+.elevation-0 {
+  box-shadow: none;
+}
+
+.elevation-1 {
+  box-shadow: 0px 1px 2px @shadow-color;
+}
+
+.elevation-2 {
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 2px @shadow-color;
+}
+
+.elevation-3 {
+  box-shadow: 0px 1px 6px @shadow-color, 0px 2px 4px @shadow-color;
+}
+
+.elevation-4 {
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.12), 0px 4px 4px @shadow-color;
+}
+
+.elevation-5 {
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.12), 0px 6px 8px @shadow-color;
+}
+
+// Shape tokens (border radius)
+.shape-extra-small {
+  border-radius: 4px;
+}
+
+.shape-small {
+  border-radius: 8px;
+}
+
+.shape-medium {
+  border-radius: 12px;
+}
+
+.shape-large {
+  border-radius: 16px;
+}
+
+.shape-extra-large {
+  border-radius: 28px;
+}
+
+// State layer opacity (hover, focus, active states)
+.state-hover {
+  background-color: rgba(var(--on-surface), 0.04);
+}
+
+.state-focus {
+  background-color: rgba(var(--on-surface), 0.08);
+}
+
+.state-active {
+  background-color: rgba(var(--on-surface), 0.12);
+}
+
+// Transitions following Material Design principles
+.transition-standard {
+  transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.transition-emphasis {
+  transition: all 300ms cubic-bezier(0.2, 0, 0, 1);
+}
+
+.transition-decelerate {
+  transition: all 300ms cubic-bezier(0.05, 0.7, 0.1, 1);
+}
+
+.transition-accelerate {
+  transition: all 150ms cubic-bezier(0.3, 0, 1, 1);
+}
