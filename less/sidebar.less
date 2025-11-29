@@ -15,71 +15,44 @@
   }
 }
 
-// Container of Sidebar, also Friends - Material You
+// Container of Sidebar, also Friends
 .sidebar-container {
-  color: @on-surface-variant;
+  color: @gray-light;
   font-size: 14px;
-  
   h5 {
-    color: @on-surface;
-    padding-bottom: 12px;
-    font-size: 16px;
-    font-weight: 500;
-    line-height: 24px;
-    margin-bottom: 16px;
-    border-bottom: 1px solid @outline-variant;
-    
+    color: @brand-gray;
+    padding-bottom: 1em;
     a {
-      color: @on-surface !important;
+      color: @brand-gray !important;
       text-decoration: none;
-      
-      &:hover {
-        color: @primary !important;
-      }
     }
   }
-  
   a {
-    color: @on-surface-variant !important;
-    text-decoration: none;
-    .transition-short();
-    
+    color: @gray-light !important;
     &:hover,
     &:active {
-      color: @primary !important;
+      color: @brand-primary !important;
     }
   }
-  
   .tags {
     a {
-      border-color: @outline-variant;
-      color: @on-surface-variant;
-      background-color: @surface-variant;
-      border-radius: 12px;
-      
+      border-color: @gray-light;
       &:hover,
       &:active {
-        border-color: @primary;
-        background-color: @primary;
-        color: @on-primary;
+        border-color: @brand-primary;
       }
     }
   }
-  
   .short-about {
     img {
-      width: 100%;
+      width: 80%;
       display: block;
-      border-radius: @radius-md;
-      margin-bottom: 16px;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+      border-radius: 5px;
+      margin-bottom: 20px;
     }
     p {
       margin-top: 0px;
-      margin-bottom: 16px;
-      font-size: 14px;
-      line-height: 20px;
-      color: @on-surface;
+      margin-bottom: 20px;
     }
     .list-inline > li {
       padding-left: 0px;

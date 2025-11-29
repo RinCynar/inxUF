@@ -1,23 +1,19 @@
 @import "variables.less";
 @import "mixins.less";
-@import "material-you.less";
-@import "material-components.less";
-@import "theme.less";
-@import "theme-switcher.less";
 @import "sidebar.less";
 @import "side-catalog.less";
 @import "snackbar.less";
 @import "highlight.less";
 @import "search.less";
 
-// Global Components - Material You
+// Global Components
 
 body {
   .sans-serif;
   font-size: 16px;
-  color: @on-surface;
-  background-color: @background;
-  //-webkit-user-select:text;
+  // Hux mpdify to 16px (Mobile First), and increase to 20px while 768+ width
+  color: @gray-dark;
+  //-webkit-user-select:text; //对于 Blog 还是先不开启这句。
   overflow-x: hidden;
 
   text-rendering: auto;
@@ -25,71 +21,35 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-// -- Typography (Material You)
+// -- Typography
 
 p {
-  margin: 16px 0;
-  font-size: 16px;
-  line-height: 24px;
-  letter-spacing: 0.5px;
+  margin: 30px 0;
   @media screen and (max-width: 768px) {
     & {
-      margin: 12px 0;
-      font-size: 14px;
-      line-height: 20px;
+      margin: 25px 0;
     }
   }
 }
 
-h1 {
-  .sans-serif;
-  font-size: 32px;
-  line-height: 40px;
-  font-weight: 400;
-  margin: 32px 0 16px 0;
-}
-
-h2 {
-  .sans-serif;
-  font-size: 28px;
-  line-height: 36px;
-  font-weight: 400;
-  margin: 28px 0 14px 0;
-}
-
-h3 {
-  .sans-serif;
-  font-size: 24px;
-  line-height: 32px;
-  font-weight: 400;
-  margin: 24px 0 12px 0;
-}
-
-h4 {
-  .sans-serif;
-  font-size: 22px;
-  line-height: 28px;
-  font-weight: 500;
-  margin: 20px 0 10px 0;
-}
-
+h1,
+h2,
+h3,
+h4,
 h5,
 h6 {
   .sans-serif;
-  font-size: 16px;
-  line-height: 24px;
-  font-weight: 500;
-  margin: 16px 0 8px 0;
+  line-height: 1.1;
+  font-weight: bold;
+}
+h4 {
+  font-size: 21px;
 }
 a {
-  color: @primary;
-  text-decoration: none;
-  .transition-short();
-  
+  color: @gray-dark;
   &:hover,
   &:focus {
-    color: darken(@primary, 12%);
-    text-decoration: underline;
+    color: @brand-primary;
   }
 }
 
@@ -104,17 +64,12 @@ article {
   overflow: hidden;
 }
 blockquote {
-  color: @on-surface-variant;
+  color: gray;
   font-style: italic;
-  font-size: 15px;
-  line-height: 22px;
-  margin: 16px 0;
-  padding-left: 16px;
-  border-left: 4px solid @primary;
-  
+  font-size: 0.95em;
+  margin: 20px 0 20px;
   p {
     margin: 0;
-    color: @on-surface-variant;
   }
 }
 
@@ -193,17 +148,16 @@ samp {
   margin-bottom: 15px;
 }
 
-// In the post. - Material You
+// In the post.
 .post-container {
   a {
-    color: @primary;
-    text-decoration: none;
-    .transition-short();
-    
+    // display: inline-block;
+    // safari has bugs on word-break on inline elements.
+    color: #337ab7;
+    // different to @brand-primary
     &:hover,
     &:focus {
-      color: darken(@primary, 12%);
-      text-decoration: underline;
+      color: @brand-primary;
     }
   }
   h1,
@@ -403,7 +357,7 @@ samp {
 }
 
 .navbar-custom {
-  // Material You
+  // materialize
   background: none;
   border: none;
   position: absolute;
@@ -412,40 +366,27 @@ samp {
   width: 100%;
   z-index: 3;
   .sans-serif;
-  
   .navbar-brand {
-    font-weight: 500;
+    font-weight: 800;
+    // materialize
     color: white;
     height: 56px;
-    line-height: 56px;
-    font-size: 20px;
-    letter-spacing: 0px;
-    .transition-short();
-    
+    line-height: 25px;
     &:hover {
-      color: rgba(255, 255, 255, 0.95);
+      color: rgba(255, 255, 255, 0.8);
     }
   }
-  
   .nav {
     li {
       a {
-        text-transform: none;
-        font-size: 14px;
-        line-height: 24px;
-        font-weight: 500;
-        letter-spacing: 0.1px;
-        color: white;
-        padding: 16px 20px;
-        .transition-short();
-        
+        text-transform: uppercase;
+        font-size: 12px;
+        line-height: 20px;
+        font-weight: 800;
+        letter-spacing: 1px;
+        // only highlight in mobile
         &:active {
-          background: rgba(255, 255, 255, 0.12);
-          border-radius: @radius-sm;
-        }
-        
-        &:hover {
-          background: rgba(255, 255, 255, 0.08);
+          background: rgba(0, 0, 0, 0.12);
         }
       }
     }
@@ -484,35 +425,26 @@ samp {
   &.invert {
     .navbar-toggle {
       &:active {
-        background-color: rgba(0, 0, 0, 0.08);
-        border-radius: @radius-full;
+        background-color: rgba(0, 0, 0, 0.05);
       }
       .icon-bar {
-        background-color: @on-surface;
+        background-color: @gray-dark;
       }
     }
-    
     .navbar-brand {
-      color: @on-surface;
-      .transition-short();
-      
+      color: @gray-dark;
       &:hover,
       &:focus {
-        color: @primary;
+        color: @brand-primary;
       }
     }
-    
     .nav {
       li {
         a {
-          color: @on-surface;
-          .transition-short();
-          
+          color: @gray-dark;
           &:hover,
           &:focus {
-            color: @primary;
-            background-color: fade(@primary, 8%);
-            border-radius: @radius-sm;
+            color: @brand-primary;
           }
         }
       }
@@ -701,85 +633,59 @@ samp {
   }
 }
 
-// Post Preview Pages (Home Page) - Material You Cards
+// Post Preview Pages (Home Page)
 
 .post-preview {
-  padding: 20px 0;
-  border-bottom: 1px solid @outline-variant;
-  .transition-medium();
-  
-  &:hover {
-    background-color: fade(@primary, 4%);
-  }
-  
   > a {
-    color: @on-surface;
-    text-decoration: none;
-    
+    color: @gray-dark;
     &:hover,
     &:focus {
       text-decoration: none;
-      color: @primary;
+      color: @brand-primary;
     }
-    
     > .post-title {
-      font-size: 20px;
-      line-height: 28px;
-      font-weight: 500;
-      margin-top: 0;
+      font-size: 21px;
+      line-height: 1.3;
+      margin-top: 30px;
       margin-bottom: 8px;
-      color: @on-surface;
-      
-      &:hover {
-        color: @primary;
-      }
     }
-    
     > .post-subtitle {
-      font-size: 14px;
-      line-height: 20px;
+      font-size: 15px;
+      line-height: 1.3;
       margin: 0;
-      font-weight: 400;
+      font-weight: 300;
       margin-bottom: 10px;
-      color: @on-surface-variant;
     }
   }
-  
   > .post-meta {
-    font-size: 13px;
-    line-height: 18px;
-    color: @on-surface-variant;
-    margin-top: 12px;
-    font-style: normal;
-    font-weight: 400;
-    
+    .serif;
+    color: @brand-gray;
+    font-size: 16px;
+    font-style: italic;
+    margin-top: 0;
     > a {
       text-decoration: none;
-      color: @on-surface-variant;
-      
+      color: @gray-dark;
       &:hover,
       &:focus {
-        color: @primary;
+        color: @brand-primary;
         text-decoration: underline;
       }
     }
   }
-  
   @media only screen and (min-width: 768px) {
     > a {
       > .post-title {
-        font-size: 24px;
-        line-height: 32px;
+        font-size: 26px;
+        line-height: 1.3;
         margin-bottom: 10px;
       }
       > .post-subtitle {
-        font-size: 15px;
-        line-height: 22px;
+        font-size: 16px;
       }
     }
     .post-meta {
-      font-size: 14px;
-      line-height: 20px;
+      font-size: 18px;
     }
   }
 }
@@ -817,136 +723,87 @@ samp {
 }
 
 footer {
-  font-size: 16px;
-  line-height: 24px;
-  padding: 48px 0 64px;
-  background-color: @surface;
-  color: @on-surface;
-  border-top: 1px solid @outline-variant;
-  
+  font-size: 20px;
+  padding: 50px 0 65px;
   .list-inline {
     margin: 0;
     padding: 0;
   }
-  
   .copyright {
-    font-size: 12px;
-    line-height: 16px;
+    font-size: 14px;
     text-align: center;
     margin-bottom: 0;
-    color: @on-surface-variant;
-    
     a {
-      color: @primary;
-      text-decoration: none;
-      .transition-short();
-      
+      color: #337ab7;
+      // different to @brand-primary
       &:hover,
       &:focus {
-        color: darken(@primary, 12%);
-        text-decoration: underline;
+        color: @brand-primary;
       }
     }
   }
 }
-// Button Styles (Material You)
+// Button Styles
 
 .btn {
   .sans-serif;
+  text-transform: uppercase;
   font-size: 14px;
-  font-weight: 500;
-  letter-spacing: 0.1px;
-  text-transform: none;
-  border-radius: @radius-md;
-  padding: 10px 24px;
-  border: none;
-  cursor: pointer;
-  .transition-medium();
-  
-  &:hover {
-    .elevation-1;
-  }
-  
-  &:active {
-    .elevation-0;
-  }
+  font-weight: 800;
+  letter-spacing: 1px;
+  border-radius: 0;
+  padding: 15px 25px;
 }
 
 .btn-lg {
   font-size: 16px;
-  padding: 12px 32px;
+  padding: 25px 35px;
 }
 
 .btn-default {
-  background-color: @primary;
-  color: @on-primary;
-  
-  &:hover {
-    background-color: lighten(@primary, 8%);
-    .elevation-1;
-  }
-  
-  &:active {
-    background-color: darken(@primary, 8%);
-    .elevation-0;
-  }
-  
+  &:hover,
   &:focus {
-    outline: 2px solid @primary;
-    outline-offset: 2px;
+    background-color: @brand-primary;
+    border: 1px solid @brand-primary;
+    color: white;
   }
 }
 
-// Pager Styling (Material You)
+// Pager Styling
 
 .pager {
-  margin: 32px 0 0 !important;
+  margin: 20px 0 0 !important;
   padding: 0px !important;
-  display: flex;
-  gap: 16px;
-  justify-content: center;
-  flex-wrap: wrap;
 
   li {
-    list-style: none;
-    
     > a,
     > span {
       .sans-serif;
-      font-size: 14px;
-      font-weight: 500;
-      letter-spacing: 0.1px;
-      padding: 10px 24px;
-      background-color: @surface-variant;
-      border-radius: @radius-md;
-      border: none;
-      color: @on-surface;
-      text-decoration: none;
-      cursor: pointer;
-      display: inline-block;
-      .transition-medium();
-      
+      text-transform: uppercase;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      padding: 10px;
+      background-color: white;
+      border-radius: 0;
       @media only screen and (min-width: 768px) {
         font-size: 14px;
-        padding: 12px 24px;
+        padding: 15px 25px;
       }
     }
 
     > a {
-      color: @primary;
-      background-color: @surface;
-      border: 1px solid @outline;
-      
-      &:hover,
-      &:focus {
-        color: @on-primary;
-        background-color: @primary;
-        border-color: @primary;
-        .elevation-1;
+      color: @gray-dark;
+    }
+    > a:hover,
+    > a:focus {
+      color: white;
+      background-color: @brand-primary;
+      border: 1px solid @brand-primary;
 
-        > span {
-          color: @on-primary;
-        }
+      // V1.6 display title
+      > span {
+        color: white;
       }
     }
   }
@@ -956,10 +813,9 @@ footer {
     > a:hover,
     > a:focus,
     > span {
-      color: fade(@on-surface, 38%);
-      background-color: fade(@on-surface, 12%);
+      color: @brand-gray;
+      background-color: @gray-dark;
       cursor: not-allowed;
-      border-color: fade(@on-surface, 12%);
     }
   }
 }
@@ -1036,52 +892,39 @@ img::-moz-selection {
     padding: 55px 0;
   }
 }
-// tag_cloud - Material You
+// tag_cloud
 #tag_cloud {
   margin: 20px 0 15px 0;
-  
   a,
   .tag {
-    .transition-medium();
-    font-size: 13px;
-    border: 1px solid @outline-variant;
+    transition-property: all;
+    transition-duration: 0.4s;
+    transition-timing-function: ease;
+    font-size: 14px;
+    border: none;
     line-height: 28px;
-    margin: 4px;
+    margin: 0 2px;
     margin-bottom: 8px;
-    background: @surface-variant;
-    color: @on-surface-variant;
-    border-radius: @radius-md;
-    padding: 4px 12px;
-    display: inline-block;
-    font-weight: 500;
-    
+    background: #f3f5f5;
     &:hover,
     &:active,
     &.focus {
-      background-color: @primary !important;
-      color: @on-primary !important;
-      border-color: @primary !important;
+      background-color: #0085a1 !important;
     }
-    
     &.focus {
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+      box-shadow: rgba(0, 0, 0, 0.117647) 0 1px 6px,
+        rgba(0, 0, 0, 0.239216) 0 1px 4px;
     }
-    
     &.tag-button--all {
-      font-weight: 600;
-      color: @primary !important;
-      background-color: @surface !important;
-      border-color: @primary !important;
-      
+      font-weight: 700;
+      color: #0085a1 !important;
       &:hover,
       &:active,
       &.focus {
-        background-color: @primary-container !important;
-        border-color: @primary !important;
+        background-color: #e4e4e4 !important;
       }
     }
   }
-  
   @media only screen and (min-width: 768px) {
     margin-bottom: 25px;
   }

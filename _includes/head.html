@@ -49,18 +49,6 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ " /css/hux-blog.min.css" | prepend: site.baseurl }}">
 
-    <!-- Theme Switcher Script (Must be in head to prevent flash) -->
-    <script>
-        // Initialize theme before DOM renders to prevent flash
-        (function() {
-            const key = 'inxuf-theme';
-            const stored = localStorage.getItem(key) || 'dark';
-            if (stored === 'light') {
-                document.documentElement.setAttribute('data-theme', 'light');
-            }
-        })();
-    </script>
-
     <!-- Custom Fonts -->
     <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
     <!-- Hux change font-awesome CDN to qiniu -->
@@ -81,7 +69,4 @@
     <!-- Google AdSense -->
     <script data-ad-client="ca-pub-6487568398225121" async
         src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-
-    <!-- Theme Switcher -->
-    <script src="{{ "/js/theme-switcher.js" | prepend: site.baseurl }}" defer></script>
 </head>
