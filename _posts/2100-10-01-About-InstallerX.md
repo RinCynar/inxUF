@@ -5,7 +5,7 @@ author: "Rosan(Maker), RinCynar(Repost)"
 header-style: text
 catalog: true
 tags:
-    - About
+  - About
 ---
 
 # InstallerX
@@ -27,7 +27,11 @@ Android 5.0 ~ ?
 
 ## 下载
 
-### <a href="https://t.me/InstallerX">-官方Telegram群组</a>
+### <a href="https://t.me/InstallerX">-Telegram 官方群组</a>
+
+###<a href="https://t.me/Tools-cx-app">-Revived 分支官方 Telegram 群组</a>
+
+### <a href="https://github.com/wxxsfxyzm/InstallerX-Revived/releases">-Github InstallerX-Revived</a>
 
 ### <a href="https://installerx.app.tc/archive/?tag=InstallerX">-inx.UF</a>
 
