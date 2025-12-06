@@ -9,13 +9,14 @@
         </a>
     </div>
     <nav class="top-app-bar__actions">
+        <a href="{{ "/" | prepend: site.baseurl }}" class="md-button md-button--text">
+            Home
+        </a>
         {% for page in site.pages %}
             {% if page.title and page.hide-in-nav != true %}
-            {% unless page.url contains '/page/' %}
             <a href="{{ page.url | prepend: site.baseurl }}" class="md-button md-button--text">
                 {{ page.title }}
             </a>
-            {% endunless %}
             {% endif %}
         {% endfor %}
         <!-- Search, Theme Toggle -->
