@@ -17,9 +17,9 @@
 .md-card__media {
     width: 100%;
     height: 180px;
-    object-fit: cover; /* Reverted to cover to fill the area */
-    background-color: var(--md-sys-color-surface-variant);
-    padding: 0; /* Removed padding */
+    object-fit: cover;
+    background-color: transparent; /* Changed to transparent to remove purple block */
+    padding: 0;
 }
 
 .md-card__content {
