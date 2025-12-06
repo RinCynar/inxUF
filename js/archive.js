@@ -7,8 +7,8 @@
         for (var i = 0; i < queryArr.length; i++) {
             var pair = queryArr[i].split('=');
             if (!pair[0]) continue;
-            var key = decodeURIComponent(pair[0]);
-            var value = decodeURIComponent(pair[1] || '');
+            var key = pair[0];
+            var value = pair[1] || '';
             
             if (typeof queryObj[key] === 'undefined') {
                 queryObj[key] = value;
