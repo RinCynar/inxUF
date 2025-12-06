@@ -3,12 +3,16 @@ layout: page
 description: "InstallerX Unoffical"
 ---
 
+<!-- Added Intro Header back for Hero Image -->
+{% include intro-header.html type='page' %}
+
 <div class="card-grid">
 {% for post in paginator.posts %}
 <article class="md-card">
     {% if post.header-img %}
     <img src="{{ post.header-img | prepend: site.baseurl }}" alt="{{ post.title }}" class="md-card__media">
     {% else %}
+    <!-- Fallback if no header image, though user says inx.png is usually used -->
     <div class="md-card__media" style="background-color: var(--md-sys-color-primary-container);"></div>
     {% endif %}
     
@@ -40,7 +44,7 @@ description: "InstallerX Unoffical"
 
 <!-- Pager -->
 {% if paginator.total_pages > 1 %}
-<div style="display: flex; justify-content: center; margin-top: 32px; gap: 16px;">
+<div style="display: flex; justify-content: center; margin-top: 32px; gap: 16px; padding-bottom: 32px;">
     {% if paginator.previous_page %}
         <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}" class="md-button md-button--tonal">&larr; Newer</a>
     {% endif %}

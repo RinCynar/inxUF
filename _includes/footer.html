@@ -1,18 +1,29 @@
-<!-- Material You Footer -->
+<!-- Footer -->
 <footer class="footer">
-    <div class="footer__content">
+    <div class="footer-grid">
+        <!-- SNS Link -->
         {% include sns-links.html center=true %}
-        
-        <p class="copyright" style="margin-top: 16px; opacity: 0.7; font-size: 0.875rem;">
+
+        <p class="copyright text-muted" style="margin-top: 16px; opacity: 0.7;">
             Copyright &copy; {{ site.title }} {{ site.time | date: '%Y' }}
             <br>
-            Powered by <a href="http://github.com/RinCynar/inxUF" style="color: inherit;">GitHub</a>
+            Powered by <a href="http://github.com/RinCynar/inxUF" style="color: inherit; text-decoration: underline;">GitHub</a>,
+            Thx. <a href="https://huangxuan.me" style="color: inherit; text-decoration: underline;">Hux</a>
+            <br>
+            The content on this site was last updated at 06:31 Sunday, August 3, 2025 (UTC)
         </p>
     </div>
 </footer>
 
-<!-- Simple Jekyll Search (Vanilla JS replacement for jQuery parts if needed, but keeping library import) -->
+<!-- Legacy Scripts Replacement / Polyfills if needed -->
+
+<!-- Simple Jekyll Search -->
 <script src="{{ "/js/simple-jekyll-search.min.js" | prepend: site.baseurl }}"></script>
+
+<!-- Archive Filter Script (Only loads if on archive page effectively) -->
+{% if page.title == 'Archive' %}
+<script src="{{ "/js/archive.js" | prepend: site.baseurl }}"></script>
+{% endif %}
 
 <!-- Service Worker -->
 {% if site.service-worker %}
