@@ -1,0 +1,37 @@
+---
+layout: page
+title: Search
+description: "Search inxUF"
+header-img: ""
+permalink: /search/
+---
+
+<!-- Material Search Page -->
+<div class="search-page">
+    <div class="search-icon-close-container">
+        <span class="search-icon-close">
+        <i class="fa fa-chevron-down"></i>
+        </span>
+    </div>
+    <div class="search-main container">
+        <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div style="margin-bottom: 32px; position: relative;">
+                <input type="text" id="search-input" placeholder="Search..." 
+                    style="width: 100%; padding: 16px; border-radius: 28px; border: 1px solid var(--md-sys-color-outline); background-color: var(--md-sys-color-surface); color: var(--md-sys-color-on-surface); font-size: 16px; outline: none;">
+                <i class="fa fa-search" style="position: absolute; right: 16px; top: 16px; color: var(--md-sys-color-on-surface-variant);"></i>
+            </div>
+            
+            <div id="search-results" class="mini-post-list js-result"></div>
+        </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Focus input on load
+    document.addEventListener('DOMContentLoaded', function() {
+        var input = document.getElementById('search-input');
+        if(input) input.focus();
+    });
+</script>

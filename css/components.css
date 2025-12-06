@@ -17,8 +17,10 @@
 .md-card__media {
     width: 100%;
     height: 180px;
-    object-fit: cover;
+    object-fit: contain; /* Changed from cover to contain for logos */
     background-color: var(--md-sys-color-surface-variant);
+    padding: 16px; /* Add padding so logos don't touch edges */
+    box-sizing: border-box;
 }
 
 .md-card__content {
