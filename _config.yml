@@ -1,7 +1,11 @@
 # Site settings
 title: inx UF
 SEOTitle: InstallerX Unoffical
+<<<<<<< HEAD
 header-img: "https://installerx.app.tc/img/inx.l.png"
+=======
+header-img: img/inx.l.png
+>>>>>>> 7bae149 (rollback)
 email: 0rhendX@gmail.com
 description: "A modern and functional Android app installer. (You know some birds are not meant to be caged, their feathers are just too bright.)"
 keyword: "inx, inxUF, InstallerX, InstallerX Unoffical, Android, Android app installer, Android app, download"
@@ -13,11 +17,19 @@ future: true
 
 # SNS settings
 RSS: false
+<<<<<<< HEAD
 #weibo_username:
 #zhihu_username:
 github_username: RinCynar
 twitter_username: RinCynar
 #facebook_username:
+=======
+#weibo_username: 
+#zhihu_username: 
+github_username: RinCynar
+twitter_username: RinCynar
+#facebook_username: 
+>>>>>>> 7bae149 (rollback)
 #linkedin_username:  firstname-lastname-idxxxx
 
 # Build settings
@@ -59,10 +71,17 @@ kramdown:
       start_line: 1
 
 # Disqus settings
+<<<<<<< HEAD
 #disqus_username:
 
 # Netease settings
 #netease_comment:
+=======
+#disqus_username: 
+
+# Netease settings
+#netease_comment: 
+>>>>>>> 7bae149 (rollback)
 
 # Analytics settings
 # Baidu Analytics
@@ -70,7 +89,11 @@ kramdown:
 
 # Google Analytics
 #ga_track_id: "" # Format: UA-xxxxxx-xx
+<<<<<<< HEAD
 #ga_domain:
+=======
+#ga_domain: 
+>>>>>>> 7bae149 (rollback)
 
 # Sidebar settings
 sidebar: true # whether or not using Sidebar.
@@ -89,4 +112,11 @@ service-worker: true
 page-mathjax: false
 
 # Friends
+<<<<<<< HEAD
 friends: [{ title: "RinCynar", href: "https://rincynar.top" }]
+=======
+friends:
+  [
+    { title: "RinCynar", href: "https://rincynar.top" },
+  ]
+>>>>>>> 7bae149 (rollback)

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* Archive Page Tags */
 .tags {
     margin-bottom: 24px;
@@ -63,11 +64,17 @@
     opacity: 0.8;
 }
 
+=======
+>>>>>>> 7bae149 (rollback)
 /* Material 3 Card */
 .md-card {
     background-color: var(--md-sys-color-surface);
     border-radius: var(--md-sys-shape-corner-medium);
+<<<<<<< HEAD
     border: 1px solid var(--md-sys-color-outline-variant, #CAC4D0); /* Lighter border */
+=======
+    border: 1px solid var(--md-sys-color-outline);
+>>>>>>> 7bae149 (rollback)
     overflow: hidden;
     transition: transform 0.2s, box-shadow 0.2s;
     display: flex;
@@ -75,9 +82,14 @@
 }
 
 .md-card:hover {
+<<<<<<< HEAD
     box-shadow: var(--md-sys-elevation-2); /* Distinct elevation on hover */
     border-color: transparent;
     transform: translateY(-2px);
+=======
+    box-shadow: var(--md-sys-elevation-1);
+    border-color: transparent; /* Elevation replaces border usually, or keep it */
+>>>>>>> 7bae149 (rollback)
 }
 
 .md-card__media {
@@ -95,18 +107,27 @@
 }
 
 .md-card__headline {
+<<<<<<< HEAD
     font-family: var(--md-sys-typescale-headline-small-font, 'Roboto');
     font-size: 22px;
     margin: 0 0 8px 0;
     color: var(--md-sys-color-on-surface);
     line-height: 1.3;
+=======
+    font-size: 22px;
+    margin: 0 0 8px 0;
+    color: var(--md-sys-color-on-surface);
+>>>>>>> 7bae149 (rollback)
 }
 
 .md-card__subhead {
     font-size: 14px;
     color: var(--md-sys-color-on-surface-variant);
     margin-bottom: 12px;
+<<<<<<< HEAD
     font-weight: 400;
+=======
+>>>>>>> 7bae149 (rollback)
 }
 
 .md-card__text {
@@ -131,14 +152,21 @@
     height: 40px;
     padding: 0 24px;
     border-radius: 20px;
+<<<<<<< HEAD
     font-family: var(--md-sys-typescale-label-large-font, 'Roboto');
+=======
+    font-family: var(--md-sys-typescale-body-large-font);
+>>>>>>> 7bae149 (rollback)
     font-size: 14px;
     font-weight: 500;
     text-decoration: none;
     cursor: pointer;
     transition: background-color 0.2s;
     border: none;
+<<<<<<< HEAD
     line-height: 1;
+=======
+>>>>>>> 7bae149 (rollback)
 }
 
 .md-button--filled {
@@ -156,10 +184,13 @@
     color: var(--md-sys-color-on-secondary-container);
 }
 
+<<<<<<< HEAD
 .md-button--tonal:hover {
     filter: brightness(0.95);
 }
 
+=======
+>>>>>>> 7bae149 (rollback)
 .md-button--text {
     background-color: transparent;
     color: var(--md-sys-color-primary);
@@ -167,7 +198,11 @@
 }
 
 .md-button--text:hover {
+<<<<<<< HEAD
     background-color: var(--md-sys-color-primary-container); /* Opacity managed via container color often */
     /* Or rgba fallback: */
     background-color: rgba(103, 80, 164, 0.08); 
+=======
+    background-color: rgba(103, 80, 164, 0.08); /* Primary with opacity */
+>>>>>>> 7bae149 (rollback)
 }

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!-- Footer -->
 <footer class="footer">
     <div class="footer-grid">
@@ -11,10 +12,22 @@
             Thx. <a href="https://huangxuan.me" style="color: inherit; text-decoration: underline;">Hux</a>
             <br>
             The content on this site was last updated at 06:31 Sunday, August 3, 2025 (UTC)
+=======
+<!-- Material You Footer -->
+<footer class="footer">
+    <div class="footer__content">
+        {% include sns-links.html center=true %}
+        
+        <p class="copyright" style="margin-top: 16px; opacity: 0.7; font-size: 0.875rem;">
+            Copyright &copy; {{ site.title }} {{ site.time | date: '%Y' }}
+            <br>
+            Powered by <a href="http://github.com/RinCynar/inxUF" style="color: inherit;">GitHub</a>
+>>>>>>> 7bae149 (rollback)
         </p>
     </div>
 </footer>
 
+<<<<<<< HEAD
 <!-- Legacy Scripts Replacement / Polyfills if needed -->
 
 <!-- Simple Jekyll Search -->
@@ -25,6 +38,11 @@
 <script src="{{ "/js/archive.js" | prepend: site.baseurl }}"></script>
 {% endif %}
 
+=======
+<!-- Simple Jekyll Search (Vanilla JS replacement for jQuery parts if needed, but keeping library import) -->
+<script src="{{ "/js/simple-jekyll-search.min.js" | prepend: site.baseurl }}"></script>
+
+>>>>>>> 7bae149 (rollback)
 <!-- Service Worker -->
 {% if site.service-worker %}
 <script src="{{ "/js/snackbar.js " | prepend: site.baseurl }}"></script>
