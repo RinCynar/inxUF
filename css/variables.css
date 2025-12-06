@@ -1,0 +1,109 @@
+:root {
+  /* Material Design 3 Color System - Static Baseline (Deep Purple/Indigo) */
+  /* Light Theme */
+  --md-sys-color-primary: #6750a4;
+  --md-sys-color-on-primary: #ffffff;
+  --md-sys-color-primary-container: #eaddff;
+  --md-sys-color-on-primary-container: #21005d;
+
+  --md-sys-color-secondary: #625b71;
+  --md-sys-color-on-secondary: #ffffff;
+  --md-sys-color-secondary-container: #e8def8;
+  --md-sys-color-on-secondary-container: #1d192b;
+
+  --md-sys-color-tertiary: #7d5260;
+  --md-sys-color-on-tertiary: #ffffff;
+  --md-sys-color-tertiary-container: #ffd8e4;
+  --md-sys-color-on-tertiary-container: #31111d;
+
+  --md-sys-color-error: #b3261e;
+  --md-sys-color-on-error: #ffffff;
+  --md-sys-color-error-container: #f9dedc;
+  --md-sys-color-on-error-container: #410e0b;
+
+  --md-sys-color-outline: #79747e;
+  --md-sys-color-background: #fffbfe;
+  --md-sys-color-on-background: #1c1b1f;
+  --md-sys-color-surface: #fffbfe;
+  --md-sys-color-on-surface: #1c1b1f;
+  --md-sys-color-surface-variant: #e7e0ec;
+  --md-sys-color-on-surface-variant: #49454f;
+  --md-sys-color-inverse-surface: #313033;
+  --md-sys-color-inverse-on-surface: #f4eff4;
+
+  /* Typography - Roboto/Inter based */
+  --md-sys-typescale-display-large-font: "Roboto", sans-serif;
+  --md-sys-typescale-display-large-line-height: 64px;
+  --md-sys-typescale-display-large-size: 57px;
+  --md-sys-typescale-display-large-tracking: 0px;
+  --md-sys-typescale-display-large-weight: 400;
+
+  --md-sys-typescale-headline-large-font: "Roboto", sans-serif;
+  --md-sys-typescale-headline-large-line-height: 40px;
+  --md-sys-typescale-headline-large-size: 32px;
+  --md-sys-typescale-headline-large-tracking: 0px;
+  --md-sys-typescale-headline-large-weight: 400;
+
+  --md-sys-typescale-body-large-font: "Roboto", sans-serif;
+  --md-sys-typescale-body-large-line-height: 24px;
+  --md-sys-typescale-body-large-size: 16px;
+  --md-sys-typescale-body-large-tracking: 0.5px;
+  --md-sys-typescale-body-large-weight: 400;
+
+  /* Elevation */
+  --md-sys-elevation-1: 0px 1px 2px 0px rgba(0, 0, 0, 0.3),
+    0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+  --md-sys-elevation-2: 0px 1px 2px 0px rgba(0, 0, 0, 0.3),
+    0px 2px 6px 2px rgba(0, 0, 0, 0.15);
+
+  /* Shape */
+  --md-sys-shape-corner-small: 4px;
+  --md-sys-shape-corner-medium: 12px;
+  --md-sys-shape-corner-large: 16px;
+  --md-sys-shape-corner-extra-large: 28px;
+}
+
+/* Dark Theme Overrides */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --md-sys-color-primary: #d0bcff;
+    --md-sys-color-on-primary: #381e72;
+    --md-sys-color-primary-container: #4f378b;
+    --md-sys-color-on-primary-container: #eaddff;
+
+    --md-sys-color-secondary: #ccc2dc;
+    --md-sys-color-on-secondary: #332d41;
+    --md-sys-color-secondary-container: #4a4458;
+    --md-sys-color-on-secondary-container: #e8def8;
+
+    --md-sys-color-tertiary: #efb8c8;
+    --md-sys-color-on-tertiary: #492532;
+    --md-sys-color-tertiary-container: #633b48;
+    --md-sys-color-on-tertiary-container: #ffd8e4;
+
+    --md-sys-color-error: #f2b8b5;
+    --md-sys-color-on-error: #601410;
+    --md-sys-color-error-container: #8c1d18;
+    --md-sys-color-on-error-container: #f9dedc;
+
+    --md-sys-color-outline: #938f99;
+    --md-sys-color-background: #1c1b1f;
+    --md-sys-color-on-background: #e6e1e5;
+    --md-sys-color-surface: #1c1b1f;
+    --md-sys-color-on-surface: #e6e1e5;
+    --md-sys-color-surface-variant: #49454f;
+    --md-sys-color-on-surface-variant: #cac4d0;
+    --md-sys-color-inverse-surface: #e6e1e5;
+    --md-sys-color-inverse-on-surface: #313033;
+  }
+}
+
+body {
+  background-color: var(--md-sys-color-background);
+  color: var(--md-sys-color-on-background);
+  margin: 0;
+  font-family: var(--md-sys-typescale-body-large-font);
+  font-size: var(--md-sys-typescale-body-large-size);
+  line-height: var(--md-sys-typescale-body-large-line-height);
+  transition: background-color 0.3s, color 0.3s;
+}

@@ -1,0 +1,64 @@
+/* Base Layout */
+.app-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Material You Top App Bar */
+.top-app-bar {
+    background-color: var(--md-sys-color-surface);
+    color: var(--md-sys-color-on-surface);
+    height: 64px;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: none; /* Flat by default */
+}
+
+.top-app-bar.scrolled {
+    background-color: var(--md-sys-color-surface-container, var(--md-sys-color-surface)); /* Fallback */
+    /* Add elevation or color tint on scroll if needed */
+}
+
+.top-app-bar__title {
+    font-family: var(--md-sys-typescale-headline-large-font);
+    font-size: 22px; /* Title Large */
+    flex-grow: 1;
+    margin-left: 12px;
+}
+
+.top-app-bar__actions {
+    display: flex;
+    gap: 8px;
+}
+
+/* Main Content Area */
+.main-content {
+    flex: 1;
+    padding: 24px 16px;
+    max-width: 840px; /* Post reader width */
+    width: 100%;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+/* Footer */
+.footer {
+    background-color: var(--md-sys-color-surface-variant);
+    color: var(--md-sys-color-on-surface-variant);
+    padding: 32px 16px;
+    text-align: center;
+    border-top-left-radius: var(--md-sys-shape-corner-large);
+    border-top-right-radius: var(--md-sys-shape-corner-large);
+}
+
+/* Grid for Card Layouts */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 16px;
+}

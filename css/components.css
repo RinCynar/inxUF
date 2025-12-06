@@ -1,0 +1,97 @@
+/* Material 3 Card */
+.md-card {
+    background-color: var(--md-sys-color-surface);
+    border-radius: var(--md-sys-shape-corner-medium);
+    border: 1px solid var(--md-sys-color-outline);
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex;
+    flex-direction: column;
+}
+
+.md-card:hover {
+    box-shadow: var(--md-sys-elevation-1);
+    border-color: transparent; /* Elevation replaces border usually, or keep it */
+}
+
+.md-card__media {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    background-color: var(--md-sys-color-surface-variant);
+}
+
+.md-card__content {
+    padding: 16px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.md-card__headline {
+    font-size: 22px;
+    margin: 0 0 8px 0;
+    color: var(--md-sys-color-on-surface);
+}
+
+.md-card__subhead {
+    font-size: 14px;
+    color: var(--md-sys-color-on-surface-variant);
+    margin-bottom: 12px;
+}
+
+.md-card__text {
+    font-size: 14px;
+    color: var(--md-sys-color-on-surface-variant);
+    line-height: 20px;
+    flex: 1;
+}
+
+.md-card__actions {
+    padding: 8px 16px 16px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+}
+
+/* Buttons */
+.md-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    padding: 0 24px;
+    border-radius: 20px;
+    font-family: var(--md-sys-typescale-body-large-font);
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    border: none;
+}
+
+.md-button--filled {
+    background-color: var(--md-sys-color-primary);
+    color: var(--md-sys-color-on-primary);
+}
+
+.md-button--filled:hover {
+    box-shadow: var(--md-sys-elevation-1);
+    opacity: 0.92;
+}
+
+.md-button--tonal {
+    background-color: var(--md-sys-color-secondary-container);
+    color: var(--md-sys-color-on-secondary-container);
+}
+
+.md-button--text {
+    background-color: transparent;
+    color: var(--md-sys-color-primary);
+    padding: 0 12px;
+}
+
+.md-button--text:hover {
+    background-color: rgba(103, 80, 164, 0.08); /* Primary with opacity */
+}

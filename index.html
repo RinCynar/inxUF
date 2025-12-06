@@ -1,46 +1,51 @@
 ---
 layout: page
-description: "InstallerX Unoffcial"
+description: "InstallerX Unoffical"
 ---
 
+<div class="card-grid">
 {% for post in paginator.posts %}
-<div class="post-preview">
-    <a href="{{ post.url | prepend: site.baseurl }}">
-        <h2 class="post-title">
-            {{ post.title }}
-        </h2>
-        {% if post.subtitle %}
-        <h3 class="post-subtitle">
-            {{ post.subtitle }}
-        </h3>
-        {% endif %}
-        <div class="post-content-preview">
+<article class="md-card">
+    {% if post.header-img %}
+    <img src="{{ post.header-img | prepend: site.baseurl }}" alt="{{ post.title }}" class="md-card__media">
+    {% else %}
+    <div class="md-card__media" style="background-color: var(--md-sys-color-primary-container);"></div>
+    {% endif %}
+    
+    <div class="md-card__content">
+        <a href="{{ post.url | prepend: site.baseurl }}" style="text-decoration: none; color: inherit;">
+            <h2 class="md-card__headline">{{ post.title }}</h2>
+            {% if post.subtitle %}
+            <h3 class="md-card__subhead">{{ post.subtitle }}</h3>
+            {% endif %}
+        </a>
+        <div class="md-card__text">
             {% if post.lang == 'en' %}
-            {{ post.content | strip_html | truncate:300 }}
+            {{ post.content | strip_html | truncate:150 }}
             {% else %}
-            {{ post.content | strip_html | truncate:200 }}
+            {{ post.content | strip_html | truncate:100 }}
             {% endif %}
         </div>
-    </a>
-    <p class="post-meta">
-        Posted by {% if post.author %}{{ post.author }}{% else %}{{ site.title }}{% endif %} on {{ post.date | date: "%B %-d, %Y" }}
-    </p>
-</div>
-<hr>
+    </div>
+    
+    <div class="md-card__actions">
+        <span style="margin-right: auto; font-size: 0.8rem; opacity: 0.7; align-self: center;">
+            {{ post.date | date: "%Y-%m-%d" }}
+        </span>
+        <a href="{{ post.url | prepend: site.baseurl }}" class="md-button md-button--text">Read</a>
+    </div>
+</article>
 {% endfor %}
+</div>
 
 <!-- Pager -->
 {% if paginator.total_pages > 1 %}
-<ul class="pager">
+<div style="display: flex; justify-content: center; margin-top: 32px; gap: 16px;">
     {% if paginator.previous_page %}
-    <li class="previous">
-        <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&larr; Newer Posts</a>
-    </li>
+        <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}" class="md-button md-button--tonal">&larr; Newer</a>
     {% endif %}
     {% if paginator.next_page %}
-    <li class="next">
-        <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">Older Posts &rarr;</a>
-    </li>
+        <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}" class="md-button md-button--tonal">Older &rarr;</a>
     {% endif %}
-</ul>
+</div>
 {% endif %}
