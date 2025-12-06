@@ -3,23 +3,14 @@ layout: page
 description: "InstallerX Unoffical"
 ---
 
-<<<<<<< HEAD
-<!-- Added Intro Header back for Hero Image -->
-{% include intro-header.html type='page' %}
-
-=======
->>>>>>> 7bae149 (rollback)
 <div class="card-grid">
 {% for post in paginator.posts %}
 <article class="md-card">
     {% if post.header-img %}
     <img src="{{ post.header-img | prepend: site.baseurl }}" alt="{{ post.title }}" class="md-card__media">
     {% else %}
-<<<<<<< HEAD
     <img src="{{ site.header-img | prepend: site.baseurl }}" alt="{{ post.title }}" class="md-card__media">
-=======
     <div class="md-card__media" style="background-color: var(--md-sys-color-primary-container);"></div>
->>>>>>> 7bae149 (rollback)
     {% endif %}
     
     <div class="md-card__content">
@@ -50,11 +41,7 @@ description: "InstallerX Unoffical"
 
 <!-- Pager -->
 {% if paginator.total_pages > 1 %}
-<<<<<<< HEAD
 <div style="display: flex; justify-content: center; margin-top: 32px; gap: 16px; padding-bottom: 32px;">
-=======
-<div style="display: flex; justify-content: center; margin-top: 32px; gap: 16px;">
->>>>>>> 7bae149 (rollback)
     {% if paginator.previous_page %}
         <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}" class="md-button md-button--tonal">&larr; Newer</a>
     {% endif %}
