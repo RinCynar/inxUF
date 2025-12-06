@@ -97,9 +97,24 @@
     background-color: rgba(103, 80, 164, 0.08); /* Primary with opacity */
 }
 
-/* Utilities */
 .d-none {
     display: none !important;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.list-inline {
+    padding-left: 0;
+    margin-left: -5px;
+    list-style: none;
+}
+
+.list-inline > li {
+    display: inline-block;
+    padding-right: 5px;
+    padding-left: 5px;
 }
 
 /* Material Chips */
