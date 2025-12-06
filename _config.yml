@@ -1,7 +1,7 @@
 # Site settings
 title: inx UF
 SEOTitle: InstallerX Unoffical
-header-img: img/inx.l.png
+header-img: "https://installerx.app.tc/img/inx.l.png"
 email: 0rhendX@gmail.com
 description: "A modern and functional Android app installer. (You know some birds are not meant to be caged, their feathers are just too bright.)"
 keyword: "inx, inxUF, InstallerX, InstallerX Unoffical, Android, Android app installer, Android app, download"
