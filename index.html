@@ -12,8 +12,7 @@ description: "InstallerX Unoffical"
     {% if post.header-img %}
     <img src="{{ post.header-img | prepend: site.baseurl }}" alt="{{ post.title }}" class="md-card__media">
     {% else %}
-    <!-- Fallback if no header image, though user says inx.png is usually used -->
-    <div class="md-card__media" style="background-color: var(--md-sys-color-primary-container);"></div>
+    <img src="{{ site.header-img | prepend: site.baseurl }}" alt="{{ post.title }}" class="md-card__media">
     {% endif %}
     
     <div class="md-card__content">

@@ -1,8 +1,73 @@
+/* Archive Page Tags */
+.tags {
+    margin-bottom: 24px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+}
+
+.tag-button {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 16px;
+    background-color: var(--md-sys-color-surface-container-high, #ECE6F0);
+    color: var(--md-sys-color-on-surface-variant);
+    border-radius: 8px;
+    font-size: 14px;
+    text-decoration: none;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: all 0.2s;
+}
+
+.tag-button:hover {
+    background-color: var(--md-sys-color-surface-container-highest, #E6E0E9);
+    filter: brightness(0.95);
+}
+
+.tag-button.focus {
+    background-color: var(--md-sys-color-primary-container);
+    color: var(--md-sys-color-on-primary-container);
+    border-color: var(--md-sys-color-primary);
+}
+
+.tag-button--all {
+    /* Inherit basic tag button styles or explicit copy */
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 16px;
+    background-color: var(--md-sys-color-surface-container-high, #ECE6F0);
+    color: var(--md-sys-color-on-surface-variant);
+    border-radius: 8px;
+    font-size: 14px;
+    text-decoration: none;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: all 0.2s;
+    font-weight: 500;
+}
+
+.tag-button--all:hover {
+    background-color: var(--md-sys-color-surface-container-highest, #E6E0E9);
+}
+
+.tag-button--all.focus {
+    background-color: var(--md-sys-color-primary);
+    color: var(--md-sys-color-on-primary);
+}
+
+.tag-button sup, .tag-button--all sup {
+    margin-left: 4px;
+    font-size: 0.75em;
+    opacity: 0.8;
+}
+
 /* Material 3 Card */
 .md-card {
     background-color: var(--md-sys-color-surface);
     border-radius: var(--md-sys-shape-corner-medium);
-    border: 1px solid var(--md-sys-color-outline);
+    border: 1px solid var(--md-sys-color-outline-variant, #CAC4D0); /* Lighter border */
     overflow: hidden;
     transition: transform 0.2s, box-shadow 0.2s;
     display: flex;
@@ -10,8 +75,9 @@
 }
 
 .md-card:hover {
-    box-shadow: var(--md-sys-elevation-1);
-    border-color: transparent; /* Elevation replaces border usually, or keep it */
+    box-shadow: var(--md-sys-elevation-2); /* Distinct elevation on hover */
+    border-color: transparent;
+    transform: translateY(-2px);
 }
 
 .md-card__media {
@@ -29,15 +95,18 @@
 }
 
 .md-card__headline {
+    font-family: var(--md-sys-typescale-headline-small-font, 'Roboto');
     font-size: 22px;
     margin: 0 0 8px 0;
     color: var(--md-sys-color-on-surface);
+    line-height: 1.3;
 }
 
 .md-card__subhead {
     font-size: 14px;
     color: var(--md-sys-color-on-surface-variant);
     margin-bottom: 12px;
+    font-weight: 400;
 }
 
 .md-card__text {
@@ -62,13 +131,14 @@
     height: 40px;
     padding: 0 24px;
     border-radius: 20px;
-    font-family: var(--md-sys-typescale-body-large-font);
+    font-family: var(--md-sys-typescale-label-large-font, 'Roboto');
     font-size: 14px;
     font-weight: 500;
     text-decoration: none;
     cursor: pointer;
     transition: background-color 0.2s;
     border: none;
+    line-height: 1;
 }
 
 .md-button--filled {
@@ -86,6 +156,10 @@
     color: var(--md-sys-color-on-secondary-container);
 }
 
+.md-button--tonal:hover {
+    filter: brightness(0.95);
+}
+
 .md-button--text {
     background-color: transparent;
     color: var(--md-sys-color-primary);
@@ -93,5 +167,7 @@
 }
 
 .md-button--text:hover {
-    background-color: rgba(103, 80, 164, 0.08); /* Primary with opacity */
+    background-color: var(--md-sys-color-primary-container); /* Opacity managed via container color often */
+    /* Or rgba fallback: */
+    background-color: rgba(103, 80, 164, 0.08); 
 }
