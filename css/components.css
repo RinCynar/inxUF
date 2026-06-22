@@ -321,4 +321,117 @@
     line-height: 24px;
 }
 
+/* About Page Premium Components */
+.about-quote {
+    background-color: var(--md-sys-color-primary-container);
+    color: var(--md-sys-color-on-primary-container);
+    border-radius: var(--md-sys-shape-corner-medium);
+    padding: 20px 24px;
+    margin: 24px 0;
+    position: relative;
+    border-left: 6px solid var(--md-sys-color-primary);
+    font-style: italic;
+    box-shadow: var(--md-sys-elevation-1);
+}
+
+.about-quote cite {
+    display: block;
+    margin-top: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    opacity: 0.85;
+    text-align: right;
+    font-style: normal;
+}
+
+.about-card {
+    background-color: var(--md-sys-color-surface);
+    border: 1px solid var(--md-sys-color-surface-variant);
+    border-radius: var(--md-sys-shape-corner-large);
+    padding: 24px;
+    margin: 24px 0;
+    line-height: 26px;
+}
+
+.about-card h2, 
+.about-card h3 {
+    margin-top: 0;
+    color: var(--md-sys-color-primary);
+}
+
+.profile-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    margin: 24px 0;
+}
+
+.profile-card {
+    background-color: var(--md-sys-color-surface);
+    border: 1px solid var(--md-sys-color-surface-variant);
+    border-radius: var(--md-sys-shape-corner-large);
+    padding: 24px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+}
+
+.profile-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--md-sys-elevation-1);
+    border-color: var(--md-sys-color-primary);
+}
+
+.profile-avatar {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background-color: var(--md-sys-color-primary-container);
+    color: var(--md-sys-color-on-primary-container);
+    font-size: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 12px;
+    font-weight: bold;
+    border: 2px solid var(--md-sys-color-primary);
+}
+
+.profile-name {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--md-sys-color-on-surface);
+    margin-bottom: 4px;
+}
+
+.profile-role {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    background-color: var(--md-sys-color-secondary-container);
+    color: var(--md-sys-color-on-secondary-container);
+    padding: 2px 10px;
+    border-radius: 10px;
+    margin-bottom: 12px;
+}
+
+.profile-bio {
+    font-size: 14px;
+    color: var(--md-sys-color-on-surface-variant);
+    margin-bottom: 16px;
+    flex-grow: 1;
+    line-height: 20px;
+}
+
+.channel-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 16px 0;
+}
+
+
 
