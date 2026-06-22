@@ -2,6 +2,23 @@
 layout: default
 ---
 
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "{{ page.title | escape }}",
+  "operatingSystem": "Android",
+  "applicationCategory": "UtilitiesApplication",
+  "datePublished": "{{ page.date | date_to_xmlschema }}",
+  "description": "{{ page.description | default: site.description | escape }}",
+  "url": "{{ site.url }}{{ page.url }}",
+  "publisher": {
+    "@type": "Organization",
+    "name": "inxUF"
+  }
+}
+</script>
+
 <!-- Post Structure -->
 <!-- Restored Intro Header for Post Cover Image -->
 {% include intro-header.html type='post' %}
@@ -30,6 +47,156 @@ layout: default
         {% endif %}
     </div>
 </article>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    var body = document.querySelector('.typography-body');
+    if (!body) return;
+
+    // --- 1 & 2. DYNAMIC DOWNLOAD BUTTONS & ARCH BADGES ---
+    var fileLinks = Array.from(body.querySelectorAll('a[href^="/file/"], a[href*="/file/"]'));
+    if (fileLinks.length > 0) {
+        var btnContainer = document.createElement('div');
+        btnContainer.className = 'download-buttons-container';
+
+        fileLinks.forEach(function(link) {
+            var href = link.getAttribute('href');
+            var text = link.textContent.trim().replace(/^-\s*/, '');
+            
+            if (href.match(/\.(png|jpg|jpeg|gif|webp)$/i)) {
+                return;
+            }
+
+            var button = document.createElement('a');
+            button.href = href;
+            
+            // Analyze version variant (Online / Offline)
+            var isOnline = href.toLowerCase().includes('online') || text.toLowerCase().includes('online');
+            var isOffline = href.toLowerCase().includes('offline') || text.toLowerCase().includes('offline');
+            
+            var btnClass = 'md-button';
+            var iconSvg = '';
+            
+            if (isOnline) {
+                btnClass += ' md-button--filled md-button--online';
+                iconSvg = '<svg class="md-button__icon" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" style="margin-right: 8px;"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/></svg>';
+            } else if (isOffline) {
+                btnClass += ' md-button--tonal md-button--offline';
+                iconSvg = '<svg class="md-button__icon" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" style="margin-right: 8px;"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>';
+            } else {
+                btnClass += ' md-button--filled';
+                iconSvg = '<svg class="md-button__icon" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" style="margin-right: 8px;"><path d="M5 20h14v-2H5v2zm7-18L5.33 11h4.67v5h4v-5h4.67L12 2z"/></svg>';
+            }
+            
+            button.className = btnClass;
+
+            // Detect architecture for badges
+            var badgeText = '';
+            var lowerText = text.toLowerCase() + ' ' + href.toLowerCase();
+            if (lowerText.includes('arm64')) {
+                badgeText = 'arm64-v8a';
+            } else if (lowerText.includes('armeabi')) {
+                badgeText = 'armeabi-v7a';
+            } else if (lowerText.includes('x64') || lowerText.includes('x86_64')) {
+                badgeText = 'x86_64';
+            } else if (lowerText.includes('x86')) {
+                badgeText = 'x86';
+            }
+
+            var cleanText = text.replace(/下载/g, '').replace(/版本/g, '').replace(/该/g, '').trim();
+            if (cleanText === '') {
+                cleanText = isOnline ? '在线版' : (isOffline ? '离线版' : '立即下载');
+            }
+            
+            var badgeHtml = badgeText ? '<span class="md-badge">' + badgeText + '</span>' : '';
+            button.innerHTML = iconSvg + '<span>' + cleanText + '</span>' + badgeHtml;
+            btnContainer.appendChild(button);
+
+            // Hide original elements
+            var parent = link.parentElement;
+            if (parent && (parent.tagName === 'H2' || parent.tagName === 'P' || parent.tagName === 'LI')) {
+                var parentText = parent.textContent.replace(link.textContent, '').replace(/[.\s]/g, '').trim();
+                if (parentText === '') {
+                    parent.style.display = 'none';
+                } else {
+                    link.style.display = 'none';
+                }
+            } else {
+                link.style.display = 'none';
+            }
+        });
+
+        if (btnContainer.childElementCount > 0) {
+            var firstLink = fileLinks[0];
+            var insertRef = firstLink.parentElement;
+            if (insertRef && insertRef.style.display === 'none') {
+                insertRef.parentNode.insertBefore(btnContainer, insertRef.nextSibling);
+            } else if (firstLink) {
+                firstLink.parentNode.insertBefore(btnContainer, firstLink.nextSibling);
+            }
+        }
+    }
+
+    // --- 3. DYNAMIC CARD-BASED RELEASE LOG CATEGORIZATION ---
+    var children = Array.from(body.children);
+    var i = 0;
+    while (i < children.length) {
+        var child = children[i];
+        var tagName = child.tagName;
+        
+        if (tagName === 'H3' || tagName === 'H4') {
+            var text = child.textContent.trim();
+            var accentClass = '';
+            
+            if (text.match(/(🚀|✨|新增|亮点)/)) {
+                accentClass = 'card-accent--added';
+            } else if (text.match(/(⚡|🎨|优化|UI)/)) {
+                accentClass = 'card-accent--improved';
+            } else if (text.match(/(🛠|🔧|修复)/)) {
+                accentClass = 'card-accent--fixed';
+            } else if (text.match(/(⚙️|变更)/)) {
+                accentClass = 'card-accent--changed';
+            } else if (text.match(/(📚|文档|翻译)/)) {
+                accentClass = 'card-accent--docs';
+            }
+            
+            if (accentClass) {
+                var card = document.createElement('div');
+                card.className = 'md-release-card ' + accentClass;
+                
+                child.parentNode.insertBefore(card, child);
+                
+                var next = child;
+                var targetTagLevel = parseInt(tagName.substring(1));
+                
+                while (next) {
+                     var current = next;
+                     next = current.nextElementSibling;
+                     
+                     if (next) {
+                         var nextTagName = next.tagName;
+                         if (nextTagName.startsWith('H')) {
+                             var nextTagLevel = parseInt(nextTagName.substring(1));
+                             if (!isNaN(nextTagLevel) && nextTagLevel <= targetTagLevel) {
+                                 break;
+                             }
+                         }
+                         if (nextTagName === 'HR' || next.className === 'download-buttons-container') {
+                             break;
+                         }
+                     }
+                     card.appendChild(current);
+                }
+                
+                children = Array.from(body.children);
+                i = children.indexOf(next !== null ? next : card) + (next !== null ? 0 : 1);
+                continue;
+            }
+        }
+        i++;
+    }
+});
+</script>
 
 {% if site.disqus_username %}
 <!-- disqus -->

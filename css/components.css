@@ -185,3 +185,140 @@
     color: var(--md-sys-color-on-surface-variant);
     font-weight: 400;
 }
+
+/* Download buttons container layout */
+.download-buttons-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 24px 0;
+}
+
+.md-button__icon {
+    flex-shrink: 0;
+}
+
+/* Dynamic Buttons Variations & Badges */
+.md-button--online {
+    background-color: var(--md-sys-color-primary);
+    color: var(--md-sys-color-on-primary);
+}
+
+.md-button--offline {
+    background-color: var(--md-sys-color-secondary-container);
+    color: var(--md-sys-color-on-secondary-container);
+}
+
+.md-badge {
+    display: inline-flex;
+    align-items: center;
+    height: 18px;
+    padding: 0 6px;
+    border-radius: 9px;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-left: 8px;
+    background-color: rgba(255, 255, 255, 0.22);
+    color: inherit;
+}
+
+.md-button--tonal .md-badge {
+    background-color: rgba(0, 0, 0, 0.08);
+    color: var(--md-sys-color-on-secondary-container);
+}
+
+@media (prefers-color-scheme: dark) {
+    .md-button--tonal .md-badge {
+        background-color: rgba(255, 255, 255, 0.12);
+        color: var(--md-sys-color-on-secondary-container);
+    }
+}
+
+/* Release Cards styling */
+.md-release-card {
+    background-color: var(--md-sys-color-surface);
+    border-radius: var(--md-sys-shape-corner-large);
+    border: 1px solid var(--md-sys-color-surface-variant);
+    padding: 20px 24px;
+    margin: 24px 0;
+    position: relative;
+    overflow: hidden;
+    transition: box-shadow 0.2s, border-color 0.2s;
+}
+
+.md-release-card:hover {
+    box-shadow: var(--md-sys-elevation-1);
+    border-color: var(--md-sys-color-primary);
+}
+
+.md-release-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 6px;
+    height: 100%;
+}
+
+/* Category Accent colors */
+.card-accent--added::before {
+    background-color: #2e7d32;
+}
+@media (prefers-color-scheme: dark) {
+    .card-accent--added::before {
+        background-color: #81c784;
+    }
+}
+
+.card-accent--improved::before {
+    background-color: #ed6c02;
+}
+@media (prefers-color-scheme: dark) {
+    .card-accent--improved::before {
+        background-color: #ffb74d;
+    }
+}
+
+.card-accent--changed::before {
+    background-color: #1976d2;
+}
+@media (prefers-color-scheme: dark) {
+    .card-accent--changed::before {
+        background-color: #64b5f6;
+    }
+}
+
+.card-accent--fixed::before {
+    background-color: var(--md-sys-color-error);
+}
+
+.card-accent--docs::before {
+    background-color: var(--md-sys-color-tertiary);
+}
+
+.md-release-card > h3,
+.md-release-card > h4 {
+    margin-top: 0;
+    margin-bottom: 16px;
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--md-sys-color-on-surface);
+}
+
+.md-release-card > h5 {
+    margin-top: 12px;
+    margin-bottom: 6px;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--md-sys-color-on-surface);
+}
+
+.md-release-card > p,
+.md-release-card > ul {
+    margin-bottom: 0;
+    line-height: 24px;
+}
+
+

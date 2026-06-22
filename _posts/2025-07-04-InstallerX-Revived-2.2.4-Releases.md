@@ -10,10 +10,10 @@ tags:
 ---
 
 ## 由 [wxxsfxyzm](https://github.com/wxxsfxyzm) 维护的 InstallerX-Revived 2.2.4 发布, 原地址[在此](https://github.com/wxxsfxyzm/InstallerX-Revived/releases/tag/v2.2.4)
-## [下载 arm64v8a 版本](/file/InstallerX-wxxsfxyzm-2.2.4-arm64.apk).
-## [下载 armeabi 版本](/file/InstallerX-wxxsfxyzm-2.2.4-armeabi.apk).
-## [下载 x64 版本](/file/InstallerX-wxxsfxyzm-2.2.4-x64.apk).
-## [下载 x86 版本](/file/InstallerX-wxxsfxyzm-2.2.4-x86.apk).
+## [下载 arm64v8a 版本](/file/InstallerX-Revived-2.2.4-arm64.apk).
+## [下载 armeabi 版本](/file/InstallerX-Revived-2.2.4-armeabi.apk).
+## [下载 x64 版本](/file/InstallerX-Revived-2.2.4-x64.apk).
+## [下载 x86 版本](/file/InstallerX-Revived-2.2.4-x86.apk).
 
 ### 更新内容
 

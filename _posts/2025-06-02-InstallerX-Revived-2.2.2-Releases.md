@@ -10,7 +10,7 @@ tags:
 ---
 
 ## 由 [wxxsfxyzm](https://github.com/wxxsfxyzm) 维护的 InstallerX-Revived 2.2.2 发布, 原地址[在此](https://github.com/wxxsfxyzm/InstallerX-Revived/releases/tag/v2.2.2)
-## [下载该版本](/file/InstallerX-wxxsfxyzm-2.2.2.apk).
+## [下载该版本](/file/InstallerX-Revived-2.2.2.apk).
 
 ### 更新内容
 
@@ -23,10 +23,10 @@ tags:
 #### 依赖改动提高Java版本为21
 
 #### 设置界面
-<img src="/file/InstallerX-wxxsfxyzm-2.2.2-0.png" alt="A image">
+<img src="/file/InstallerX-Revived-2.2.2-0.png" alt="A image">
 
 #### 安装界面
-<img src="/file/InstallerX-wxxsfxyzm-2.2.2-1.png" alt="A image">
+<img src="/file/InstallerX-Revived-2.2.2-1.png" alt="A image">
 
 ### 已知问题
 

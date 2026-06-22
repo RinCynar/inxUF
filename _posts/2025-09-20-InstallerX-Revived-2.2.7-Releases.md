@@ -11,9 +11,9 @@ tags:
 
 ## 由 [wxxsfxyzm](https://github.com/wxxsfxyzm) 维护的 InstallerX-Revived 2.2.7 发布, 原地址[在此](https://github.com/wxxsfxyzm/InstallerX-Revived/releases/tag/v2.2.7)
 
-## [下载 Offline 版本](/file/InstallerX-wxxsfxyzm-offline-2.2.7.apk).
+## [下载 Offline 版本](/file/InstallerX-Revived-offline-2.2.7.apk).
 
-## [下载 Online 版本](/file/InstallerX-wxxsfxyzm-online-2.2.7.apk).
+## [下载 Online 版本](/file/InstallerX-Revived-online-2.2.7.apk).
 
 ### ✨ 更新亮点
 

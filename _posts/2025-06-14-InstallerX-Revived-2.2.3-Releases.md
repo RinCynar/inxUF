@@ -10,7 +10,7 @@ tags:
 ---
 
 ## 由 [wxxsfxyzm](https://github.com/wxxsfxyzm) 维护的 InstallerX-Revived 2.2.3 发布, 原地址[在此](https://github.com/wxxsfxyzm/InstallerX-Revived/releases/tag/v2.2.3)
-## [下载该版本](/file/InstallerX-wxxsfxyzm-2.2.3.apk).
+## [下载该版本](/file/InstallerX-Revived-2.2.3.apk).
 
 ### 更新内容
 
@@ -36,16 +36,16 @@ tags:
 #### 修复设置活动在HyperOS上亮色主题时导航栏不沉浸
 
 #### 新版安装失败通知（展开显示错误信息）
-<img src="/file/InstallerX-wxxsfxyzm-2.2.3-0.png" alt="A image">
+<img src="/file/InstallerX-Revived-2.2.3-0.png" alt="A image">
 
 #### 更新的设置界面
-<img src="/file/InstallerX-wxxsfxyzm-2.2.3-1.png" alt="A image">
+<img src="/file/InstallerX-Revived-2.2.3-1.png" alt="A image">
 
 #### 获取更新菜单
-<img src="/file/InstallerX-wxxsfxyzm-2.2.3-2.png" alt="A image">
+<img src="/file/InstallerX-Revived-2.2.3-2.png" alt="A image">
 
 #### AboutLibraries列表
-<img src="/file/InstallerX-wxxsfxyzm-2.2.3-3.png" alt="A image">
+<img src="/file/InstallerX-Revived-2.2.3-3.png" alt="A image">
 
 ### 已知问题
 
