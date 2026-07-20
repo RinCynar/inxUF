@@ -143,18 +143,29 @@ document.addEventListener("DOMContentLoaded", function() {
         if (tagName !== 'H3' && tagName !== 'H4') return false;
         
         var text = el.textContent.trim();
-        // Remove emojis to check the clean text length
-        var cleanText = text.replace(/[\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDC00-\uDFFF]/g, '').trim();
+        // Keep only alphanumeric and Chinese characters, convert to lowercase
+        var clean = text.replace(/[^a-zA-Z0-9\u4e00-\u9fa5]/g, '').toLowerCase();
         
-        var keywords = ['更新内容', 'what\'s changed', '更新亮点', 'highlights', '新增功能', '新增', '优化与改进', '优化', '修复', '变更', '文档与翻译', '文档', '翻译', '升级'];
-        var matchesKeyword = keywords.some(function(kw) {
-            return cleanText.toLowerCase().includes(kw);
-        });
+        // Remove English category terms
+        clean = clean.replace(/(highlights|whatschanged|releases|release|changelog)/g, '');
         
-        // Also match if it starts with one of our category emojis
-        var startsWithEmoji = text.match(/^\s*(🚀|✨|⚡|🎨|🛠|🔧|⚙️|📚|🧩|🛡️|🔔|📦)/);
+        var categories = [
+            '更新内容', '更新亮点', '新增功能', '新增', 
+            '优化与改进', '优化', '修复', '变更', '移除', 
+            '翻译', '文档与翻译', '文档', '补丁版本', '补丁', 
+            '关于', '下载', '支持版本', '亮点', '升级'
+        ];
         
-        return (matchesKeyword || startsWithEmoji) && cleanText.length < 25;
+        if (categories.indexOf(clean) !== -1) {
+            return true;
+        }
+        
+        // Prefix matches for 补丁, 关于, etc.
+        if (clean.indexOf('补丁') === 0 || clean.indexOf('关于') === 0) {
+            return true;
+        }
+        
+        return false;
     }
 
     function getAccentClass(text) {
@@ -169,6 +180,8 @@ document.addEventListener("DOMContentLoaded", function() {
             return 'card-accent--changed';
         } else if (lowerText.match(/(📚|文档|翻译)/)) {
             return 'card-accent--docs';
+        } else if (lowerText.match(/(🗑|移除)/)) {
+            return 'card-accent--fixed';
         }
         return 'card-accent--changed'; // Default Indigo
     }
