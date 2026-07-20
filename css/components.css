@@ -298,11 +298,20 @@
     background-color: var(--md-sys-color-tertiary);
 }
 
-.md-release-card > h3,
-.md-release-card > h4 {
+.md-release-card > h3:first-child,
+.md-release-card > h4:first-child {
     margin-top: 0;
     margin-bottom: 16px;
     font-size: 20px;
+    font-weight: 500;
+    color: var(--md-sys-color-on-surface);
+}
+
+.md-release-card > h3:not(:first-child),
+.md-release-card > h4:not(:first-child) {
+    margin-top: 12px;
+    margin-bottom: 6px;
+    font-size: 15px;
     font-weight: 500;
     color: var(--md-sys-color-on-surface);
 }
