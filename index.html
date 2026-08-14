@@ -7,36 +7,35 @@ hide-in-nav: true
 
 <div class="card-grid">
 {% for post in paginator.posts %}
-<article class="md-card">
+<a href="{{ post.url | prepend: site.baseurl }}" class="md-card">
     {% if post.header-img %}
-    <img src="{{ post.header-img | prepend: site.baseurl }}" alt="{{ post.title }}" class="md-card__media">
+    <img src="{{ post.header-img | prepend: site.baseurl }}" alt="{{ post.title }}" class="md-card__media" loading="lazy" decoding="async">
     {% else %}
-    <img src="{{ site.header-img | prepend: site.baseurl }}" alt="{{ post.title }}" class="md-card__media">
+    <img src="{{ site.header-img | prepend: site.baseurl }}" alt="{{ post.title }}" class="md-card__media" loading="lazy" decoding="async">
     {% endif %}
-    
+
     <div class="md-card__content">
-        <a href="{{ post.url | prepend: site.baseurl }}" style="text-decoration: none; color: inherit;">
-            <h2 class="md-card__headline">{{ post.title }}</h2>
-            {% if post.subtitle %}
-            <h3 class="md-card__subhead">{{ post.subtitle }}</h3>
-            {% endif %}
-        </a>
-        <div class="md-card__text">
+        <h2 class="md-card__headline">{{ post.title }}</h2>
+        {% if post.subtitle %}
+        <h3 class="md-card__subhead">{{ post.subtitle }}</h3>
+        {% endif %}
+        <p class="md-card__text">
             {% if post.lang == 'en' %}
             {{ post.content | strip_html | truncate:150 }}
             {% else %}
             {{ post.content | strip_html | truncate:100 }}
             {% endif %}
-        </div>
+        </p>
     </div>
-    
+
     <div class="md-card__actions">
-        <span style="margin-right: auto; font-size: 0.8rem; opacity: 0.7; align-self: center;">
+        <span class="md-card__date">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm4.2 14.2L11 13.3V7h1.5v5.1l4.2 2.5-1 1.6z"/></svg>
             {{ post.date | date: "%Y-%m-%d" }}
         </span>
-        <a href="{{ post.url | prepend: site.baseurl }}" class="md-button md-button--text">Read</a>
+        <span class="md-button md-button--text">Read</span>
     </div>
-</article>
+</a>
 {% endfor %}
 </div>
 

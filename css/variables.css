@@ -1,10 +1,13 @@
 /* ============================================================
  * Material You (Material Design 3) Design Tokens
- * Compatible with M3 color system / typography / elevation
+ * Full M3 spec — Color / Shape / Elevation / Typography / State
+ * Theme is driven by the `theme-dark`/`theme-light` classes on
+ * <html> (set by theme-toggle.js) with a `prefers-color-scheme`
+ * fallback for users without JavaScript.
  * ============================================================ */
 
 :root {
-  /* ---------- Color: Light Theme (Deep Purple baseline) ---------- */
+  /* ---------- Color: Light scheme (M3 Deep Purple baseline) ---------- */
   --md-sys-color-primary: #6750a4;
   --md-sys-color-on-primary: #ffffff;
   --md-sys-color-primary-container: #eaddff;
@@ -25,6 +28,7 @@
   --md-sys-color-error-container: #f9dedc;
   --md-sys-color-on-error-container: #410e0b;
 
+  /* Extended semantic colors (used for release-log categories) */
   --md-sys-color-success: #2e7d32;
   --md-sys-color-on-success: #ffffff;
   --md-sys-color-success-container: #c8e6c9;
@@ -40,7 +44,7 @@
   --md-sys-color-info-container: #bbdefb;
   --md-sys-color-on-info-container: #0d2c4d;
 
-  /* M3 Surface tonal palette (5 elevations) */
+  /* Surface tonal palette (5 elevation steps) */
   --md-sys-color-background: #fffbfe;
   --md-sys-color-on-background: #1c1b1f;
   --md-sys-color-surface: #fffbfe;
@@ -64,7 +68,7 @@
   --md-sys-color-scrim: #000000;
   --md-sys-color-shadow: #000000;
 
-  /* Fixed colors (always light scheme) - for tonal accents */
+  /* Fixed colors (always the light-scheme values, per M3 spec) */
   --md-sys-color-primary-fixed: #eaddff;
   --md-sys-color-primary-fixed-dim: #d0bcff;
   --md-sys-color-on-primary-fixed: #21005d;
@@ -75,20 +79,194 @@
   --md-sys-color-tertiary-fixed-dim: #efb8c8;
   --md-sys-color-on-tertiary-fixed: #31111d;
 
+  /* ---------- Shape (M3 corner scale) ---------- */
+  --md-sys-shape-corner-none: 0px;
+  --md-sys-shape-corner-extra-small: 4px;
+  --md-sys-shape-corner-small: 8px;
+  --md-sys-shape-corner-medium: 12px;
+  --md-sys-shape-corner-large: 16px;
+  --md-sys-shape-corner-extra-large: 28px;
+  --md-sys-shape-corner-full: 9999px;
+
+  /* ---------- Elevation (M3 shadow tones) ---------- */
+  --md-sys-elevation-0: none;
+  --md-sys-elevation-1: 0 1px 2px rgba(0, 0, 0, 0.3), 0 1px 3px 1px rgba(0, 0, 0, 0.15);
+  --md-sys-elevation-2: 0 1px 2px rgba(0, 0, 0, 0.3), 0 2px 6px 2px rgba(0, 0, 0, 0.15);
+  --md-sys-elevation-3: 0 1px 3px rgba(0, 0, 0, 0.3), 0 4px 8px 3px rgba(0, 0, 0, 0.15);
+  --md-sys-elevation-4: 0 2px 3px rgba(0, 0, 0, 0.3), 0 6px 10px 4px rgba(0, 0, 0, 0.15);
+  --md-sys-elevation-5: 0 4px 4px rgba(0, 0, 0, 0.3), 0 8px 12px 6px rgba(0, 0, 0, 0.15);
+
   /* ---------- State layer opacity (M3 spec) ---------- */
   --md-sys-state-hover-opacity: 0.08;
   --md-sys-state-focus-opacity: 0.12;
   --md-sys-state-pressed-opacity: 0.12;
   --md-sys-state-dragged-opacity: 0.16;
 
-  /* ---------- Typography: Full M3 Type Scale (font) ---------- */
+  /* ---------- Typography: full M3 type scale ---------- */
   --md-sys-typescale-font: "Roboto", "Helvetica Neue", "Segoe UI",
-    "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC",
+    sans-serif;
+
+  --md-sys-typescale-display-large-font: var(--md-sys-typescale-font);
+  --md-sys-typescale-display-large-size: 57px;
+  --md-sys-typescale-display-large-line-height: 64px;
+  --md-sys-typescale-display-large-weight: 400;
+  --md-sys-typescale-display-large-tracking: -0.25px;
+
+  --md-sys-typescale-display-medium-font: var(--md-sys-typescale-font);
+  --md-sys-typescale-display-medium-size: 45px;
+  --md-sys-typescale-display-medium-line-height: 52px;
+  --md-sys-typescale-display-medium-weight: 400;
+  --md-sys-typescale-display-medium-tracking: 0px;
+
+  --md-sys-typescale-display-small-font: var(--md-sys-typescale-font);
+  --md-sys-typescale-display-small-size: 36px;
+  --md-sys-typescale-display-small-line-height: 44px;
+  --md-sys-typescale-display-small-weight: 400;
+  --md-sys-typescale-display-small-tracking: 0px;
+
+  --md-sys-typescale-headline-large-font: var(--md-sys-typescale-font);
+  --md-sys-typescale-headline-large-size: 32px;
+  --md-sys-typescale-headline-large-line-height: 40px;
+  --md-sys-typescale-headline-large-weight: 400;
+  --md-sys-typescale-headline-large-tracking: 0px;
+
+  --md-sys-typescale-headline-medium-font: var(--md-sys-typescale-font);
+  --md-sys-typescale-headline-medium-size: 28px;
+  --md-sys-typescale-headline-medium-line-height: 36px;
+  --md-sys-typescale-headline-medium-weight: 400;
+  --md-sys-typescale-headline-medium-tracking: 0px;
+
+  --md-sys-typescale-headline-small-font: var(--md-sys-typescale-font);
+  --md-sys-typescale-headline-small-size: 24px;
+  --md-sys-typescale-headline-small-line-height: 32px;
+  --md-sys-typescale-headline-small-weight: 400;
+  --md-sys-typescale-headline-small-tracking: 0px;
+
+  --md-sys-typescale-title-large-font: var(--md-sys-typescale-font);
+  --md-sys-typescale-title-large-size: 22px;
+  --md-sys-typescale-title-large-line-height: 28px;
+  --md-sys-typescale-title-large-weight: 400;
+  --md-sys-typescale-title-large-tracking: 0px;
+
+  --md-sys-typescale-title-medium-font: var(--md-sys-typescale-font);
+  --md-sys-typescale-title-medium-size: 16px;
+  --md-sys-typescale-title-medium-line-height: 24px;
+  --md-sys-typescale-title-medium-weight: 500;
+  --md-sys-typescale-title-medium-tracking: 0.15px;
+
+  --md-sys-typescale-title-small-font: var(--md-sys-typescale-font);
+  --md-sys-typescale-title-small-size: 14px;
+  --md-sys-typescale-title-small-line-height: 20px;
+  --md-sys-typescale-title-small-weight: 500;
+  --md-sys-typescale-title-small-tracking: 0.1px;
+
+  --md-sys-typescale-body-large-font: var(--md-sys-typescale-font);
+  --md-sys-typescale-body-large-size: 16px;
+  --md-sys-typescale-body-large-line-height: 24px;
+  --md-sys-typescale-body-large-weight: 400;
+  --md-sys-typescale-body-large-tracking: 0.5px;
+
+  --md-sys-typescale-body-medium-font: var(--md-sys-typescale-font);
+  --md-sys-typescale-body-medium-size: 14px;
+  --md-sys-typescale-body-medium-line-height: 20px;
+  --md-sys-typescale-body-medium-weight: 400;
+  --md-sys-typescale-body-medium-tracking: 0.25px;
+
+  --md-sys-typescale-body-small-font: var(--md-sys-typescale-font);
+  --md-sys-typescale-body-small-size: 12px;
+  --md-sys-typescale-body-small-line-height: 16px;
+  --md-sys-typescale-body-small-weight: 400;
+  --md-sys-typescale-body-small-tracking: 0.4px;
+
+  --md-sys-typescale-label-large-font: var(--md-sys-typescale-font);
+  --md-sys-typescale-label-large-size: 14px;
+  --md-sys-typescale-label-large-line-height: 20px;
+  --md-sys-typescale-label-large-weight: 500;
+  --md-sys-typescale-label-large-tracking: 0.1px;
+
+  --md-sys-typescale-label-medium-font: var(--md-sys-typescale-font);
+  --md-sys-typescale-label-medium-size: 12px;
+  --md-sys-typescale-label-medium-line-height: 16px;
+  --md-sys-typescale-label-medium-weight: 500;
+  --md-sys-typescale-label-medium-tracking: 0.5px;
+
+  --md-sys-typescale-label-small-font: var(--md-sys-typescale-font);
+  --md-sys-typescale-label-small-size: 11px;
+  --md-sys-typescale-label-small-line-height: 16px;
+  --md-sys-typescale-label-small-weight: 500;
+  --md-sys-typescale-label-small-tracking: 0.5px;
 }
 
-/* Dark Theme Overrides */
+/* ============================================================
+ * Dark scheme — driven by the `.theme-dark` class (JS toggle)
+ * ============================================================ */
+:root.theme-dark {
+  --md-sys-color-primary: #d0bcff;
+  --md-sys-color-on-primary: #381e72;
+  --md-sys-color-primary-container: #4f378b;
+  --md-sys-color-on-primary-container: #eaddff;
+
+  --md-sys-color-secondary: #ccc2dc;
+  --md-sys-color-on-secondary: #332d41;
+  --md-sys-color-secondary-container: #4a4458;
+  --md-sys-color-on-secondary-container: #e8def8;
+
+  --md-sys-color-tertiary: #efb8c8;
+  --md-sys-color-on-tertiary: #492532;
+  --md-sys-color-tertiary-container: #633b48;
+  --md-sys-color-on-tertiary-container: #ffd8e4;
+
+  --md-sys-color-error: #f2b8b5;
+  --md-sys-color-on-error: #601410;
+  --md-sys-color-error-container: #8c1d18;
+  --md-sys-color-on-error-container: #f9dedc;
+
+  --md-sys-color-success: #81c784;
+  --md-sys-color-on-success: #ffffff;
+  --md-sys-color-success-container: #2e7d32;
+  --md-sys-color-on-success-container: #c8e6c9;
+
+  --md-sys-color-warning: #ffb74d;
+  --md-sys-color-on-warning: #ffffff;
+  --md-sys-color-warning-container: #5d3a00;
+  --md-sys-color-on-warning-container: #ffe0b2;
+
+  --md-sys-color-info: #64b5f6;
+  --md-sys-color-on-info: #ffffff;
+  --md-sys-color-info-container: #0d2c4d;
+  --md-sys-color-on-info-container: #bbdefb;
+
+  --md-sys-color-background: #1c1b1f;
+  --md-sys-color-on-background: #e6e1e5;
+  --md-sys-color-surface: #1c1b1f;
+  --md-sys-color-on-surface: #e6e1e5;
+  --md-sys-color-surface-variant: #49454f;
+  --md-sys-color-on-surface-variant: #cac4d0;
+
+  --md-sys-color-surface-container-lowest: #0f0d13;
+  --md-sys-color-surface-container-low: #211f26;
+  --md-sys-color-surface-container: #28272f;
+  --md-sys-color-surface-container-high: #322f37;
+  --md-sys-color-surface-container-highest: #3d3a41;
+
+  --md-sys-color-outline: #938f99;
+  --md-sys-color-outline-variant: #49454f;
+
+  --md-sys-color-inverse-surface: #e6e1e5;
+  --md-sys-color-inverse-on-surface: #313033;
+  --md-sys-color-inverse-primary: #6750a4;
+
+  --md-sys-color-scrim: #000000;
+  --md-sys-color-shadow: #000000;
+}
+
+/* ============================================================
+ * Dark scheme — system preference fallback for users without JS.
+ * `.theme-light` (set by the toggle) always wins over this.
+ * ============================================================ */
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not(.theme-light) {
     --md-sys-color-primary: #d0bcff;
     --md-sys-color-on-primary: #381e72;
     --md-sys-color-primary-container: #4f378b;
@@ -109,16 +287,55 @@
     --md-sys-color-error-container: #8c1d18;
     --md-sys-color-on-error-container: #f9dedc;
 
-    --md-sys-color-outline: #938f99;
+    --md-sys-color-success: #81c784;
+    --md-sys-color-on-success: #ffffff;
+    --md-sys-color-success-container: #2e7d32;
+    --md-sys-color-on-success-container: #c8e6c9;
+
+    --md-sys-color-warning: #ffb74d;
+    --md-sys-color-on-warning: #ffffff;
+    --md-sys-color-warning-container: #5d3a00;
+    --md-sys-color-on-warning-container: #ffe0b2;
+
+    --md-sys-color-info: #64b5f6;
+    --md-sys-color-on-info: #ffffff;
+    --md-sys-color-info-container: #0d2c4d;
+    --md-sys-color-on-info-container: #bbdefb;
+
     --md-sys-color-background: #1c1b1f;
     --md-sys-color-on-background: #e6e1e5;
     --md-sys-color-surface: #1c1b1f;
     --md-sys-color-on-surface: #e6e1e5;
     --md-sys-color-surface-variant: #49454f;
     --md-sys-color-on-surface-variant: #cac4d0;
+
+    --md-sys-color-surface-container-lowest: #0f0d13;
+    --md-sys-color-surface-container-low: #211f26;
+    --md-sys-color-surface-container: #28272f;
+    --md-sys-color-surface-container-high: #322f37;
+    --md-sys-color-surface-container-highest: #3d3a41;
+
+    --md-sys-color-outline: #938f99;
+    --md-sys-color-outline-variant: #49454f;
+
     --md-sys-color-inverse-surface: #e6e1e5;
     --md-sys-color-inverse-on-surface: #313033;
+    --md-sys-color-inverse-primary: #6750a4;
+
+    --md-sys-color-scrim: #000000;
+    --md-sys-color-shadow: #000000;
   }
+}
+
+/* ---------- Base ---------- */
+html {
+  color-scheme: light;
+}
+html.theme-dark {
+  color-scheme: dark;
+}
+html.theme-light {
+  color-scheme: light;
 }
 
 body {
@@ -128,5 +345,9 @@ body {
   font-family: var(--md-sys-typescale-body-large-font);
   font-size: var(--md-sys-typescale-body-large-size);
   line-height: var(--md-sys-typescale-body-large-line-height);
-  transition: background-color 0.3s, color 0.3s;
+  letter-spacing: var(--md-sys-typescale-body-large-tracking);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
+

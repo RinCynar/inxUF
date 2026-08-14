@@ -11,7 +11,8 @@
   />
   <meta name="description" content="{{ site.description }}" />
   <meta name="keywords" content="{{ site.keyword }}" />
-  <meta name="theme-color" content="{{ site.chrome-tab-theme-color }}" />
+  <meta name="theme-color" content="#fffbfe" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#1c1b1f" media="(prefers-color-scheme: dark)" />
 
   <!-- Open Graph -->
   <meta
@@ -75,26 +76,21 @@
   <script>
     // Prevent theme flash by applying theme before page renders
     (function () {
-      const theme = localStorage.getItem("inxUF_theme") || "dark";
-      const html = document.documentElement;
-      if (theme === "dark") {
-        html.classList.add("theme-dark");
-        html.style.colorScheme = "dark";
-      } else {
-        html.classList.add("theme-light");
-        html.style.colorScheme = "light";
+      var theme = null;
+      try { theme = localStorage.getItem("inxUF_theme"); } catch (e) {}
+      if (theme !== "dark" && theme !== "light") {
+        theme =
+          window.matchMedia &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "light";
       }
+      var html = document.documentElement;
+      html.classList.add("theme-" + theme);
+      html.setAttribute("data-theme", theme);
+      html.style.colorScheme = theme;
     })();
   </script>
-
-  <!-- Custom Fonts -->
-  <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
-  <!-- Hux change font-awesome CDN to qiniu -->
-  <link
-    href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css"
-    rel="stylesheet"
-    type="text/css"
-  />
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -102,9 +98,6 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
   <![endif]-->
-
-  <!-- ga & ba script hoook -->
-  <script></script>
 
   <!-- Google AdSense -->
   <script

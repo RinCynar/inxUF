@@ -1,36 +1,45 @@
 ---
 layout: page
+title: Search
 description: "Search inxUF"
 header-img: ""
+hide-in-nav: true
 permalink: /search/
 ---
 
 <!-- Material Search Page -->
 <div class="search-page">
-    <div class="search-icon-close-container">
-        <span class="search-icon-close">
-        <i class="fa fa-chevron-down"></i>
-        </span>
+    <div class="md-text-field">
+        <svg class="md-text-field__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 3a6.5 6.5 0 1 0 4.02 11.56L19 20l1.5-1.5-5.44-5.48A6.5 6.5 0 0 0 9.5 3zm0 2a4.5 4.5 0 1 1 0 9 4.5 4.5 0 0 1 0-9z"/></svg>
+        <input type="text" id="search-input" class="md-text-field__input" placeholder="搜索帖子 / Search posts..." autocomplete="off">
     </div>
-    <div class="search-main container">
-        <div class="row">
-        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-            <div style="margin-bottom: 32px; position: relative;">
-                <input type="text" id="search-input" placeholder="Search..." 
-                    style="width: 100%; padding: 16px; border-radius: 28px; border: 1px solid var(--md-sys-color-outline); background-color: var(--md-sys-color-surface); color: var(--md-sys-color-on-surface); font-size: 16px; outline: none;">
-                <i class="fa fa-search" style="position: absolute; right: 16px; top: 16px; color: var(--md-sys-color-on-surface-variant);"></i>
-            </div>
-            
-            <div id="search-results" class="mini-post-list js-result"></div>
-        </div>
-        </div>
-    </div>
+
+    <div id="search-results" class="mini-post-list js-result"></div>
 </div>
 
 <script>
-    // Focus input on load
+    // Initialize search + focus input on load
     document.addEventListener('DOMContentLoaded', function() {
         var input = document.getElementById('search-input');
-        if(input) input.focus();
+        if (!input) return;
+        input.focus();
+
+        // Init search engine (SimpleJekyllSearch)
+        if (window.SimpleJekyllSearch && document.getElementById('search-results')) {
+            window.SimpleJekyllSearch({
+                searchInput: input,
+                resultsContainer: document.getElementById('search-results'),
+                json: '{{ "/search.json" | prepend: site.baseurl }}',
+                searchResultTemplate:
+                    '<div class="item">' +
+                    '<a href="{url}" style="text-decoration: none;">' +
+                    '<h2 class="post-title">{title}</h2>' +
+                    '<h3 class="post-subtitle">{subtitle}</h3>' +
+                    '</a></div>',
+                noResultsText: '<p style="color: var(--md-sys-color-on-surface-variant); padding: 16px 0;">No results found</p>',
+                limit: 20,
+                fuzzy: false
+            });
+        }
     });
 </script>
