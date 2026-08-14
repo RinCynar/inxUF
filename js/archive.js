@@ -127,6 +127,47 @@
             }
         }
 
+        var currentYear = new Date().getFullYear();
+        var YEAR_KEEP_OPEN = 2;
+
+        function isOldYearSection(section) {
+            var year = parseInt(section.getAttribute('data-year'), 10);
+            return !isNaN(year) && year <= currentYear - YEAR_KEEP_OPEN;
+        }
+
+        function ensureYearToggle(section) {
+            if (section.querySelector('.archive-year__toggle')) return;
+            var year = section.getAttribute('data-year');
+            var count = section.querySelectorAll('.item').length;
+            var btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'archive-year__toggle md-button md-button--text';
+            btn.textContent = '展开 ' + year + ' 年的 ' + count + ' 篇';
+            btn.addEventListener('click', function() {
+                section.classList.remove('is-collapsed');
+            });
+            var sep = section.querySelector('.listing-seperator');
+            if (sep && sep.nextSibling) {
+                section.insertBefore(btn, sep.nextSibling);
+            } else {
+                section.appendChild(btn);
+            }
+        }
+
+        function setOldYearsCollapsed(collapse) {
+            sections.forEach(function(section) {
+                if (!isOldYearSection(section)) return;
+                ensureYearToggle(section);
+                section.classList.toggle('is-collapsed', collapse);
+            });
+        }
+
+        var originalTagSelect = tagSelect;
+        tagSelect = function(tag, target) {
+            originalTagSelect(tag, target);
+            setOldYearsCollapsed(!tag);
+        };
+
         var query = queryString();
         var initialTag = query.tag;
 

@@ -19,7 +19,7 @@ header-img: ""
     <div id='tag_cloud' class="tags-sup js-tags">
         <a class="tag-button--all" data-encode="">
             Show All
-            <sup>{{site.posts.size}}</sup>
+            <span class="chip-count">{{site.posts.size}}</span>
         </a>
 
         {% capture tags %}
@@ -28,7 +28,7 @@ header-img: ""
            data-encode="{{ tag[0] | strip | url_encode }}" class="tag-button" title="{{ tag[0] }}"
            rel="{{ tag[1].size }}">
             {{ tag[0] }}
-            <sup>{{tag[1].size}}</sup>
+            <span class="chip-count">{{tag[1].size}}</span>
         </a>__SEPERATOR__
         {% endfor %}
         {% endcapture %}
@@ -37,10 +37,39 @@ header-img: ""
 
     <!-- Article List -->
     <div class="mini-post-list js-result d-none">
-        {%- assign _sorted_list = site.posts -%}
-        {%- assign _sorted_list = _sorted_list | sort: 'date' -%}
-        {%- assign _sorted_list = _sorted_list | reverse -%}
+        {%- assign _pinned_list = site.posts | where: 'pinned', true | sort: 'pin_order' -%}
+        {%- assign _sorted_list = site.posts | where_exp: 'post', 'post.pinned != true' -%}
+        {%- assign _sorted_list = _sorted_list | sort: 'date' | reverse -%}
 
+        {%- if _pinned_list.size > 0 -%}
+        <section class="archive-year archive-year--pinned">
+            <span class="listing-seperator">置顶</span>
+            {%- for _article in _pinned_list -%}
+            {%- assign _tags = '' -%}
+            {%- for _tag in _article.tags -%}
+            {%- assign _tag_encode = _tag | strip | url_encode -%}
+            {%- if forloop.last -%}
+            {%- assign _tags = _tags | append: _tag_encode -%}
+            {%- else -%}
+            {%- assign _tags = _tags | append: _tag_encode | append: ',' -%}
+            {%- endif -%}
+            {%- endfor -%}
+            <div class="item" data-tags="{{ _tags }}">
+                <a href="{{ _article.url | prepend: site.baseurl }}" style="text-decoration: none;">
+                    <h2 class="post-title">
+                        <span class="md-pin-label">置顶</span>
+                        {{ _article.title }}
+                    </h2>
+                    {% if _article.subtitle %}
+                    <h3 class="post-subtitle">
+                        {{ _article.subtitle }}
+                    </h3>
+                    {% endif %}
+                </a>
+            </div>
+            {%- endfor -%}
+        </section>
+        {%- endif -%}
 
         {%- for _article in _sorted_list -%}
         {%- assign _tags = '' -%}
@@ -57,7 +86,7 @@ header-img: ""
         {%- assign _currentdate = _article.date | date: '%Y' -%}
         {%- if _currentdate != _date -%}
         {%- unless forloop.first -%}</section>{%- endunless -%}
-        <section>
+        <section class="archive-year" data-year="{{ _currentdate }}">
             <span class="listing-seperator">
                 {{ _currentdate }}
             </span>

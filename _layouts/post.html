@@ -59,9 +59,17 @@ document.addEventListener("DOMContentLoaded", function() {
         var btnContainer = document.createElement('div');
         btnContainer.className = 'download-buttons-container';
 
+        function escapeHtml(s) {
+            return String(s)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;');
+        }
+
         fileLinks.forEach(function(link) {
             var href = link.getAttribute('href');
-            var text = link.textContent.trim().replace(/^-\s*/, '');
+            var text = link.textContent.trim().replace(/^-\s*/, '').replace(/[.\s]+$/g, '').trim();
             
             if (href.match(/\.(png|jpg|jpeg|gif|webp)$/i)) {
                 return;
@@ -79,13 +87,13 @@ document.addEventListener("DOMContentLoaded", function() {
             
             if (isOnline) {
                 btnClass += ' md-button--filled md-button--online';
-                iconSvg = '<svg class="md-button__icon" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" style="margin-right: 8px;"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/></svg>';
+                iconSvg = '<svg class="md-button__icon" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/></svg>';
             } else if (isOffline) {
                 btnClass += ' md-button--tonal md-button--offline';
-                iconSvg = '<svg class="md-button__icon" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" style="margin-right: 8px;"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>';
+                iconSvg = '<svg class="md-button__icon" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>';
             } else {
                 btnClass += ' md-button--filled';
-                iconSvg = '<svg class="md-button__icon" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" style="margin-right: 8px;"><path d="M5 20h14v-2H5v2zm7-18L5.33 11h4.67v5h4v-5h4.67L12 2z"/></svg>';
+                iconSvg = '<svg class="md-button__icon" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M5 20h14v-2H5v2zm7-18L5.33 11h4.67v5h4v-5h4.67L12 2z"/></svg>';
             }
             
             button.className = btnClass;
@@ -103,13 +111,13 @@ document.addEventListener("DOMContentLoaded", function() {
                 badgeText = 'x86';
             }
 
-            var cleanText = text.replace(/下载/g, '').replace(/版本/g, '').replace(/该/g, '').trim();
-            if (cleanText === '') {
-                cleanText = isOnline ? '在线版' : (isOffline ? '离线版' : '立即下载');
+            var labelText = text;
+            if (!labelText) {
+                labelText = isOnline ? '下载 Online 版本' : (isOffline ? '下载 Offline 版本' : '立即下载');
             }
             
-            var badgeHtml = badgeText ? '<span class="md-badge">' + badgeText + '</span>' : '';
-            button.innerHTML = iconSvg + '<span>' + cleanText + '</span>' + badgeHtml;
+            var badgeHtml = badgeText ? '<span class="md-badge">' + escapeHtml(badgeText) + '</span>' : '';
+            button.innerHTML = iconSvg + '<span class="md-button__label">' + escapeHtml(labelText) + '</span>' + badgeHtml;
             btnContainer.appendChild(button);
 
             // Hide original elements

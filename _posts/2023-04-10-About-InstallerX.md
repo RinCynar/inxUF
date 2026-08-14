@@ -4,6 +4,9 @@ title: "关于InstallerX"
 author: "Rosan(Maker), RinCynar(Repost)"
 header-style: text
 catalog: true
+pinned: true
+pin_order: 1
+permalink: /about/installerx/
 tags:
   - About
 ---

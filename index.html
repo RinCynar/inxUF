@@ -5,37 +5,25 @@ description: "InstallerX Unoffical"
 hide-in-nav: true
 ---
 
+{% if paginator.page == 1 %}
+{% assign pinned_posts = site.posts | where: "pinned", true | sort: "pin_order" %}
+{% if pinned_posts.size > 0 %}
+<section class="pinned-section" aria-label="置顶文章">
+    <h2 class="pinned-section__title">置顶</h2>
+    <div class="card-grid">
+        {% for post in pinned_posts %}
+        {% include post-card.html post=post %}
+        {% endfor %}
+    </div>
+</section>
+{% endif %}
+{% endif %}
+
 <div class="card-grid">
 {% for post in paginator.posts %}
-<a href="{{ post.url | prepend: site.baseurl }}" class="md-card">
-    {% if post.header-img %}
-    <img src="{{ post.header-img | prepend: site.baseurl }}" alt="{{ post.title }}" class="md-card__media" loading="lazy" decoding="async">
-    {% else %}
-    <img src="{{ site.header-img | prepend: site.baseurl }}" alt="{{ post.title }}" class="md-card__media" loading="lazy" decoding="async">
-    {% endif %}
-
-    <div class="md-card__content">
-        <h2 class="md-card__headline">{{ post.title }}</h2>
-        {% if post.subtitle %}
-        <h3 class="md-card__subhead">{{ post.subtitle }}</h3>
-        {% endif %}
-        <p class="md-card__text">
-            {% if post.lang == 'en' %}
-            {{ post.content | strip_html | truncate:150 }}
-            {% else %}
-            {{ post.content | strip_html | truncate:100 }}
-            {% endif %}
-        </p>
-    </div>
-
-    <div class="md-card__actions">
-        <span class="md-card__date">
-            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm4.2 14.2L11 13.3V7h1.5v5.1l4.2 2.5-1 1.6z"/></svg>
-            {{ post.date | date: "%Y-%m-%d" }}
-        </span>
-        <span class="md-button md-button--text">Read</span>
-    </div>
-</a>
+    {% unless post.pinned %}
+    {% include post-card.html post=post %}
+    {% endunless %}
 {% endfor %}
 </div>
 

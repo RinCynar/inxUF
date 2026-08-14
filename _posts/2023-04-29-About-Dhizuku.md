@@ -4,6 +4,9 @@ title: "关于Dhizuku"
 author: "Rosan(Maker), RinCynar(Repost)"
 header-style: text
 catalog: true
+pinned: true
+pin_order: 2
+permalink: /about/dhizuku/
 tags:
     - About
 ---
@@ -36,7 +39,7 @@ Android 5.0 ~ 14
 
 ## 致开发者（接入Dhizuku API）
 
-- [Dhizuku API](https://github.com/iamr0s/Dhizuku-API.git)
+- [Dhizuku API](/about/dhizuku-api/)
 
 ## 参与翻译
 

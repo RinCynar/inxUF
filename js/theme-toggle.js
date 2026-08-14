@@ -35,6 +35,11 @@
     html.setAttribute('data-theme', theme);
     html.style.colorScheme = theme;
 
+    var themeMeta = document.getElementById('theme-color-meta');
+    if (themeMeta) {
+      themeMeta.setAttribute('content', theme === THEME_DARK ? '#1c1b1f' : '#fffbfe');
+    }
+
     try {
       localStorage.setItem(THEME_KEY, theme);
     } catch (e) { /* storage unavailable */ }

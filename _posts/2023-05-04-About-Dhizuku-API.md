@@ -4,19 +4,21 @@ title: "关于Dhizuku-API"
 author: "Rosan(Maker), RinCynar(Repost)"
 header-style: text
 catalog: true
+pinned: true
+pin_order: 3
+permalink: /about/dhizuku-api/
 tags:
     - About
 ---
 
 # Dhizuku API
 
-Dhizuku API 是 Dhizuku ([About](/2100/10/01/About-Dhizuku/), [Github](https://github.com/iamr0s/Dhizuku) 的 API。
+Dhizuku API 是 Dhizuku ([About](/about/dhizuku/), [Github](https://github.com/iamr0s/Dhizuku) 的 API。
 
 ## 导入
 
 
 ![Maven Central](https://img.shields.io/maven-central/v/io.github.iamr0s/Dhizuku-API)
-
 
 ```groovy
 def dhizuku_version = "version of api"

@@ -33,6 +33,7 @@ exclude:
     "package.json",
     "README.md",
     "README.zh.md",
+    "inxUF-待办问题清单.md",
   ]
 anchorjs: true # if you want to customize anchor. check out line:181 of `post.html`
 # If you have timezone issue (e.g. #68) in China, uncomment to use this:
@@ -82,7 +83,7 @@ featured-tags: true # whether or not using Feature-Tags
 featured-condition-size: 1 # A tag will be featured if the size of it is more than this condition value
 
 # Progressive Web Apps
-chrome-tab-theme-color: "#000000"
+chrome-tab-theme-color: "#6750a4"
 service-worker: true
 
 # MathJax rendering for layout:page (e.g. post preview)

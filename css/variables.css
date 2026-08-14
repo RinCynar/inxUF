@@ -18,10 +18,11 @@
   --md-sys-color-secondary-container: #e8def8;
   --md-sys-color-on-secondary-container: #1d192b;
 
-  --md-sys-color-tertiary: #7d5260;
+  /* Tertiary from logo green (#7cb342) for contrast against primary purple */
+  --md-sys-color-tertiary: #4a6700;
   --md-sys-color-on-tertiary: #ffffff;
-  --md-sys-color-tertiary-container: #ffd8e4;
-  --md-sys-color-on-tertiary-container: #31111d;
+  --md-sys-color-tertiary-container: #c8ee8c;
+  --md-sys-color-on-tertiary-container: #131f00;
 
   --md-sys-color-error: #b3261e;
   --md-sys-color-on-error: #ffffff;
@@ -75,9 +76,9 @@
   --md-sys-color-secondary-fixed: #e8def8;
   --md-sys-color-secondary-fixed-dim: #ccc2dc;
   --md-sys-color-on-secondary-fixed: #1d192b;
-  --md-sys-color-tertiary-fixed: #ffd8e4;
-  --md-sys-color-tertiary-fixed-dim: #efb8c8;
-  --md-sys-color-on-tertiary-fixed: #31111d;
+  --md-sys-color-tertiary-fixed: #c8ee8c;
+  --md-sys-color-tertiary-fixed-dim: #add273;
+  --md-sys-color-on-tertiary-fixed: #131f00;
 
   /* ---------- Shape (M3 corner scale) ---------- */
   --md-sys-shape-corner-none: 0px;
@@ -212,10 +213,10 @@
   --md-sys-color-secondary-container: #4a4458;
   --md-sys-color-on-secondary-container: #e8def8;
 
-  --md-sys-color-tertiary: #efb8c8;
-  --md-sys-color-on-tertiary: #492532;
-  --md-sys-color-tertiary-container: #633b48;
-  --md-sys-color-on-tertiary-container: #ffd8e4;
+  --md-sys-color-tertiary: #add273;
+  --md-sys-color-on-tertiary: #243600;
+  --md-sys-color-tertiary-container: #364e00;
+  --md-sys-color-on-tertiary-container: #c8ee8c;
 
   --md-sys-color-error: #f2b8b5;
   --md-sys-color-on-error: #601410;
@@ -277,10 +278,10 @@
     --md-sys-color-secondary-container: #4a4458;
     --md-sys-color-on-secondary-container: #e8def8;
 
-    --md-sys-color-tertiary: #efb8c8;
-    --md-sys-color-on-tertiary: #492532;
-    --md-sys-color-tertiary-container: #633b48;
-    --md-sys-color-on-tertiary-container: #ffd8e4;
+    --md-sys-color-tertiary: #add273;
+    --md-sys-color-on-tertiary: #243600;
+    --md-sys-color-tertiary-container: #364e00;
+    --md-sys-color-on-tertiary-container: #c8ee8c;
 
     --md-sys-color-error: #f2b8b5;
     --md-sys-color-on-error: #601410;

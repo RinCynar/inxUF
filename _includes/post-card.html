@@ -1,0 +1,40 @@
+{% comment %}
+  Reusable release / article card.
+  @param post - the Jekyll document to render
+{% endcomment %}
+<a href="{{ include.post.url | prepend: site.baseurl }}" class="md-card">
+    {% if include.post.header-img %}
+    <img src="{{ include.post.header-img | prepend: site.baseurl }}" alt="{{ include.post.title }}" class="md-card__media" loading="lazy" decoding="async">
+    {% else %}
+    <img src="{{ site.header-img | prepend: site.baseurl }}" alt="{{ include.post.title }}" class="md-card__media" loading="lazy" decoding="async">
+    {% endif %}
+
+    {% if include.post.pinned %}
+    <span class="md-card__pin">置顶</span>
+    {% endif %}
+
+    <div class="md-card__content">
+        <h2 class="md-card__headline">{{ include.post.title }}</h2>
+        {% if include.post.subtitle %}
+        <h3 class="md-card__subhead">{{ include.post.subtitle }}</h3>
+        {% endif %}
+        <p class="md-card__text">
+            {% if include.post.lang == 'en' %}
+            {{ include.post.content | strip_html | truncate:150 }}
+            {% else %}
+            {{ include.post.content | strip_html | truncate:100 }}
+            {% endif %}
+        </p>
+    </div>
+
+    <div class="md-card__actions">
+        <span class="md-card__date">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm4.2 14.2L11 13.3V7h1.5v5.1l4.2 2.5-1 1.6z"/></svg>
+            {{ include.post.date | date: "%Y-%m-%d" }}
+        </span>
+        <span class="md-button md-button--text">
+            Read
+            <svg class="md-button__icon md-button__icon--end" viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg>
+        </span>
+    </div>
+</a>

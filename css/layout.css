@@ -94,6 +94,12 @@
   padding: 24px 16px 48px;
 }
 
+@media (min-width: 1240px) {
+  .main-content {
+    max-width: 1200px;
+  }
+}
+
 /* ---------- Page headers (Archive / Search / Pages) ---------- */
 .page-header {
   margin-bottom: 28px;
@@ -140,10 +146,16 @@
   margin: 0 auto;
 }
 
+@media (min-width: 1240px) {
+  .footer-grid {
+    max-width: 1200px;
+  }
+}
+
 /* ---------- Grid for Card Layouts ---------- */
 .card-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr));
   gap: 16px;
 }
 

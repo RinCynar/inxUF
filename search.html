@@ -14,17 +14,59 @@ permalink: /search/
         <input type="text" id="search-input" class="md-text-field__input" placeholder="搜索帖子 / Search posts..." autocomplete="off">
     </div>
 
+    <div id="search-guide" class="search-guide">
+        <section class="search-guide__section" aria-labelledby="search-recent-heading">
+            <h2 id="search-recent-heading" class="search-guide__title">最近更新</h2>
+            <div class="mini-post-list">
+                {% assign recent_count = 0 %}
+                {% for post in site.posts %}
+                    {% if post.pinned %}
+                    {% elsif recent_count < 6 %}
+                    {% assign recent_count = recent_count | plus: 1 %}
+                    <div class="item">
+                        <a href="{{ post.url | prepend: site.baseurl }}" style="text-decoration: none;">
+                            <h2 class="post-title">{{ post.title }}</h2>
+                            {% if post.subtitle %}
+                            <h3 class="post-subtitle">{{ post.subtitle }}</h3>
+                            {% endif %}
+                        </a>
+                    </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </section>
+
+        <section class="search-guide__section" aria-labelledby="search-tags-heading">
+            <h2 id="search-tags-heading" class="search-guide__title">热门标签</h2>
+            <div class="tags-sup">
+                {% for tag in site.tags %}
+                <a class="tag-button" href="{{ site.baseurl }}/archive/?tag={{ tag[0] | url_encode }}">
+                    {{ tag[0] }}
+                    <span class="chip-count">{{ tag[1].size }}</span>
+                </a>
+                {% endfor %}
+            </div>
+        </section>
+    </div>
+
     <div id="search-results" class="mini-post-list js-result"></div>
 </div>
 
 <script>
-    // Initialize search + focus input on load
     document.addEventListener('DOMContentLoaded', function() {
         var input = document.getElementById('search-input');
+        var guide = document.getElementById('search-guide');
         if (!input) return;
         input.focus();
 
-        // Init search engine (SimpleJekyllSearch)
+        function syncGuide() {
+            if (!guide) return;
+            guide.hidden = input.value.trim().length > 0;
+        }
+
+        input.addEventListener('input', syncGuide);
+        syncGuide();
+
         if (window.SimpleJekyllSearch && document.getElementById('search-results')) {
             window.SimpleJekyllSearch({
                 searchInput: input,

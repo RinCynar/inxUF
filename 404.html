@@ -16,7 +16,17 @@ permalink: /404.html
 
 	// Automatic redirect from old path names to new unified names
 	var path = window.location.pathname;
-	if (path.includes('InstallerX-wxxsfxyzm') || path.includes('InstallerX_Locker-wxxsfxyzm')) {
+	var aboutRedirects = {
+		'/2100/10/01/About-InstallerX': '/about/installerx/',
+		'/2100/10/01/About-InstallerX/': '/about/installerx/',
+		'/2100/10/01/About-Dhizuku': '/about/dhizuku/',
+		'/2100/10/01/About-Dhizuku/': '/about/dhizuku/',
+		'/2100/10/01/About-Dhizuku-API': '/about/dhizuku-api/',
+		'/2100/10/01/About-Dhizuku-API/': '/about/dhizuku-api/'
+	};
+	if (aboutRedirects[path]) {
+		window.location.replace(aboutRedirects[path]);
+	} else if (path.includes('InstallerX-wxxsfxyzm') || path.includes('InstallerX_Locker-wxxsfxyzm')) {
 		var newPath = path
 			.replace(/InstallerX-wxxsfxyzm([0-9])/g, 'InstallerX-Revived-$1')
 			.replace(/InstallerX_Locker-wxxsfxyzm([0-9])/g, 'InstallerX_Locker-Revived-$1')
