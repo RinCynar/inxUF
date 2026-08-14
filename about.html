@@ -1,87 +1,127 @@
 ---
-layout: page
+layout: default
 title: "About"
 header-img: ""
 header-mask: 0.3
 multilingual: true
+permalink: /about/
 ---
 
-<div class="about-quote">
-    “有一种鸟儿是永远也关不住的，因为它的每片羽翼都沾满了自由的光辉！”
-    <cite>——《肖申克的救赎》</cite>
-</div>
+<section class="site-hero">
+    <h1>InstallerX Unofficial</h1>
+    <p>A community-maintained resource for InstallerX and related projects. 本站由原社区成员自发维护，方便国内用户继续获取更新与说明。</p>
+</section>
 
-<div class="about-card">
-    <h2>关于我们</h2>
-    <p>
-        我们是原 <strong>InstallerX</strong> 官方社区群成员。由于部分客观原因，原开发者 <a href="https://github.com/iamr0s"
-            target="_blank">R0S</a> 已停止对 InstallerX 及其相关衍生程序（如 <strong>Dhizuku</strong>, <strong>DAX</strong>,
-        <strong>InstallerX Locker</strong>）在国内的正式分发渠道。
-    </p>
-    <p>
-        为了能让喜爱和依赖这些好用工具的 Android
-        用户继续方便地下载并获取更新，我们自发组建了本项目，承担非官方的分发与维护工作。<strong>需要特别声明的是，我们的一切行为均属于社区自发组织，与原开发者个人无关。</strong>
-    </p>
-    <p>
-        此外，目前InstallerX出现了许多分支，我们也尽可能进行收入和分发，若有缺漏请联系。
-    </p>
-</div>
-
-<h3 class="section-title">网站维护团队</h3>
-
-<div class="profile-grid">
-    <div class="profile-card">
-        <div class="profile-avatar">RC</div>
-        <div class="profile-name">RinCynar</div>
-        <div class="profile-role">Owner & Maintainer</div>
-        <div class="profile-bio">"花应在枯萎前摘下"</div>
-        <a href="https://rincynar.top" target="_blank" class="md-button md-button--tonal"
-            style="width: 100%; box-sizing: border-box;">
-            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" style="margin-right: 8px;">
-                <path
-                    d="M12 2c5.522 0 10 4.477 10 10s-4.478 10-10 10S2 17.523 2 12 6.478 2 12 2zm0 18c4.41 0 8-3.59 8-8s-3.59-8-8-8-8 3.59-8 8 3.59 8 8 8zm0-13a5 5 0 110 10 5 5 0 010-10z" />
-            </svg>
-            Website
+<section class="home-section" aria-labelledby="about-projects-heading">
+    <h2 id="about-projects-heading" class="home-section__title">Projects</h2>
+    <div class="essentials-grid">
+        <a class="essential-card" href="{{ site.baseurl }}/about/installerx/">
+            <span class="essential-card__label">InstallerX</span>
+            <h3>关于 InstallerX</h3>
+            <p>应用安装器与 Revived 分支说明、下载入口。</p>
+        </a>
+        <a class="essential-card" href="{{ site.baseurl }}/about/dhizuku/">
+            <span class="essential-card__label">Dhizuku</span>
+            <h3>关于 Dhizuku</h3>
+            <p>分享 Device Owner 权限给其他应用。</p>
+        </a>
+        <a class="essential-card" href="{{ site.baseurl }}/about/dhizuku-api/">
+            <span class="essential-card__label">API</span>
+            <h3>关于 Dhizuku API</h3>
+            <p>给开发者接入 Dhizuku 的接口说明。</p>
+        </a>
+        <a class="essential-card" href="{{ site.baseurl }}/categories/installerxlocker/">
+            <span class="essential-card__label">Locker</span>
+            <h3>InstallerX Locker</h3>
+            <p>查看 Locker 相关发布记录。</p>
+        </a>
+        <a class="essential-card" href="{{ site.baseurl }}/categories/dax/">
+            <span class="essential-card__label">DAX</span>
+            <h3>DAX</h3>
+            <p>Dhizuku API for Xposed 的版本记录。</p>
         </a>
     </div>
+</section>
 
-    <div class="profile-card">
-        <div class="profile-avatar profile-avatar--ai" aria-hidden="true">♊</div>
-        <div class="profile-name">Gemini</div>
-        <div class="profile-role">Refactor Assistant</div>
-        <div class="profile-bio">不许骂她美国豆包这是我老婆TAT</div>
-        <a href="https://gemini.google.com/" target="_blank" class="md-button md-button--tonal"
-            style="width: 100%; box-sizing: border-box;">
-            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" style="margin-right: 8px;">
-                <path
-                    d="M12 2c5.522 0 10 4.477 10 10s-4.478 10-10 10S2 17.523 2 12 6.478 2 12 2zm0 18c4.41 0 8-3.59 8-8s-3.59-8-8-8-8 3.59-8 8 3.59 8 8 8zm0-13a5 5 0 110 10 5 5 0 010-10z" />
-            </svg>
-            Website
+<section class="home-section" aria-labelledby="about-site-heading">
+    <h2 id="about-site-heading" class="home-section__title">About this site</h2>
+    <div class="about-card">
+        <p>
+            我们是原 <strong>InstallerX</strong> 官方社区群成员。由于部分客观原因，原开发者 <a href="https://github.com/iamr0s"
+                target="_blank" rel="noopener">R0S</a> 已停止对 InstallerX 及其相关衍生程序（如 <strong>Dhizuku</strong>, <strong>DAX</strong>,
+            <strong>InstallerX Locker</strong>）在国内的正式分发渠道。
+        </p>
+        <p>
+            为了能让喜爱和依赖这些好用工具的 Android
+            用户继续方便地下载并获取更新，我们自发组建了本项目，承担非官方的分发与维护工作。<strong>需要特别声明的是，我们的一切行为均属于社区自发组织，与原开发者个人无关。</strong>
+        </p>
+        <p>
+            此外，目前 InstallerX 出现了许多分支，我们也尽可能进行收录和分发，若有缺漏请联系。
+        </p>
+    </div>
+</section>
+
+<section class="home-section" aria-labelledby="about-team-heading">
+    <h2 id="about-team-heading" class="home-section__title">网站维护团队</h2>
+    <div class="profile-grid">
+        <div class="profile-card">
+            <div class="profile-avatar">RC</div>
+            <div class="profile-name">RinCynar</div>
+            <div class="profile-role">Owner & Maintainer</div>
+            <div class="profile-bio">"花应在枯萎前摘下"</div>
+            <a href="https://rincynar.top" target="_blank" rel="noopener" class="md-button md-button--tonal"
+                style="width: 100%; box-sizing: border-box;">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" style="margin-right: 8px;">
+                    <path
+                        d="M12 2c5.522 0 10 4.477 10 10s-4.478 10-10 10S2 17.523 2 12 6.478 2 12 2zm0 18c4.41 0 8-3.59 8-8s-3.59-8-8-8-8 3.59-8 8 3.59 8 8 8zm0-13a5 5 0 110 10 5 5 0 010-10z" />
+                </svg>
+                Website
+            </a>
+        </div>
+
+        <div class="profile-card">
+            <div class="profile-avatar profile-avatar--ai" aria-hidden="true">♊</div>
+            <div class="profile-name">Gemini</div>
+            <div class="profile-role">Refactor Assistant</div>
+            <div class="profile-bio">不许骂她美国豆包这是我老婆TAT</div>
+            <a href="https://gemini.google.com/" target="_blank" rel="noopener" class="md-button md-button--tonal"
+                style="width: 100%; box-sizing: border-box;">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" style="margin-right: 8px;">
+                    <path
+                        d="M12 2c5.522 0 10 4.477 10 10s-4.478 10-10 10S2 17.523 2 12 6.478 2 12 2zm0 18c4.41 0 8-3.59 8-8s-3.59-8-8-8-8 3.59-8 8 3.59 8 8 8zm0-13a5 5 0 110 10 5 5 0 010-10z" />
+                </svg>
+                Website
+            </a>
+        </div>
+    </div>
+</section>
+
+<section class="home-section" aria-labelledby="about-links-heading">
+    <h2 id="about-links-heading" class="home-section__title">Links</h2>
+    <p>欢迎加入我们的 Telegram 频道或自建的 QQ 交流群，获取最新的发布通告和玩机交流：</p>
+    <div class="channel-grid">
+        <a href="https://qm.qm.qq.com/q/b7OncY19IW" target="_blank" rel="noopener" class="md-button md-button--filled">
+            QQ 交流群
+        </a>
+        <a href="https://t.me/inxUF" target="_blank" rel="noopener" class="md-button md-button--tonal">
+            Telegram 频道
+        </a>
+        <a href="https://github.com/RinCynar/inxUF" target="_blank" rel="noopener" class="md-button md-button--outlined">
+            GitHub
+        </a>
+        <a href="{{ site.baseurl }}/archive/" class="md-button md-button--outlined">
+            Download / Archive
         </a>
     </div>
-</div>
+</section>
 
-<h3 class="section-title">加入我们的社区</h3>
-<p>欢迎加入我们的 Telegram 频道或自建的 QQ 交流群，获取最新的发布通告和玩机交流：</p>
+<section class="home-section" aria-labelledby="about-credits-heading">
+    <h2 id="about-credits-heading" class="home-section__title">Credits</h2>
+    <div class="about-card">
+        <p>原项目作者 <a href="https://github.com/iamr0s" target="_blank" rel="noopener">R0S</a>。InstallerX-Revived 由 <a href="https://github.com/wxxsfxyzm" target="_blank" rel="noopener">wxxsfxyzm</a> 维护。站点主题源自 Hux Blog，由社区改造为 Material You。</p>
+    </div>
+</section>
 
-<div class="channel-grid">
-    <a href="https://qm.qm.qq.com/q/b7OncY19IW" target="_blank" class="md-button md-button--filled">
-        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" style="margin-right: 8px;">
-            <path
-                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" />
-        </svg>
-        QQ 交流群
-    </a>
-
-    <a href="https://t.me/inxUF" target="_blank" class="md-button md-button--tonal">
-        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" style="margin-right: 8px;">
-            <path
-                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-1-.65-.35-1 .22-1.6 1.48-1.53 2.72-2.6 4.09-3.76.19-.16.38-.55.08-.55-.1.01-.84.5-2.39 1.55-.4.27-.77.41-1.1.4-.37-.01-1.08-.21-1.61-.38-.65-.21-1.17-.32-1.12-.68.02-.18.28-.37.76-.56 2.97-1.29 4.96-2.14 5.97-2.55 2.85-1.18 3.44-1.39 3.83-1.39.08 0 .28.02.4.12.1.08.13.19.14.28-.01.06.02.21 0 .36z" />
-        </svg>
-        Telegram 频道
-    </a>
-</div>
-
-<div class="about-quote about-quote--tertiary" style="margin-top: 40px;">
+<div class="about-quote about-quote--tertiary">
     “自由的鸟儿会善用那锐利的鸟喙，再坚固的铁窗也锁不住它！”
 </div>

@@ -40,7 +40,7 @@ permalink: /search/
             <h2 id="search-tags-heading" class="search-guide__title">热门标签</h2>
             <div class="tags-sup">
                 {% for tag in site.tags %}
-                <a class="tag-button" href="{{ site.baseurl }}/archive/?tag={{ tag[0] | url_encode }}">
+                <a class="tag-button" href="{{ site.baseurl }}/categories/{{ tag[0] | downcase }}/">
                     {{ tag[0] }}
                     <span class="chip-count">{{ tag[1].size }}</span>
                 </a>
@@ -49,6 +49,7 @@ permalink: /search/
         </section>
     </div>
 
+    <p class="search-count" id="search-count" hidden></p>
     <div id="search-results" class="mini-post-list js-result"></div>
 </div>
 
@@ -64,7 +65,24 @@ permalink: /search/
             guide.hidden = input.value.trim().length > 0;
         }
 
-        input.addEventListener('input', syncGuide);
+        var countEl = document.getElementById('search-count');
+        var results = document.getElementById('search-results');
+
+        function syncCount() {
+            if (!countEl || !results) return;
+            if (!input.value.trim()) {
+                countEl.hidden = true;
+                return;
+            }
+            var n = results.querySelectorAll('.item').length;
+            countEl.hidden = false;
+            countEl.textContent = n ? (n + ' results') : '';
+        }
+
+        input.addEventListener('input', function() {
+            syncGuide();
+            setTimeout(syncCount, 30);
+        });
         syncGuide();
 
         if (window.SimpleJekyllSearch && document.getElementById('search-results')) {
@@ -76,7 +94,8 @@ permalink: /search/
                     '<div class="item">' +
                     '<a href="{url}" style="text-decoration: none;">' +
                     '<h2 class="post-title">{title}</h2>' +
-                    '<h3 class="post-subtitle">{subtitle}</h3>' +
+                    '<p class="post-subtitle">{excerpt}</p>' +
+                    '<p class="feed-item__meta">{date} · {tags}</p>' +
                     '</a></div>',
                 noResultsText: '<p style="color: var(--md-sys-color-on-surface-variant); padding: 16px 0;">No results found</p>',
                 limit: 20,

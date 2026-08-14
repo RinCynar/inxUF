@@ -11,16 +11,10 @@
   flex-direction: column;
   background-color: var(--md-sys-color-surface-container-low);
   border-radius: var(--md-sys-shape-corner-large);
-  box-shadow: var(--md-sys-elevation-1);
+  box-shadow: none;
   overflow: hidden;
   text-decoration: none;
   color: var(--md-sys-color-on-surface);
-  transition: box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1),
-    transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.md-card:hover {
-  box-shadow: var(--md-sys-elevation-2);
 }
 
 .md-card--outlined {
@@ -119,7 +113,13 @@
   cursor: pointer;
   overflow: hidden;
   -webkit-tap-highlight-color: transparent;
-  transition: box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.15s cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.md-button:active {
+  transform: scale(0.97);
 }
 
 /* State layer overlay */
@@ -249,6 +249,8 @@
   justify-content: center;
   width: 48px;
   height: 48px;
+  min-width: 48px;
+  min-height: 48px;
   border: none;
   border-radius: var(--md-sys-shape-corner-full);
   background-color: transparent;
@@ -332,6 +334,12 @@ html.theme-dark .icon--moon {
   flex-wrap: wrap;
   gap: 8px;
   margin-bottom: 24px;
+}
+
+@media (max-width: 599px) {
+  .archive-filter-chips.tags-sup {
+    display: none;
+  }
 }
 
 .tag-button,
@@ -547,6 +555,7 @@ html.theme-dark .icon--moon {
   letter-spacing: var(--md-sys-typescale-body-large-tracking);
   color: var(--md-sys-color-on-background);
   overflow-wrap: break-word;
+  line-height: 1.75;
 }
 
 .typography-body > :first-child {
@@ -678,9 +687,12 @@ html.theme-dark .icon--moon {
 
 .typography-body table {
   width: 100%;
+  max-width: 100%;
   border-collapse: collapse;
   margin: 1.2em 0;
   font-size: var(--md-sys-typescale-body-medium-size);
+  display: block;
+  overflow-x: auto;
 }
 
 .typography-body th,
@@ -830,6 +842,7 @@ html.theme-dark .icon--moon {
   letter-spacing: var(--md-sys-typescale-display-small-tracking);
   color: #ffffff;
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+  overflow-wrap: anywhere;
 }
 
 .intro-header .subheading {
@@ -1126,6 +1139,12 @@ html.theme-dark .icon--moon {
   margin: 8px 0 32px;
 }
 
+.search-count {
+  margin: 0 0 8px;
+  font-size: var(--md-sys-typescale-label-large-size);
+  color: var(--md-sys-color-on-surface-variant);
+}
+
 .search-guide__title {
   margin: 0 0 12px;
   font-family: var(--md-sys-typescale-title-large-font);
@@ -1133,4 +1152,162 @@ html.theme-dark .icon--moon {
   line-height: var(--md-sys-typescale-title-large-line-height);
   font-weight: var(--md-sys-typescale-title-medium-weight);
   color: var(--md-sys-color-on-background);
+}
+
+.typography-body a.essential-card,
+.typography-body a.essential-card:hover {
+  color: var(--md-sys-color-on-surface);
+  text-decoration: none;
+}
+
+.theme-menu {
+  position: relative;
+}
+
+.theme-menu__panel {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 4px);
+  z-index: 1100;
+  min-width: 148px;
+  padding: 8px;
+  border-radius: var(--md-sys-shape-corner-medium);
+  background-color: var(--md-sys-color-surface-container-high);
+  box-shadow: var(--md-sys-elevation-2);
+}
+
+.theme-menu__panel[hidden] {
+  display: none;
+}
+
+.theme-menu__panel button {
+  display: block;
+  width: 100%;
+  min-height: 40px;
+  padding: 8px 12px;
+  border: 0;
+  border-radius: var(--md-sys-shape-corner-small);
+  background: transparent;
+  color: var(--md-sys-color-on-surface);
+  font: inherit;
+  font-size: var(--md-sys-typescale-label-large-size);
+  text-align: left;
+  cursor: pointer;
+}
+
+.theme-menu__panel button.is-selected,
+.theme-menu__panel button:hover,
+.theme-menu__panel button:focus-visible {
+  background-color: var(--md-sys-color-secondary-container);
+  color: var(--md-sys-color-on-secondary-container);
+}
+
+.filter-active-chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  padding: 0 12px;
+  border-radius: var(--md-sys-shape-corner-small);
+  background-color: var(--md-sys-color-secondary-container);
+  color: var(--md-sys-color-on-secondary-container);
+  font-size: var(--md-sys-typescale-label-large-size);
+  cursor: pointer;
+}
+
+.filter-sheet[hidden] {
+  display: none;
+}
+
+.filter-sheet {
+  position: fixed;
+  inset: 0;
+  z-index: 1200;
+}
+
+.filter-sheet__backdrop {
+  position: absolute;
+  inset: 0;
+  background: color-mix(in srgb, var(--md-sys-color-scrim) 40%, transparent);
+}
+
+.filter-sheet__panel {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  max-height: 80vh;
+  overflow: auto;
+  padding: 20px 16px calc(20px + env(safe-area-inset-bottom, 0px));
+  border-radius: var(--md-sys-shape-corner-extra-large) var(--md-sys-shape-corner-extra-large) 0 0;
+  background-color: var(--md-sys-color-surface-container);
+  animation: sheet-up 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes sheet-up {
+  from {
+    transform: translateY(16px);
+    opacity: 0.6;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+.filter-sheet__panel h2 {
+  margin: 0 0 12px;
+  font-size: var(--md-sys-typescale-title-large-size);
+}
+
+.filter-sheet__option {
+  display: block;
+  width: 100%;
+  min-height: 48px;
+  padding: 12px 8px;
+  border: 0;
+  border-bottom: 1px solid var(--md-sys-color-outline-variant);
+  background: transparent;
+  color: var(--md-sys-color-on-surface);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.filter-sheet__option.is-selected {
+  color: var(--md-sys-color-primary);
+  font-weight: 500;
+}
+
+.error-page {
+  max-width: 520px;
+  margin: 48px auto;
+  text-align: center;
+}
+
+.error-page__code {
+  margin: 0;
+  font-size: 56px;
+  line-height: 1;
+  color: var(--md-sys-color-primary);
+}
+
+.error-page__title {
+  margin: 12px 0 8px;
+  font-size: var(--md-sys-typescale-headline-small-size);
+}
+
+.error-page__text {
+  margin: 0 0 24px;
+  color: var(--md-sys-color-on-surface-variant);
+}
+
+.mini-post-list .item a {
+  display: block;
+  min-height: 48px;
+  padding: 8px 0;
+  text-decoration: none;
+}
+
+.listing-seperator {
+  overflow-wrap: anywhere;
 }

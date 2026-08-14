@@ -1,38 +1,84 @@
-<!-- Material You Top App Bar -->
+{% assign nav_home = false %}
+{% assign nav_archive = false %}
+{% assign nav_about = false %}
+{% if paginator %}
+    {% assign nav_home = true %}
+{% elsif page.url == '/' or page.url == '/index.html' %}
+    {% assign nav_home = true %}
+{% elsif page.title == 'Archive' %}
+    {% assign nav_archive = true %}
+{% elsif page.title == 'About' %}
+    {% assign nav_about = true %}
+{% endif %}
+
 <header class="top-app-bar" id="top-app-bar">
     <div class="top-app-bar__title">
         <a href="{{ site.baseurl }}/" title="{{ site.title }}">
             {{ site.title }}
         </a>
     </div>
-    <nav class="top-app-bar__links" aria-label="Main navigation">
-        {% for page in site.pages %}
-            {% if page.title and page.hide-in-nav != true %}
-            <a href="{{ page.url | prepend: site.baseurl }}" class="md-button md-button--text">
-                {{ page.title }}
-            </a>
-            {% endif %}
-        {% endfor %}
+    <nav class="top-app-bar__links" aria-label="Main">
+        <a href="{{ site.baseurl }}/" class="md-button md-button--text{% if nav_home %} is-active{% endif %}">Home</a>
+        <a href="{{ site.baseurl }}/archive/" class="md-button md-button--text{% if nav_archive %} is-active{% endif %}">Archive</a>
+        <a href="{{ site.baseurl }}/about/" class="md-button md-button--text{% if nav_about %} is-active{% endif %}">About</a>
     </nav>
     <div class="top-app-bar__actions">
         <a href="{{ "/search/" | prepend: site.baseurl }}" class="md-icon-button" aria-label="Search" title="Search">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 3a6.5 6.5 0 1 0 4.02 11.56L19 20l1.5-1.5-5.44-5.48A6.5 6.5 0 0 0 9.5 3zm0 2a4.5 4.5 0 1 1 0 9 4.5 4.5 0 0 1 0-9z"/></svg>
         </a>
-        <button type="button" class="md-icon-button" id="theme-toggle-btn" aria-label="Toggle theme" title="Toggle theme">
-            <svg class="icon--moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/></svg>
-            <svg class="icon--sun" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.99 4.58a.996.996 0 0 0-1.41 0 .996.996 0 0 0 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41L5.99 4.58zm12.37 12.37a.996.996 0 0 0-1.41 0 .996.996 0 0 0 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0a.996.996 0 0 0 0-1.41l-1.06-1.06zm1.06-10.96a.996.996 0 0 0 0-1.41.996.996 0 0 0-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06zM7.05 18.36a.996.996 0 0 0 0-1.41.996.996 0 0 0-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06z"/></svg>
-        </button>
+        <div class="theme-menu" id="theme-menu-wrap">
+            <button type="button" class="md-icon-button" id="theme-toggle-btn" aria-label="Theme" title="Theme" aria-haspopup="menu" aria-expanded="false" aria-controls="theme-menu">
+                <svg class="icon--moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/></svg>
+                <svg class="icon--sun" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.99 4.58a.996.996 0 0 0-1.41 0 .996.996 0 0 0 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41L5.99 4.58zm12.37 12.37a.996.996 0 0 0-1.41 0 .996.996 0 0 0 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0a.996.996 0 0 0 0-1.41l-1.06-1.06zm1.06-10.96a.996.996 0 0 0 0-1.41.996.996 0 0 0-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06zM7.05 18.36a.996.996 0 0 0 0-1.41.996.996 0 0 0-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06z"/></svg>
+            </button>
+            <div class="theme-menu__panel" id="theme-menu" role="menu" hidden>
+                <button type="button" role="menuitemradio" data-theme-pref="system">System</button>
+                <button type="button" role="menuitemradio" data-theme-pref="light">Light</button>
+                <button type="button" role="menuitemradio" data-theme-pref="dark">Dark</button>
+            </div>
+        </div>
     </div>
 </header>
 
-<!-- Top app bar elevation on scroll -->
+<nav class="bottom-nav" aria-label="Primary">
+    <a href="{{ site.baseurl }}/" class="bottom-nav__item{% if nav_home %} is-active{% endif %}">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+        <span>Home</span>
+    </a>
+    <a href="{{ site.baseurl }}/archive/" class="bottom-nav__item{% if nav_archive %} is-active{% endif %}">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6h-8l-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm0 12H4V8h16v10z"/></svg>
+        <span>Archive</span>
+    </a>
+    <a href="{{ site.baseurl }}/about/" class="bottom-nav__item{% if nav_about %} is-active{% endif %}">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 7h2v2h-2V7zm0 4h2v6h-2v-6zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
+        <span>About</span>
+    </a>
+</nav>
+
 <script>
 (function () {
     var bar = document.getElementById('top-app-bar');
     if (!bar) return;
+    var lastY = window.scrollY || 0;
+    var hidden = false;
+
     function onScroll() {
-        bar.classList.toggle('scrolled', window.scrollY > 4);
+        var y = window.scrollY || 0;
+        bar.classList.toggle('scrolled', y > 4);
+
+        if (window.matchMedia('(max-width: 599px)').matches) {
+            var shouldHide = y > lastY && y > 72;
+            if (shouldHide !== hidden) {
+                hidden = shouldHide;
+                document.body.classList.toggle('nav-concealed', hidden);
+            }
+        } else if (hidden) {
+            hidden = false;
+            document.body.classList.remove('nav-concealed');
+        }
+        lastY = y;
     }
+
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
 })();

@@ -3,9 +3,9 @@ title: Archive
 layout: default
 description: "Releases History"
 header-img: ""
+permalink: /archive/
 ---
 
-<!-- Page Header -->
 <header class="page-header">
     <h1 class="page-header__title">{{ page.title }}</h1>
     {% if page.description %}
@@ -13,38 +13,91 @@ header-img: ""
     {% endif %}
 </header>
 
-<!-- Main Content -->
-<div class="archive-content">
-    <!-- Tags (as filter) -->
-    <div id='tag_cloud' class="tags-sup js-tags">
-        <a class="tag-button--all" data-encode="">
-            Show All
-            <span class="chip-count">{{site.posts.size}}</span>
-        </a>
+{%- assign _pinned_list = site.posts | where: 'pinned', true | sort: 'pin_order' -%}
+{%- assign _sorted_list = site.posts | where_exp: 'post', 'post.pinned != true' -%}
+{%- assign _sorted_list = _sorted_list | sort: 'date' | reverse -%}
 
-        {% capture tags %}
-        {% for tag in site.tags %}
-        <a data-sort="{{ site.posts.size | minus: tag[1].size | prepend: '0000' | slice: -4, 4 }}"
-           data-encode="{{ tag[0] | strip | url_encode }}" class="tag-button" title="{{ tag[0] }}"
-           rel="{{ tag[1].size }}">
-            {{ tag[0] }}
-            <span class="chip-count">{{tag[1].size}}</span>
-        </a>__SEPERATOR__
-        {% endfor %}
-        {% endcapture %}
-        {{ tags | split:'__SEPERATOR__' | sort }}
-    </div>
-
-    <!-- Article List -->
-    <div class="mini-post-list js-result d-none">
-        {%- assign _pinned_list = site.posts | where: 'pinned', true | sort: 'pin_order' -%}
-        {%- assign _sorted_list = site.posts | where_exp: 'post', 'post.pinned != true' -%}
-        {%- assign _sorted_list = _sorted_list | sort: 'date' | reverse -%}
-
+<div class="archive-layout">
+    <nav class="archive-year-nav" aria-label="Years">
         {%- if _pinned_list.size > 0 -%}
-        <section class="archive-year archive-year--pinned">
-            <span class="listing-seperator">置顶</span>
-            {%- for _article in _pinned_list -%}
+        <a href="#archive-pinned">Pinned</a>
+        {%- endif -%}
+        {%- assign _nav_year = '' -%}
+        {%- for _article in _sorted_list -%}
+        {%- assign _y = _article.date | date: '%Y' -%}
+        {%- if _y != _nav_year -%}
+        <a href="#year-{{ _y }}">{{ _y }}</a>
+        {%- assign _nav_year = _y -%}
+        {%- endif -%}
+        {%- endfor -%}
+    </nav>
+
+    <div class="archive-content">
+        <div class="archive-filter-bar">
+            <button type="button" class="md-button md-button--tonal archive-filter-trigger" id="archive-filter-open" aria-haspopup="dialog" aria-controls="archive-filter-sheet">
+                Filter
+            </button>
+            <span class="filter-active-chip" id="archive-filter-active" hidden></span>
+        </div>
+
+        <div id="tag_cloud" class="tags-sup js-tags archive-filter-chips">
+            <a class="tag-button--all" data-encode="" href="{{ site.baseurl }}/archive/">
+                Show All
+                <span class="chip-count">{{site.posts.size}}</span>
+            </a>
+
+            {% capture tags %}
+            {% for tag in site.tags %}
+            <a data-sort="{{ site.posts.size | minus: tag[1].size | prepend: '0000' | slice: -4, 4 }}"
+               data-encode="{{ tag[0] | strip | url_encode }}" class="tag-button" title="{{ tag[0] }}"
+               rel="{{ tag[1].size }}" href="{{ site.baseurl }}/archive/?tag={{ tag[0] | url_encode }}">
+                {{ tag[0] }}
+                <span class="chip-count">{{tag[1].size}}</span>
+            </a>__SEPERATOR__
+            {% endfor %}
+            {% endcapture %}
+            {{ tags | split:'__SEPERATOR__' | sort }}
+        </div>
+
+        <div class="filter-sheet" id="archive-filter-sheet" hidden>
+            <div class="filter-sheet__backdrop" data-close-sheet></div>
+            <div class="filter-sheet__panel" role="dialog" aria-modal="true" aria-labelledby="archive-filter-title">
+                <h2 id="archive-filter-title">Filter</h2>
+                <div class="filter-sheet__list js-filter-sheet-list"></div>
+                <button type="button" class="md-button md-button--text" data-close-sheet>Close</button>
+            </div>
+        </div>
+
+        <div class="mini-post-list js-result d-none">
+            {%- if _pinned_list.size > 0 -%}
+            <section class="archive-year archive-year--pinned" id="archive-pinned">
+                <span class="listing-seperator">Pinned</span>
+                {%- for _article in _pinned_list -%}
+                {%- assign _tags = '' -%}
+                {%- for _tag in _article.tags -%}
+                {%- assign _tag_encode = _tag | strip | url_encode -%}
+                {%- if forloop.last -%}
+                {%- assign _tags = _tags | append: _tag_encode -%}
+                {%- else -%}
+                {%- assign _tags = _tags | append: _tag_encode | append: ',' -%}
+                {%- endif -%}
+                {%- endfor -%}
+                <div class="item" data-tags="{{ _tags }}">
+                    <a href="{{ _article.url | prepend: site.baseurl }}">
+                        <h2 class="post-title">
+                            <span class="md-pin-label">Pinned</span>
+                            {{ _article.title }}
+                        </h2>
+                        {% if _article.subtitle %}
+                        <h3 class="post-subtitle">{{ _article.subtitle }}</h3>
+                        {% endif %}
+                    </a>
+                </div>
+                {%- endfor -%}
+            </section>
+            {%- endif -%}
+
+            {%- for _article in _sorted_list -%}
             {%- assign _tags = '' -%}
             {%- for _tag in _article.tags -%}
             {%- assign _tag_encode = _tag | strip | url_encode -%}
@@ -54,59 +107,31 @@ header-img: ""
             {%- assign _tags = _tags | append: _tag_encode | append: ',' -%}
             {%- endif -%}
             {%- endfor -%}
-            <div class="item" data-tags="{{ _tags }}">
-                <a href="{{ _article.url | prepend: site.baseurl }}" style="text-decoration: none;">
-                    <h2 class="post-title">
-                        <span class="md-pin-label">置顶</span>
-                        {{ _article.title }}
-                    </h2>
-                    {% if _article.subtitle %}
-                    <h3 class="post-subtitle">
-                        {{ _article.subtitle }}
-                    </h3>
-                    {% endif %}
-                </a>
-            </div>
-            {%- endfor -%}
-        </section>
-        {%- endif -%}
 
-        {%- for _article in _sorted_list -%}
-        {%- assign _tags = '' -%}
-        {%- for _tag in _article.tags -%}
-        {%- assign _tag_encode = _tag | strip | url_encode -%}
-        {%- if forloop.last -%}
-        {%- assign _tags = _tags | append: _tag_encode -%}
-        {%- else -%}
-        {%- assign _tags = _tags | append: _tag_encode | append: ',' -%}
-        {%- endif -%}
-        {%- endfor -%}
+            {%- assign _currentdate = _article.date | date: '%Y' -%}
+            {%- if _currentdate != _date -%}
+            {%- unless forloop.first -%}</section>{%- endunless -%}
+            <section class="archive-year" data-year="{{ _currentdate }}" id="year-{{ _currentdate }}">
+                <span class="listing-seperator">{{ _currentdate }}</span>
+                {%- assign _date = _currentdate -%}
+                {%- endif -%}
 
-        {% comment %} group by year {% endcomment %}
-        {%- assign _currentdate = _article.date | date: '%Y' -%}
-        {%- if _currentdate != _date -%}
-        {%- unless forloop.first -%}</section>{%- endunless -%}
-        <section class="archive-year" data-year="{{ _currentdate }}">
-            <span class="listing-seperator">
-                {{ _currentdate }}
-            </span>
-            {%- assign _date = _currentdate -%}
-            {%- endif -%}
+                <div class="item" data-tags="{{ _tags }}">
+                    <a href="{{ _article.url | prepend: site.baseurl }}">
+                        <h2 class="post-title">{{ _article.title }}</h2>
+                        {% if _article.subtitle %}
+                        <h3 class="post-subtitle">{{ _article.subtitle }}</h3>
+                        {% endif %}
+                    </a>
+                </div>
+                {%- if forloop.last -%}
+            </section>{%- endif -%}
+            {% endfor %}
+        </div>
 
-            <div class="item" data-tags="{{ _tags }}">
-                <a href="{{ _article.url | prepend: site.baseurl }}" style="text-decoration: none;">
-                    <h2 class="post-title">
-                        {{ _article.title }}
-                    </h2>
-                    {% if _article.subtitle %}
-                    <h3 class="post-subtitle">
-                        {{ _article.subtitle }}
-                    </h3>
-                    {% endif %}
-                </a>
-            </div>
-            {%- if forloop.last -%}
-        </section>{%- endif -%}
-        {% endfor %}
+        <p class="archive-empty d-none" id="archive-empty">
+            No posts found.
+            <button type="button" class="md-button md-button--text" id="archive-clear-filter">Clear filters</button>
+        </p>
     </div>
 </div>

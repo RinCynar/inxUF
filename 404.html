@@ -2,19 +2,12 @@
 layout: default
 title: 404
 hide-in-nav: true
-description: "404"
+description: "Page not found"
 header-img: ""
 permalink: /404.html
 ---
 
-
-<!-- Page Header -->
-{% include intro-header.html type="page" short='true' %}
-
 <script>
-	document.body.classList.add('page-fullscreen');
-
-	// Automatic redirect from old path names to new unified names
 	var path = window.location.pathname;
 	var aboutRedirects = {
 		'/2100/10/01/About-InstallerX': '/about/installerx/',
@@ -35,3 +28,13 @@ permalink: /404.html
 		window.location.replace(newPath);
 	}
 </script>
+
+<section class="error-page">
+    <p class="error-page__code">404</p>
+    <h1 class="error-page__title">Page not found</h1>
+    <p class="error-page__text">这个地址不存在，或已经搬家。</p>
+    <div class="pager">
+        <a href="{{ site.baseurl }}/" class="md-button md-button--filled">Back Home</a>
+        <a href="{{ site.baseurl }}/archive/" class="md-button md-button--tonal">View Archive</a>
+    </div>
+</section>

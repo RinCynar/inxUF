@@ -1,33 +1,48 @@
-<!-- Footer -->
 <footer class="footer">
     <div class="footer-grid">
-        <!-- SNS Link -->
-        {% include sns-links.html center=true %}
-
-        <p class="copyright text-muted" style="margin-top: 16px; opacity: 0.75;">
-            Copyright &copy; {{ site.title }} {{ site.time | date: '%Y' }}
-            <br>
-            Powered by <a href="http://github.com/RinCynar/inxUF"
-                style="color: inherit; text-decoration: underline;">GitHub</a>,
-            Thx. <a href="https://huangxuan.me" style="color: inherit; text-decoration: underline;">Hux</a>
-        </p>
+        <div class="footer-col">
+            <h2>Navigation</h2>
+            <ul>
+                <li><a href="{{ site.baseurl }}/">Home</a></li>
+                <li><a href="{{ site.baseurl }}/archive/">Archive</a></li>
+                <li><a href="{{ site.baseurl }}/about/">About</a></li>
+                <li><a href="{{ site.baseurl }}/search/">Search</a></li>
+                <li><a href="{{ site.baseurl }}/categories/">Categories</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h2>Projects</h2>
+            <ul>
+                <li><a href="{{ site.baseurl }}/about/installerx/">InstallerX</a></li>
+                <li><a href="{{ site.baseurl }}/about/dhizuku/">Dhizuku</a></li>
+                <li><a href="{{ site.baseurl }}/about/dhizuku-api/">Dhizuku API</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h2>External</h2>
+            {% include sns-links.html center=true %}
+            <ul>
+                <li><a href="https://github.com/RinCynar/inxUF">GitHub</a></li>
+                <li><a href="{{ site.baseurl }}/feed.xml">RSS</a></li>
+            </ul>
+        </div>
     </div>
+    <p class="footer-copy">
+        Copyright &copy; {{ site.title }} {{ site.time | date: '%Y' }}
+        · Powered by <a href="https://github.com/RinCynar/inxUF">GitHub</a>
+        · Thx. <a href="https://huangxuan.me">Hux</a>
+    </p>
 </footer>
 
-<!-- Legacy Scripts Replacement / Polyfills if needed -->
-
-<!-- Simple Jekyll Search (only needed on the search page) -->
 {% if page.title == 'Search' %}
-<script src="{{ " /js/simple-jekyll-search.min.js" | prepend: site.baseurl }}"></script>
+<script src="{{ "/js/simple-jekyll-search.min.js" | prepend: site.baseurl }}"></script>
 {% endif %}
 
-<!-- Archive Filter Script (Only loads if on archive page effectively) -->
 {% if page.title == 'Archive' %}
-<script src="{{ " /js/archive.js" | prepend: site.baseurl }}"></script>
+<script src="{{ "/js/archive.js" | prepend: site.baseurl }}"></script>
 {% endif %}
 
-<!-- Service Worker -->
 {% if site.service-worker %}
-<script src="{{ " /js/snackbar.js " | prepend: site.baseurl }}"></script>
-<script src="{{ " /js/sw-registration.js " | prepend: site.baseurl }}"></script>
+<script src="{{ "/js/snackbar.js" | prepend: site.baseurl }}"></script>
+<script src="{{ "/js/sw-registration.js" | prepend: site.baseurl }}"></script>
 {% endif %}

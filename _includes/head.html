@@ -50,6 +50,7 @@
 
   <!-- Favicon -->
   <link rel="shortcut icon" href="{{ site.baseurl }}/img/favicon.ico" />
+  <link rel="alternate" type="application/rss+xml" title="{{ site.SEOTitle }}" href="{{ "/feed.xml" | prepend: site.baseurl }}" />
 
   <!-- Canonical URL -->
   <link
@@ -75,9 +76,12 @@
   <script>
     // Prevent theme flash by applying theme before page renders
     (function () {
-      var theme = null;
-      try { theme = localStorage.getItem("inxUF_theme"); } catch (e) {}
-      if (theme !== "dark" && theme !== "light") {
+      var pref = null;
+      try { pref = localStorage.getItem("inxUF_theme"); } catch (e) {}
+      var theme;
+      if (pref === "dark" || pref === "light") {
+        theme = pref;
+      } else {
         theme =
           window.matchMedia &&
           window.matchMedia("(prefers-color-scheme: dark)").matches

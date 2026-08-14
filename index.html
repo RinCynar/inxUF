@@ -1,40 +1,80 @@
 ---
-layout: page
+layout: default
 title: Home
-description: "InstallerX Unoffical"
+description: "InstallerX Unofficial"
 hide-in-nav: true
 ---
 
-{% if paginator.page == 1 %}
-{% assign pinned_posts = site.posts | where: "pinned", true | sort: "pin_order" %}
-{% if pinned_posts.size > 0 %}
-<section class="pinned-section" aria-label="置顶文章">
-    <h2 class="pinned-section__title">置顶</h2>
-    <div class="card-grid">
-        {% for post in pinned_posts %}
-        {% include post-card.html post=post %}
-        {% endfor %}
-    </div>
+<section class="site-hero">
+    <h1>InstallerX Unofficial</h1>
+    <p>社区维护的 InstallerX、Dhizuku 及相关项目资源站。在这里查找版本说明与下载。</p>
 </section>
-{% endif %}
-{% endif %}
 
-<div class="card-grid">
-{% for post in paginator.posts %}
-    {% unless post.pinned %}
-    {% include post-card.html post=post %}
-    {% endunless %}
-{% endfor %}
-</div>
+<div class="home-layout">
+    <div class="home-layout__main">
+        {% if paginator.page == 1 %}
+        {% assign pinned_posts = site.posts | where: "pinned", true | sort: "pin_order" %}
+        {% if pinned_posts.size > 0 %}
+        <section class="home-section" aria-labelledby="essentials-heading">
+            <h2 id="essentials-heading" class="home-section__title">项目入口</h2>
+            <div class="essentials-grid">
+                {% for post in pinned_posts %}
+                <a class="essential-card" href="{{ post.url | prepend: site.baseurl }}">
+                    <span class="essential-card__label">Pinned</span>
+                    <h3>{{ post.title }}</h3>
+                    <p>{{ post.content | strip_html | truncate: 72 }}</p>
+                </a>
+                {% endfor %}
+            </div>
+        </section>
+        {% endif %}
+        {% endif %}
 
-<!-- Pager -->
-{% if paginator.total_pages > 1 %}
-<div style="display: flex; justify-content: center; margin-top: 32px; gap: 16px; padding-bottom: 32px;">
-    {% if paginator.previous_page %}
-        <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}" class="md-button md-button--tonal">&larr; Newer</a>
-    {% endif %}
-    {% if paginator.next_page %}
-        <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}" class="md-button md-button--tonal">Older &rarr;</a>
-    {% endif %}
+        <section class="home-section" aria-labelledby="latest-heading">
+            <h2 id="latest-heading" class="home-section__title">最近更新</h2>
+            <div class="feed-list">
+                {% for post in paginator.posts %}
+                    {% unless post.pinned %}
+                    {% include post-card.html post=post %}
+                    {% endunless %}
+                {% endfor %}
+            </div>
+
+            {% if paginator.total_pages > 1 %}
+            <div class="pager">
+                {% if paginator.previous_page %}
+                    <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}" class="md-button md-button--tonal">&larr; Newer</a>
+                {% endif %}
+                {% if paginator.next_page %}
+                    <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}" class="md-button md-button--tonal">Older &rarr;</a>
+                {% endif %}
+            </div>
+            {% endif %}
+        </section>
+    </div>
+
+    <aside class="home-layout__aside" aria-label="Site shortcuts">
+        <div class="support-card">
+            <h2>关于本站</h2>
+            <p>inxUF 是社区自发的非官方分发站，与原作者无直接关联。</p>
+        </div>
+        <div class="support-card">
+            <h2>浏览</h2>
+            <ul>
+                <li><a href="{{ site.baseurl }}/archive/">全部发布记录</a></li>
+                <li><a href="{{ site.baseurl }}/about/">网站与团队</a></li>
+                <li><a href="{{ site.baseurl }}/search/">搜索文章</a></li>
+                <li><a href="{{ site.baseurl }}/categories/">分类浏览</a></li>
+                <li><a href="{{ site.baseurl }}/feed.xml">RSS</a></li>
+            </ul>
+        </div>
+        <div class="support-card">
+            <h2>项目</h2>
+            <ul>
+                <li><a href="{{ site.baseurl }}/about/installerx/">InstallerX</a></li>
+                <li><a href="{{ site.baseurl }}/about/dhizuku/">Dhizuku</a></li>
+                <li><a href="{{ site.baseurl }}/about/dhizuku-api/">Dhizuku API</a></li>
+            </ul>
+        </div>
+    </aside>
 </div>
-{% endif %}

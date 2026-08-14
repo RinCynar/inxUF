@@ -23,7 +23,8 @@ layout: default
 <!-- Restored Intro Header for Post Cover Image -->
 {% include intro-header.html type='post' %}
 
-<article class="post-content">
+<div class="post-layout">
+<article class="post-content prose">
     {% if page.multilingual %}
         {% include multilingual-sel.html %}
     {% endif %}
@@ -34,7 +35,7 @@ layout: default
 
     <hr style="border: 0; border-top: 1px solid var(--md-sys-color-outline); margin: 32px 0;">
 
-    <div style="display: flex; justify-content: space-between;">
+    <div class="pager">
         {% if page.previous.url %}
         <a href="{{ page.previous.url | prepend: site.baseurl | replace: '//', '/' }}" class="md-button md-button--text">
             &larr; {{page.previous.title}}
@@ -47,6 +48,25 @@ layout: default
         {% endif %}
     </div>
 </article>
+
+<aside class="post-toc" id="post-toc" hidden>
+    <h2 class="post-toc__title">Contents</h2>
+    <nav class="post-toc__nav" id="post-toc-nav" aria-label="Table of contents"></nav>
+</aside>
+</div>
+
+<button type="button" class="md-button md-button--tonal post-toc-trigger" id="post-toc-open" hidden aria-haspopup="dialog" aria-controls="toc-sheet">
+    Contents
+</button>
+
+<div class="filter-sheet" id="toc-sheet" hidden>
+    <div class="filter-sheet__backdrop" data-close-toc></div>
+    <div class="filter-sheet__panel" role="dialog" aria-modal="true" aria-labelledby="toc-sheet-title">
+        <h2 id="toc-sheet-title">Contents</h2>
+        <nav class="post-toc__nav" id="post-toc-sheet-nav" aria-label="Table of contents"></nav>
+        <button type="button" class="md-button md-button--text" data-close-toc>Close</button>
+    </div>
+</div>
 
 <script>
 document.addEventListener("DOMContentLoaded", function() {
@@ -280,6 +300,75 @@ document.addEventListener("DOMContentLoaded", function() {
         }
         i++;
     }
+
+    // --- Table of contents ---
+    (function buildToc() {
+        var toc = document.getElementById('post-toc');
+        var tocNav = document.getElementById('post-toc-nav');
+        var sheetNav = document.getElementById('post-toc-sheet-nav');
+        var trigger = document.getElementById('post-toc-open');
+        var sheet = document.getElementById('toc-sheet');
+        if (!tocNav) return;
+
+        var headings = Array.from(body.querySelectorAll('h2, h3, h4, h5'));
+        var used = {};
+        var items = [];
+
+        headings.forEach(function(h) {
+            if (h.offsetParent === null) return;
+            var text = (h.textContent || '').replace(/\s+/g, ' ').trim();
+            if (!text) return;
+            var base = text.toLowerCase().replace(/[^\w\u4e00-\u9fa5]+/g, '-').replace(/^-+|-+$/g, '') || 'section';
+            var id = base;
+            var n = 2;
+            while (used[id] || document.getElementById(id)) {
+                id = base + '-' + n;
+                n++;
+            }
+            used[id] = true;
+            h.id = h.id || id;
+            items.push({ id: h.id, text: text, level: parseInt(h.tagName.substring(1), 10) });
+        });
+
+        if (items.length < 2) return;
+
+        function renderList() {
+            var list = document.createElement('ol');
+            items.forEach(function(item) {
+                var li = document.createElement('li');
+                li.className = 'post-toc__item post-toc__item--h' + item.level;
+                var a = document.createElement('a');
+                a.href = '#' + item.id;
+                a.textContent = item.text;
+                li.appendChild(a);
+                list.appendChild(li);
+            });
+            return list;
+        }
+
+        tocNav.appendChild(renderList());
+        if (sheetNav) sheetNav.appendChild(renderList());
+        if (toc) toc.hidden = false;
+        if (trigger) trigger.hidden = false;
+
+        function closeToc() {
+            if (sheet) sheet.hidden = true;
+            if (trigger) trigger.setAttribute('aria-expanded', 'false');
+        }
+
+        if (trigger && sheet) {
+            trigger.addEventListener('click', function() {
+                sheet.hidden = false;
+                trigger.setAttribute('aria-expanded', 'true');
+            });
+            sheet.addEventListener('click', function(e) {
+                if (e.target.hasAttribute('data-close-toc') || e.target.closest('a')) closeToc();
+            });
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') closeToc();
+            });
+        }
+    })();
 });
 </script>
 

@@ -1,26 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 
 {% include head.html %}
 
-<!-- hack iOS CSS :active style -->
 <body ontouchstart="">
 
     {% include nav.html %}
-    
-    <main class="main-content">
+
+    <main class="site-main" id="main-content">
         {{ content }}
     </main>
 
     {% include footer.html %}
 
-
-<!-- Image to hack wechat -->
-<img src="/img/icon_wechat.png" width="0" height="0" />
-<!-- Migrate from head to bottom, no longer block render and still work -->
-
-<!-- Theme Toggle Script -->
-<script src="{{ "/js/theme-toggle.js" | prepend: site.baseurl }}"></script>
+    <script src="{{ "/js/theme-toggle.js" | prepend: site.baseurl }}"></script>
 
 </body>
 

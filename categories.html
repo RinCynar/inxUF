@@ -1,0 +1,23 @@
+---
+layout: default
+title: Categories
+description: Browse posts by project
+permalink: /categories/
+hide-in-nav: true
+---
+
+<header class="page-header">
+    <h1 class="page-header__title">Categories</h1>
+    <p class="page-header__subtitle">按项目与标签浏览发布记录</p>
+</header>
+
+<div class="essentials-grid">
+    {% for tag in site.tags %}
+    {% assign slug = tag[0] | downcase %}
+    <a class="essential-card" href="{{ site.baseurl }}/categories/{{ slug }}/">
+        <span class="essential-card__label">{{ tag[1].size }} posts</span>
+        <h3>{{ tag[0] }}</h3>
+        <p>查看全部 {{ tag[0] }} 相关文章。</p>
+    </a>
+    {% endfor %}
+</div>
