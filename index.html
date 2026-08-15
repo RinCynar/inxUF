@@ -5,9 +5,24 @@ description: "InstallerX Unofficial"
 hide-in-nav: true
 ---
 
+{% assign latest_ix = nil %}
+{% for post in site.posts %}
+    {% if post.pinned %}
+    {% elsif post.tags contains 'InstallerX' %}
+        {% assign latest_ix = post %}
+        {% break %}
+    {% endif %}
+{% endfor %}
+
 <section class="site-hero">
     <h1>InstallerX Unofficial</h1>
-    <p>社区维护的 InstallerX、Dhizuku 及相关项目资源站。在这里查找版本说明与下载。</p>
+    <p>社区维护的 InstallerX、Dhizuku 及相关项目资源站。在这里获取版本说明与安装包。</p>
+    <div class="site-hero__actions">
+        {% if latest_ix %}
+        <a href="{{ latest_ix.url | prepend: site.baseurl }}" class="md-button md-button--filled">最新 InstallerX</a>
+        {% endif %}
+        <a href="{{ site.baseurl }}/archive/" class="md-button md-button--tonal">全部发布</a>
+    </div>
 </section>
 
 <div class="home-layout">
@@ -20,7 +35,7 @@ hide-in-nav: true
             <div class="essentials-grid">
                 {% for post in pinned_posts %}
                 <a class="essential-card" href="{{ post.url | prepend: site.baseurl }}">
-                    <span class="essential-card__label">Pinned</span>
+                    <span class="essential-card__label">项目</span>
                     <h3>{{ post.title }}</h3>
                     <p>{{ post.content | strip_html | truncate: 72 }}</p>
                 </a>
@@ -31,7 +46,7 @@ hide-in-nav: true
         {% endif %}
 
         <section class="home-section" aria-labelledby="latest-heading">
-            <h2 id="latest-heading" class="home-section__title">最近更新</h2>
+            <h2 id="latest-heading" class="home-section__title">最新发布</h2>
             <div class="feed-list">
                 {% for post in paginator.posts %}
                     {% unless post.pinned %}
@@ -43,10 +58,10 @@ hide-in-nav: true
             {% if paginator.total_pages > 1 %}
             <div class="pager">
                 {% if paginator.previous_page %}
-                    <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}" class="md-button md-button--tonal">&larr; Newer</a>
+                    <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}" class="md-button md-button--tonal">&larr; 更新</a>
                 {% endif %}
                 {% if paginator.next_page %}
-                    <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}" class="md-button md-button--tonal">Older &rarr;</a>
+                    <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}" class="md-button md-button--tonal">更早 &rarr;</a>
                 {% endif %}
             </div>
             {% endif %}
@@ -63,7 +78,7 @@ hide-in-nav: true
             <ul>
                 <li><a href="{{ site.baseurl }}/archive/">全部发布记录</a></li>
                 <li><a href="{{ site.baseurl }}/about/">网站与团队</a></li>
-                <li><a href="{{ site.baseurl }}/search/">搜索文章</a></li>
+                <li><a href="{{ site.baseurl }}/search/">搜索发布</a></li>
                 <li><a href="{{ site.baseurl }}/categories/">分类浏览</a></li>
                 <li><a href="{{ site.baseurl }}/feed.xml">RSS</a></li>
             </ul>

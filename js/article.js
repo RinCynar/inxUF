@@ -444,14 +444,19 @@
     var sheet = document.getElementById("toc-sheet");
     if (!tocNav) return;
 
-    var pageTitleEl = document.querySelector(".intro-header h1");
+    var pageTitleEl = document.querySelector(".release-hero h1") || document.querySelector(".intro-header h1");
     var pageTitle = pageTitleEl ? pageTitleEl.textContent.trim() : document.title;
+    var layout = document.getElementById("post-layout") || document.querySelector(".post-layout");
+
+    Array.from(body.querySelectorAll("h2")).forEach(function (lead) {
+      if (isRedundantLead(lead, pageTitle)) lead.hidden = true;
+    });
 
     var headings = Array.from(body.querySelectorAll("h2, h3, h4, .highlight-item"));
     var items = [];
 
     headings.forEach(function (h) {
-      if (h.style && h.style.display === "none") return;
+      if (h.hidden || (h.style && h.style.display === "none")) return;
       if (h.classList.contains("highlight-item")) {
         var highlightLabel = (h.querySelector("strong") && h.querySelector("strong").textContent) || tocLabel(h.textContent);
         if (!highlightLabel) return;
@@ -476,6 +481,7 @@
     });
 
     if (!items.length) {
+      if (layout) layout.classList.remove("has-toc");
       if (toc) toc.hidden = true;
       if (trigger) trigger.hidden = true;
       if (triggerWrap) triggerWrap.hidden = true;
@@ -513,6 +519,7 @@
 
     tocNav.appendChild(renderTree());
     if (sheetNav) sheetNav.appendChild(renderTree());
+    if (layout) layout.classList.add("has-toc");
     if (toc) toc.hidden = false;
     if (trigger) trigger.hidden = false;
     if (triggerWrap) triggerWrap.hidden = false;

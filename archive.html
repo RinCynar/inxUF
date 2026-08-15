@@ -1,7 +1,7 @@
 ---
 title: Archive
 layout: default
-description: "Releases History"
+description: "全部版本与下载"
 header-img: ""
 permalink: /archive/
 ---
@@ -20,7 +20,7 @@ permalink: /archive/
 <div class="archive-layout">
     <nav class="archive-year-nav" aria-label="Years">
         {%- if _pinned_list.size > 0 -%}
-        <a href="#archive-pinned">Pinned</a>
+        <a href="#archive-pinned">Projects</a>
         {%- endif -%}
         {%- assign _nav_year = '' -%}
         {%- for _article in _sorted_list -%}
@@ -71,7 +71,7 @@ permalink: /archive/
         <div class="mini-post-list js-result d-none">
             {%- if _pinned_list.size > 0 -%}
             <section class="archive-year archive-year--pinned" id="archive-pinned">
-                <span class="listing-seperator">Pinned</span>
+                <span class="listing-seperator">Projects</span>
                 {%- for _article in _pinned_list -%}
                 {%- assign _tags = '' -%}
                 {%- for _tag in _article.tags -%}
@@ -85,7 +85,7 @@ permalink: /archive/
                 <div class="item" data-tags="{{ _tags }}">
                     <a class="archive-item" href="{{ _article.url | prepend: site.baseurl }}">
                         <h2 class="post-title">
-                            <span class="md-pin-label">Pinned</span>
+                            <span class="md-pin-label">项目</span>
                             {{ _article.title }}
                         </h2>
                         <p class="archive-item__meta">
@@ -132,7 +132,7 @@ permalink: /archive/
         </div>
 
         <p class="archive-empty d-none" id="archive-empty">
-            No posts found.
+            No releases found.
             <button type="button" class="md-button md-button--text" id="archive-clear-filter">Clear filters</button>
         </p>
     </div>

@@ -3,7 +3,7 @@
 
 {% include head.html %}
 
-<body ontouchstart="">
+<body class="{% if page.layout == 'post' %}page-release{% endif %}" ontouchstart="">
 
     {% include nav.html %}
 

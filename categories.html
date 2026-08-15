@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Categories
-description: Browse posts by project
+description: Browse releases by project
 permalink: /categories/
 hide-in-nav: true
 ---
@@ -15,9 +15,9 @@ hide-in-nav: true
     {% for tag in site.tags %}
     {% assign slug = tag[0] | downcase %}
     <a class="essential-card" href="{{ site.baseurl }}/categories/{{ slug }}/">
-        <span class="essential-card__label">{{ tag[1].size }} posts</span>
+        <span class="essential-card__label">{{ tag[1].size }} releases</span>
         <h3>{{ tag[0] }}</h3>
-        <p>查看全部 {{ tag[0] }} 相关文章。</p>
+        <p>查看全部 {{ tag[0] }} 相关发布。</p>
     </a>
     {% endfor %}
 </div>

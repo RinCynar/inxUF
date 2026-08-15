@@ -10,12 +10,12 @@ permalink: /search/
 <div class="search-page">
     <div class="md-text-field">
         <svg class="md-text-field__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 3a6.5 6.5 0 1 0 4.02 11.56L19 20l1.5-1.5-5.44-5.48A6.5 6.5 0 0 0 9.5 3zm0 2a4.5 4.5 0 1 1 0 9 4.5 4.5 0 0 1 0-9z"/></svg>
-        <input type="search" id="search-input" class="md-text-field__input" placeholder="搜索标题、正文或分类 / Search title, body, tags" autocomplete="off" enterkeyhint="search">
+        <input type="search" id="search-input" class="md-text-field__input" placeholder="搜索标题、说明或项目 / Search title, notes, or project" autocomplete="off" enterkeyhint="search">
     </div>
 
     <div id="search-guide" class="search-guide">
         <section class="search-guide__section" aria-labelledby="search-recent-heading">
-            <h2 id="search-recent-heading" class="search-guide__title">最近更新</h2>
+            <h2 id="search-recent-heading" class="search-guide__title">最新发布</h2>
             <div class="mini-post-list">
                 {% assign recent_count = 0 %}
                 {% for post in site.posts %}
@@ -37,7 +37,7 @@ permalink: /search/
         </section>
 
         <section class="search-guide__section" aria-labelledby="search-tags-heading">
-            <h2 id="search-tags-heading" class="search-guide__title">热门标签</h2>
+            <h2 id="search-tags-heading" class="search-guide__title">项目与标签</h2>
             <div class="tags-sup">
                 {% for tag in site.tags %}
                 <a class="tag-button" href="{{ site.baseurl }}/archive/?tag={{ tag[0] | url_encode }}">
