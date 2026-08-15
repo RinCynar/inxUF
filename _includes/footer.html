@@ -1,16 +1,6 @@
 <footer class="footer">
     <div class="footer-grid">
         <div class="footer-col">
-            <h2>Navigation</h2>
-            <ul>
-                <li><a href="{{ site.baseurl }}/">Home</a></li>
-                <li><a href="{{ site.baseurl }}/archive/">Archive</a></li>
-                <li><a href="{{ site.baseurl }}/about/">About</a></li>
-                <li><a href="{{ site.baseurl }}/search/">Search</a></li>
-                <li><a href="{{ site.baseurl }}/categories/">Categories</a></li>
-            </ul>
-        </div>
-        <div class="footer-col">
             <h2>Projects</h2>
             <ul>
                 <li><a href="{{ site.baseurl }}/about/installerx/">InstallerX</a></li>
@@ -20,7 +10,7 @@
         </div>
         <div class="footer-col">
             <h2>External</h2>
-            {% include sns-links.html center=true %}
+            {% include sns-links.html %}
             <ul>
                 <li><a href="https://github.com/RinCynar/inxUF">GitHub</a></li>
                 <li><a href="{{ site.baseurl }}/feed.xml">RSS</a></li>
@@ -28,15 +18,12 @@
         </div>
     </div>
     <p class="footer-copy">
-        Copyright &copy; {{ site.title }} {{ site.time | date: '%Y' }}
+        {{ site.title }}
+        · Copyright &copy; {{ site.time | date: '%Y' }}
         · Powered by <a href="https://github.com/RinCynar/inxUF">GitHub</a>
         · Thx. <a href="https://huangxuan.me">Hux</a>
     </p>
 </footer>
-
-{% if page.title == 'Search' %}
-<script src="{{ "/js/simple-jekyll-search.min.js" | prepend: site.baseurl }}"></script>
-{% endif %}
 
 {% if page.title == 'Archive' %}
 <script src="{{ "/js/archive.js" | prepend: site.baseurl }}"></script>

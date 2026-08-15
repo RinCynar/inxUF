@@ -218,7 +218,7 @@
         }
         if (sheet) {
             sheet.addEventListener('click', function(e) {
-                if (e.target.hasAttribute('data-close-sheet')) closeSheet();
+                if (e.target.closest('[data-close-sheet]')) closeSheet();
             });
         }
         document.addEventListener('keydown', function(e) {

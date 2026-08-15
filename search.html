@@ -7,11 +7,10 @@ hide-in-nav: true
 permalink: /search/
 ---
 
-<!-- Material Search Page -->
 <div class="search-page">
     <div class="md-text-field">
         <svg class="md-text-field__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 3a6.5 6.5 0 1 0 4.02 11.56L19 20l1.5-1.5-5.44-5.48A6.5 6.5 0 0 0 9.5 3zm0 2a4.5 4.5 0 1 1 0 9 4.5 4.5 0 0 1 0-9z"/></svg>
-        <input type="text" id="search-input" class="md-text-field__input" placeholder="搜索帖子 / Search posts..." autocomplete="off">
+        <input type="search" id="search-input" class="md-text-field__input" placeholder="搜索标题、正文或分类 / Search title, body, tags" autocomplete="off" enterkeyhint="search">
     </div>
 
     <div id="search-guide" class="search-guide">
@@ -24,11 +23,12 @@ permalink: /search/
                     {% elsif recent_count < 6 %}
                     {% assign recent_count = recent_count | plus: 1 %}
                     <div class="item">
-                        <a href="{{ post.url | prepend: site.baseurl }}" style="text-decoration: none;">
+                        <a class="archive-item" href="{{ post.url | prepend: site.baseurl }}">
                             <h2 class="post-title">{{ post.title }}</h2>
-                            {% if post.subtitle %}
-                            <h3 class="post-subtitle">{{ post.subtitle }}</h3>
-                            {% endif %}
+                            <p class="archive-item__meta">
+                                <time datetime="{{ post.date | date: '%Y-%m-%d' }}">{{ post.date | date: "%b %d, %Y" }}</time>
+                                {% if post.tags.size > 0 %} · {{ post.tags | first }}{% endif %}
+                            </p>
                         </a>
                     </div>
                     {% endif %}
@@ -40,7 +40,7 @@ permalink: /search/
             <h2 id="search-tags-heading" class="search-guide__title">热门标签</h2>
             <div class="tags-sup">
                 {% for tag in site.tags %}
-                <a class="tag-button" href="{{ site.baseurl }}/categories/{{ tag[0] | downcase }}/">
+                <a class="tag-button" href="{{ site.baseurl }}/archive/?tag={{ tag[0] | url_encode }}">
                     {{ tag[0] }}
                     <span class="chip-count">{{ tag[1].size }}</span>
                 </a>
@@ -50,57 +50,5 @@ permalink: /search/
     </div>
 
     <p class="search-count" id="search-count" hidden></p>
-    <div id="search-results" class="mini-post-list js-result"></div>
+    <div id="search-results" class="search-results"></div>
 </div>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var input = document.getElementById('search-input');
-        var guide = document.getElementById('search-guide');
-        if (!input) return;
-        input.focus();
-
-        function syncGuide() {
-            if (!guide) return;
-            guide.hidden = input.value.trim().length > 0;
-        }
-
-        var countEl = document.getElementById('search-count');
-        var results = document.getElementById('search-results');
-
-        function syncCount() {
-            if (!countEl || !results) return;
-            if (!input.value.trim()) {
-                countEl.hidden = true;
-                return;
-            }
-            var n = results.querySelectorAll('.item').length;
-            countEl.hidden = false;
-            countEl.textContent = n ? (n + ' results') : '';
-        }
-
-        input.addEventListener('input', function() {
-            syncGuide();
-            setTimeout(syncCount, 30);
-        });
-        syncGuide();
-
-        if (window.SimpleJekyllSearch && document.getElementById('search-results')) {
-            window.SimpleJekyllSearch({
-                searchInput: input,
-                resultsContainer: document.getElementById('search-results'),
-                json: '{{ "/search.json" | prepend: site.baseurl }}',
-                searchResultTemplate:
-                    '<div class="item">' +
-                    '<a href="{url}" style="text-decoration: none;">' +
-                    '<h2 class="post-title">{title}</h2>' +
-                    '<p class="post-subtitle">{excerpt}</p>' +
-                    '<p class="feed-item__meta">{date} · {tags}</p>' +
-                    '</a></div>',
-                noResultsText: '<p style="color: var(--md-sys-color-on-surface-variant); padding: 16px 0;">No results found</p>',
-                limit: 20,
-                fuzzy: false
-            });
-        }
-    });
-</script>

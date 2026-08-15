@@ -34,7 +34,7 @@ permalink: /archive/
 
     <div class="archive-content">
         <div class="archive-filter-bar">
-            <button type="button" class="md-button md-button--tonal archive-filter-trigger" id="archive-filter-open" aria-haspopup="dialog" aria-controls="archive-filter-sheet">
+            <button type="button" class="md-button md-button--tonal archive-filter-trigger" id="archive-filter-open" aria-haspopup="dialog" aria-controls="archive-filter-sheet" aria-expanded="false" aria-label="Filter by tag">
                 Filter
             </button>
             <span class="filter-active-chip" id="archive-filter-active" hidden></span>
@@ -83,14 +83,15 @@ permalink: /archive/
                 {%- endif -%}
                 {%- endfor -%}
                 <div class="item" data-tags="{{ _tags }}">
-                    <a href="{{ _article.url | prepend: site.baseurl }}">
+                    <a class="archive-item" href="{{ _article.url | prepend: site.baseurl }}">
                         <h2 class="post-title">
                             <span class="md-pin-label">Pinned</span>
                             {{ _article.title }}
                         </h2>
-                        {% if _article.subtitle %}
-                        <h3 class="post-subtitle">{{ _article.subtitle }}</h3>
-                        {% endif %}
+                        <p class="archive-item__meta">
+                            <time datetime="{{ _article.date | date: '%Y-%m-%d' }}">{{ _article.date | date: "%b %d, %Y" }}</time>
+                            {% if _article.tags.size > 0 %} · {{ _article.tags | first }}{% endif %}
+                        </p>
                     </a>
                 </div>
                 {%- endfor -%}
@@ -117,11 +118,12 @@ permalink: /archive/
                 {%- endif -%}
 
                 <div class="item" data-tags="{{ _tags }}">
-                    <a href="{{ _article.url | prepend: site.baseurl }}">
+                    <a class="archive-item" href="{{ _article.url | prepend: site.baseurl }}">
                         <h2 class="post-title">{{ _article.title }}</h2>
-                        {% if _article.subtitle %}
-                        <h3 class="post-subtitle">{{ _article.subtitle }}</h3>
-                        {% endif %}
+                        <p class="archive-item__meta">
+                            <time datetime="{{ _article.date | date: '%Y-%m-%d' }}">{{ _article.date | date: "%b %d, %Y" }}</time>
+                            {% if _article.tags.size > 0 %} · {{ _article.tags | first }}{% endif %}
+                        </p>
                     </a>
                 </div>
                 {%- if forloop.last -%}

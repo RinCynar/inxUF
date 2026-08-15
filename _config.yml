@@ -35,6 +35,7 @@ exclude:
     "README.zh.md",
     "inxUF-待办问题清单.md",
     "待办事项.md",
+    "待办清单v1.md",
   ]
 anchorjs: true # if you want to customize anchor. check out line:181 of `post.html`
 # If you have timezone issue (e.g. #68) in China, uncomment to use this:

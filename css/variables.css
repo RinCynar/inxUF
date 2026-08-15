@@ -103,9 +103,19 @@
   --md-sys-state-pressed-opacity: 0.12;
   --md-sys-state-dragged-opacity: 0.16;
 
+  /* ---------- Layout constants (header / nav / reading column) ---------- */
+  --app-header-height: 56px;
+  --app-bottom-nav-height: 64px;
+  --app-safe-top: env(safe-area-inset-top, 0px);
+  --app-safe-bottom: env(safe-area-inset-bottom, 0px);
+  --app-sticky-offset: calc(var(--app-header-height) + var(--app-safe-top) + 8px);
+  --app-bottom-nav-space: calc(var(--app-bottom-nav-height) + var(--app-safe-bottom));
+  --app-prose-width: 820px;
+  --app-media-width: 1000px;
+
   /* ---------- Typography: full M3 type scale ---------- */
-  --md-sys-typescale-font: "Roboto", "Helvetica Neue", "Segoe UI",
-    "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC",
+  --md-sys-typescale-font: "Segoe UI", "PingFang SC", "Hiragino Sans GB",
+    "Microsoft YaHei", "Noto Sans CJK SC", "Roboto", "Helvetica Neue",
     sans-serif;
 
   --md-sys-typescale-display-large-font: var(--md-sys-typescale-font);
@@ -339,7 +349,14 @@ html.theme-light {
   color-scheme: light;
 }
 
+@media (min-width: 600px) {
+  :root {
+    --app-header-height: 64px;
+  }
+}
+
 body {
+  overflow-x: clip;
   background-color: var(--md-sys-color-background);
   color: var(--md-sys-color-on-background);
   margin: 0;
